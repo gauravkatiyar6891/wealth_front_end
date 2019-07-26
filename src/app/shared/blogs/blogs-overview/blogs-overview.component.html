@@ -1,0 +1,28 @@
+<div class="new-section-head">
+  <p>Articles</p>
+</div>
+
+<div class="mat-container-fluid">
+  <div class="mat-container">
+    <div class="articles">
+
+      <div *ngIf="blogsList">
+        <mat-card *ngFor="let blog of blogsList; let i = index">
+          <mat-card-header>
+            <mat-card-title>{{blog.title}}</mat-card-title>
+            <mat-card-subtitle>
+              <p>By {{blog.author.name}}</p>
+              <p> Publish Date : {{blog.date | date : 'dd MMM yyyy'}} </p>
+            </mat-card-subtitle>
+          </mat-card-header>
+          <img matCardImage [src]="base64Images[i]" alt="article - image">
+          <mat-card-content>
+            <p [innerHTML]="blog.excerpt" class="excerpt-content"> </p>
+            <a mat-flat-button color="primary" [routerLink]="['./../',blog.slug]">Read More</a>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+  </div>
+</div>

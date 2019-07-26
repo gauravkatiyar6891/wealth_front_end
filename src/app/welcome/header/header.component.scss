@@ -1,0 +1,369 @@
+@import '../../../theme.scss';
+
+.menu-cont {
+  box-shadow: 0px -4px 10px 2px;
+  background-color: $secondary-color-light;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: 1s;
+  height: 70px;
+
+  .logo {
+    float: left;
+    cursor: pointer;
+    text-align: center;
+
+    h3 {
+      margin: 3px 0 0;
+      color: $primary-color;
+
+      img {
+        width: 65px;
+      }
+    }
+  }
+
+  .menu-options {
+    display: inline-block;
+    margin-left: 25px;
+
+    a {
+      font-weight: 600;
+      padding: 24px 35px;
+      transition: 500ms;
+      display: inline-block;
+      border-bottom: 2px solid transparent;
+
+      &:hover {
+        border-bottom: 2px solid $primary-color;
+      }
+    }
+  }
+
+  .in-block-desk {
+    float: right;
+
+    >div {
+      display: inline-block;
+      margin: 0 10px;
+    }
+
+    .menu-action {
+      margin-top: 15px;
+
+      span {
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-block;
+        padding: 4px 10px;
+        box-sizing: content-box;
+        transition: 500ms;
+        border-bottom: 2px solid transparent;
+
+        &:hover {
+          border-bottom: 2px solid $primary-color;
+        }
+      }
+
+      a {
+        margin-left: 20px;
+      }
+
+      mat-icon {
+        display: none;
+      }
+    }
+
+    .login-buttons {
+      margin-top: 10px;
+
+      .drop-menu-cont {
+        width: fit-content;
+        cursor: pointer;
+
+        img {
+          width: 50px;
+          height: 50px;
+          border-radius: 50px;
+        }
+
+        .name {
+          margin-left: 5px;
+
+          mat-icon {
+            position: relative;
+            font-size: 26px;
+            top: 5px;
+            margin-left: 10px;
+            color: $primary-color;
+          }
+        }
+
+        .drop-down-profile {
+          position: absolute;
+          z-index: 200;
+          margin-top: 9px;
+
+          .profile-menu {
+            border-radius: 2px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            list-style-type: none;
+            margin-bottom: 0px;
+            text-align: left;
+
+            li {
+              &:first-child {
+                display: none;
+              }
+
+              margin-right: 0px;
+              background-color: $secondary-color;
+              transition: 250ms;
+              text-align: center;
+              padding: 6px 55px;
+
+              &:hover {
+                background-color: $primary-color;
+                color: $secondary-color;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .in-block-mob {
+    display: none;
+  }
+}
+
+@media only screen and (max-width:1200px) {
+  .menu-cont {
+    .menu-options {
+      margin-left: 0;
+
+      a {
+        padding: 24px 30px;
+      }
+    }
+
+    .in-block-desk {
+      .menu-action {
+        margin: 15px 10px 0 0;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width:992px) {
+  .menu-cont {
+    .logo {
+      h3 {
+        span {
+          display: none;
+        }
+      }
+    }
+
+    .menu-options {
+      margin-left: 0;
+
+      a {
+        padding: 24px 15px;
+      }
+    }
+
+    .in-block-desk {
+      .menu-action {
+        a {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}
+
+.enquiry {
+  cursor: pointer;
+  background-color: white;
+  position: fixed;
+  bottom: 0px;
+  right: 100px;
+  z-index: 900;
+  box-shadow: 0px 0px 1px 1px #9b9b9b;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 200px;
+  transition: 500ms;
+  max-height: 60px;
+
+  .heading {
+    padding: 6px 15px;
+    text-align: center;
+    font-size: 16px;
+    // font-family: 'Times New Roman', Times, serif;
+    background-color: $primary-color;
+    color: white;
+
+    mat-icon {
+      position: absolute;
+      top: 0px;
+      right: 20px;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      z-index: 950;
+    }
+
+    p {
+      float: right;
+      margin-bottom: 0px;
+      font-weight: 600;
+    }
+  }
+
+  form {
+    display: none;
+    margin: 15px 0px;
+    text-align: center;
+
+    .input-fields {
+      width: 85%;
+    }
+  }
+
+  &:hover {
+    box-shadow: none;
+    background-color: transparent;
+
+    .heading {
+      animation: flip-enquiry 500ms ease-in-out;
+    }
+  }
+}
+
+.enquiry-form-open {
+  width: 400px;
+  max-height: 700px;
+  background-color: white !important;
+  cursor: default;
+
+  .heading {
+    text-align: left;
+  }
+
+  form {
+    display: block;
+  }
+
+  &:hover {
+    box-shadow: none;
+
+    .heading {
+      animation: none;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .menu-cont {
+    .logo {
+      width: fit-content;
+
+      h3 {
+        span {
+          display: none;
+        }
+      }
+    }
+
+    .menu-options {
+      display: none;
+    }
+
+    .in-block-desk {
+      .login-buttons {
+        display: none;
+      }
+
+      .menu-action {
+        position: relative;
+
+        >span {
+          display: none;
+        }
+
+        mat-icon {
+          display: inline-block;
+          position: absolute;
+          font-size: 24px;
+          margin-left: 15px;
+          top: 10px;
+          right: 0;
+        }
+
+        a {
+          margin: 3px 55px 0 15px;
+        }
+      }
+    }
+  }
+
+  .enquiry {
+    right: 15vw;
+  }
+
+  .enquiry-form-open {
+    width: 70vw;
+    max-width: 300px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .menu-cont {
+
+    .in-block-desk {
+
+      .menu-action {
+
+        a {
+          margin: 3px 40px 0 15px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .menu-cont {
+    .in-block-desk {
+      .menu-action {
+        margin: 15px 0 0 !important;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {}
+
+mat-progress-spinner {
+  margin: auto;
+  display: inline-block;
+}
+
+@keyframes flip-enquiry {
+  from {
+    transform: rotateX(0deg);
+  }
+
+  50% {
+    transform: rotateX(90deg);
+  }
+
+  to {
+    transform: rotateX(0deg);
+  }
+}

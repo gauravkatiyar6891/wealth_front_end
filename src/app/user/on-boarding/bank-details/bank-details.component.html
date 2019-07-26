@@ -1,0 +1,88 @@
+<div class="bank-detail-step">
+
+  <mat-card>
+    <mat-card-content>
+
+      <form [formGroup]="bankDetailsFormGroup" (ngSubmit)="bankDetailsFormSubmit()">
+
+        <mat-form-field>
+          <input class="ifsc-code" matInput type="text" placeholder="Your Bank's IFSC Code"
+            [formControl]="bankDetailsFormGroup.controls['ifscCode']" autocomplete="false" required spellcheck="false">
+          <span matSuffix *ngIf="checkingIfsc">
+            <mat-icon class="fields-icon ifsc-loader" fontSet="fas" fontIcon="fa-spinner"></mat-icon>
+          </span>
+          <mat-error *ngIf="bankDetailsFormGroup.controls['ifscCode'].hasError('pattern')">Invalid IFSC Code
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select placeholder="Account Type" required [formControl]="bankDetailsFormGroup.controls['accountType']">
+            <mat-option *ngFor="let accountType of bankAccountType" [value]="accountType.value">
+              {{accountType.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="password" placeholder="Your Bank Account Number"
+            [formControl]="bankDetailsFormGroup.controls['accountNumber']" autocomplete="false" required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="number" placeholder="Confirm Bank Account Number"
+            [formControl]="bankDetailsFormGroup.controls['accountNumberConfirm']" autocomplete="false" required>
+          <mat-error *ngIf="bankDetailsFormGroup.controls['accountNumberConfirm'].hasError('passwordMatch')">
+            Bank Account Number does not Match
+          </mat-error>
+        </mat-form-field>
+
+        <div class="nominee-seperator" *ngIf="!bankDetailsFormGroup.controls['addNominee'].value">Nominee
+          Details</div>
+
+        <mat-form-field *ngIf="!bankDetailsFormGroup.controls['addNominee'].value">
+          <input matInput type="text" placeholder="Nominee's Name"
+            [formControl]="bankDetailsFormGroup.controls['nomineeName']" required>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="!bankDetailsFormGroup.controls['addNominee'].value">
+          <mat-select placeholder="Relation With Nominee"
+            [formControl]="bankDetailsFormGroup.controls['nomineeRelation']">
+            <mat-option *ngFor="let relation of nomineeRelations" [value]="relation.value">
+              {{relation.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-checkbox color="primary" [formControl]="bankDetailsFormGroup.controls['addNominee']">I do not want
+          to Add Nominee</mat-checkbox>
+
+        <div>
+          <button type="submit" mat-flat-button color="primary"
+            [disabled]="!bankDetailsFormGroup.valid || showProgressSpinner"
+            color="primary">{{bankDetailsFormGroup.dirty ? 'Submit' : 'Next'}}
+            <mat-progress-spinner *ngIf="showProgressSpinner" mode="indeterminate" color="primary" [diameter]="20">
+            </mat-progress-spinner>
+          </button>
+        </div>
+      </form>
+
+    </mat-card-content>
+    <!-- <mat-card-footer>
+      <mat-icon class="mat-18">info</mat-icon>
+      If You don't know the IFSC Code of your Bank, then <a href="https://economictimes.indiatimes.com/wealth/ifsc-bank-code"
+        target="_blank" rel="noopener noreferrer">Click here</a> to find out with few basic bank information.
+    </mat-card-footer> -->
+  </mat-card>
+
+  <mat-card>
+    <mat-card-content *ngIf="bankDetailsFormGroup.controls['bankName'].value !=null">
+      <!-- <img src="../../../assets/banks/axis.jpg" alt=""> -->
+      <h4>Bank Name</h4>
+      <p>{{bankDetailsFormGroup.controls['bankName'].value}}</p>
+      <h4>Bank Branch</h4>
+      <p>{{bankDetailsFormGroup.controls['bankBranch'].value}}</p>
+      <h4>Bank Address</h4>
+      <p>{{bankDetailsFormGroup.controls['bankAddress'].value}}</p>
+    </mat-card-content>
+  </mat-card>
+</div>

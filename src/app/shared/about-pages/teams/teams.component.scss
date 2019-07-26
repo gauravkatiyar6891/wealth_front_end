@@ -1,0 +1,113 @@
+.teams {
+	padding: 50px 5px;
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	background-size: cover;
+	> div {
+		position: relative;
+		flex-basis: 23%;
+		border-radius: 5px;
+		box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+			0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+		.team-member {
+			cursor: pointer;
+			background-position: center;
+			background-size: cover;
+			height: 325px;
+			clip-path: circle(32% at 50% 32%);
+			filter: grayscale(80%);
+		}
+		&:nth-child(1) {
+			.team-member {
+				background-image: url('../../../../assets/images/manu-profile.jpg');
+			}
+		}
+		&:nth-child(2) {
+			.team-member {
+				background-image: url('../../../../assets/images/rashmi-profile.jpg');
+			}
+		}
+		&:nth-child(3) {
+			.team-member {
+				background-image: url('../../../../assets/images/praveen.jpeg');
+			}
+		}
+		&:nth-child(4) {
+			.team-member {
+				background-image: url('../../../../assets/images/saurabh-katiyar-profile-1.png');
+			}
+		}
+		&:hover {
+			.team-member {
+				animation: radius-out 500ms forwards
+					cubic-bezier(0.54, 0.3, 0.92, 0.71);
+			}
+			.info {
+				animation: slide-up 500ms forwards ease-out;
+			}
+		}
+		.info {
+			position: absolute;
+			bottom: 0px;
+			width: 100%;
+			text-align: center;
+			h4,
+			h5 {
+				text-align: center;
+			}
+			h4 {
+				font-weight: 600;
+			}
+		}
+	}
+}
+
+@keyframes radius-out {
+	0% {
+		clip-path: circle(32% at 50% 32%);
+		filter: grayscale(80%);
+	}
+	75% {
+		filter: grayscale(0%);
+	}
+	100% {
+		clip-path: circle(100% at 50% 32%);
+		filter: grayscale(0%);
+	}
+}
+
+@keyframes slide-up {
+	from {
+		transform: translateY(50px);
+		opacity: 0;
+		color: black;
+	}
+	to {
+		transform: translateY(0px);
+		opacity: 1;
+		color: white;
+		background: rgba(0, 0, 0, 0.2);
+	}
+}
+
+.new-section-head {
+	p {
+		width: 250px;
+	}
+}
+
+@media only screen and (max-width: 576px) {
+	.new-section-head {
+		p {
+			width: 100px;
+		}
+	}
+	.teams {
+		padding: 0 15px;
+		> div {
+			flex-basis: 275px;
+			margin: 10px 0;
+		}
+	}
+}

@@ -1,0 +1,58 @@
+export interface SchemeForInvestmentResp {
+    schemeId: number,
+    schemeCode: string,
+    benchmarkCode: null,
+    amcSchemeCode: null,
+    schemeName: string,
+    fundName: string,
+    schemeType: string,
+    option: string,
+    plan: string,
+    amcCode: string,
+    rating: string,
+    schemeLaunchDate: string,
+    schemeEndDate: string,
+    sipAllowed: string,
+    minSipAmount: number,
+    minAdditionalAmount: number,
+    minimumPurchaseAmount: number,
+    maximumPurchaseAmount: number,
+    purchaseAllowed: string,
+    sipAllowedDate: string,
+    sipMaxInstallmentAmount: number,
+    sipMinInstallmentNumber: number,
+    totalPurchageAmount: number,
+    isOrderAllowed: string,
+    isEnachEnable: string,
+    isBillerEnable: string,
+    isIsipAllowed: string,
+    sipMaximumGap: string,
+}
+
+export interface SchemeForInvestment {
+    amcCode: string,
+    schemeId: number,
+    sipMaxGap: number,
+    schemeCode: string,
+    schemeName: string,
+    kycStatus: boolean,
+    nextSipDate: string,
+    minSipAmount: number,
+    maxSipAmount: number,
+    isSipAllowed: boolean,
+    isISipAllowed: boolean,
+    investmentType: string,
+    showPaymentType: boolean,
+    minLumpSumAmount: number,
+    maxLumpsumAmount: number,
+    isLumpsumAllowed: boolean,
+    minAdditionalAmount: number,
+    availableSipDates: string[],
+    userTotalInvestmentAmount: number
+}
+
+export interface ExistingFolioForInvestment {
+    follioNo: string,
+    goalId: number,
+    goalName: string
+}

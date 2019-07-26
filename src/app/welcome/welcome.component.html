@@ -1,0 +1,22 @@
+<mat-sidenav-container>
+  <mat-sidenav [(opened)]="sideBarState" position="end" fixedInViewport [fixedTopGap]="0">
+    <g4w-mob-side-nav (sideBar)="sideBarState=false"></g4w-mob-side-nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <!-- ------------------------------------------ header -------------------------------- -->
+    <g4w-header (sideBar)="sideBarState=!sideBarState"></g4w-header>
+
+    <!-- ------------------------------------------ Route Change Spinner -------------------------------------------- -->
+    <div class="overlay-loader" [hidden]="!showRouterChangeLoader">
+      <mat-progress-spinner mode="indeterminate" color="primary" [diameter]="50"></mat-progress-spinner>
+    </div>
+
+    <!-- ------------------------------------------ body -------------------------------------------- -->
+    <div class="router-body">
+      <router-outlet></router-outlet>
+    </div>
+
+    <!-- ------------------------------------------ footer ---------------------------------------- -->
+    <g4w-footer></g4w-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

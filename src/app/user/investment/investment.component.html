@@ -1,0 +1,89 @@
+<div class="new-section-head">
+  <p>Investment</p>
+</div>
+
+<app-mandate [hidden]="schemeData?.investmentType != 'sip'"></app-mandate>
+
+<div class="mat-container-fluid">
+  <div class="mat-container investment">
+    <h4>{{schemeData?.schemeName}}
+      <p *ngIf="selectedGoal.goalId">
+        Goal Assigned : {{selectedGoal.goalName}}
+      </p>
+    </h4>
+    <div class="actions">
+      <button mat-raised-button [color]="schemeData?.investmentType !='sip' ? 'primary': ''"
+        (click)="investmentTypeChange('lumpsum')" [disabled]="!schemeData?.isLumpsumAllowed">One Time</button>
+      <button mat-raised-button [color]="schemeData?.investmentType =='sip' ? 'primary' : ''"
+        (click)="investmentTypeChange('sip')" [disabled]="!schemeData?.isSipAllowed">Monthly (SIP)</button>
+      <button mat-flat-button color="primary" (click)="openGoalsDialog()"
+        [disabled]="fetchingGoals || (investmentFormGroup.controls['folio'].value!=0 && selectedGoal.goalId!=0)">Assign
+        Goal</button>
+    </div>
+
+    <form [formGroup]="investmentFormGroup">
+
+      <mat-form-field class="input-fields">
+        <span matPrefix>
+          <mat-icon fontSet="fas" fontIcon="fa-rupee-sign"></mat-icon>
+        </span>
+        <input matInput type="number" placeholder="Enter Amount You Want to Invest"
+          [formControl]="investmentFormGroup.controls['amount']" autocomplete="scheme-amount">
+        <mat-error *ngIf="investmentFormGroup.controls['amount'].hasError('min')">Min Amount Should be &#8377;
+          {{schemeData?.investmentType == 'sip' ? schemeData?.minSipAmount : investmentFormGroup.controls['folio'].value == '0' ? schemeData?.minLumpSumAmount : schemeData?.minAdditionalAmount}}
+        </mat-error>
+        <mat-error *ngIf="investmentFormGroup.controls['amount'].hasError('max')">Max Amount Can be &#8377;
+          {{schemeData?.investmentType == 'sip' ? schemeData?.maxSipAmount : schemeData?.maxLumpsumAmount}}</mat-error>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field *ngIf="schemeData?.investmentType =='sip'">
+        <mat-select [formControl]="investmentFormGroup.controls['day']" placeholder="Day Of SIP">
+          <mat-option *ngFor="let date of schemeData.availableSipDates" [value]="date">{{dateSuffix(date)}}
+          </mat-option>
+        </mat-select>
+        <br>
+      </mat-form-field>
+      <span *ngIf="schemeData?.investmentType =='sip'">of Every Month</span>
+      <br *ngIf="schemeData?.investmentType =='sip'">
+
+      <mat-radio-group class="payment-radio" *ngIf="schemeData?.showPaymentType && schemeData?.investmentType =='sip'"
+        [formControl]="investmentFormGroup.controls['paymentType']">
+        <label for="">Payment Option</label>
+        <mat-radio-button color="primary" value="Natch">XSIP(NACH)</mat-radio-button>
+        <mat-radio-button color="primary" value="Biller" [disabled]="!schemeData?.isISipAllowed">ISIP(BILLER)
+        </mat-radio-button>
+        <br>
+      </mat-radio-group>
+
+      <mat-radio-group class="payment-radio" [formControl]="investmentFormGroup.controls['folio']" #folio>
+        <mat-radio-button color="primary" value="0">New Folio</mat-radio-button>
+        <p class="ex-folio-p">Existing Folio
+          <mat-progress-spinner mode="indeterminate" color="primary" *ngIf="exFolio == null" [diameter]="20">
+          </mat-progress-spinner>
+        </p>
+        <p class="ex-folio-p-na" *ngIf="exFolio!=null && exFolio.length==0">No Folio Under This AMC</p>
+        <span *ngFor="let folio of exFolio">
+          <mat-radio-button color="primary" [value]="folio.follioNo">{{folio.follioNo}}</mat-radio-button>
+          <br>
+        </span>
+        <!-- <mat-radio-button color="primary" value="2">472308472389 </mat-radio-button> -->
+      </mat-radio-group>
+
+      <button mat-stroked-button color="primary" [disabled]="investmentFormGroup.invalid"
+        (click)="validateInvestment(false)">Add To Cart</button>
+      <button mat-raised-button type="submit" [disabled]="investmentFormGroup.invalid"
+        (click)="validateInvestment()">Place Order</button>
+
+    </form>
+
+    <p>Please note that the NAV applicable to your order, would depend on the type of the fund, amount invested and the
+      time you enter the order. For orders less than 2 Lac before cut-off (3 pm) on a business day for non-Liquid
+      schemes, the order will be processed at the NAV as at the close of the business day. For orders greater than 2
+      Lac before cut-off (1 pm) on a business day for non-Liquid schemes, the order will be processed at the NAV as at
+      the close of the business day. For orders before cut-off (3 pm) on a business day for Liquid schemes, the order
+      will be processed at the NAV as at the close of the previous business day. For orders placed after cut-off time
+      or on a Non-Business day, the NAV of the next business day will be applicable.</p>
+
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<div class="new-section-head">
+  <p>Onboarding Process</p>
+</div>
+
+<div class="mat-container-fluid background">
+  <div class="mat-container">
+
+    <!-- <h3>This is a one time process.</h3> -->
+
+    <div class="in-progress" *ngIf="gettingUserDetailsOnPageLoad">
+      <mat-progress-spinner [diameter]="40" mode="indeterminate" color="primary"></mat-progress-spinner>
+      <h3>Checking Your Onboarding Status</h3>
+    </div>
+
+    <mat-horizontal-stepper [linear]="true" class="on-boarding-stepper" #stepper
+      [ngClass]="{'hide-step': gettingUserDetailsOnPageLoad}" *ngIf="!onBoardingCompletedMessage">
+
+      <!-- ----------------------------------------------------------------------Verify Mobile No & Email------------------------------------------------------------------- -->
+
+      <mat-step [stepControl]="firstStepControlFormGroup" label="Mobile No & Email Verification" editable="false">
+
+        <g4w-mobile-email-verify [userData]="userData" (firstStepMove)="firstStepControlMover()"
+          (mobileVerified)="userData.mobileVerified=true" (emailVerified)="userData.emailVerified=true">
+        </g4w-mobile-email-verify>
+
+      </mat-step>
+
+      <!-- ----------------------------------------------------------------------Verify PAN------------------------------------------------------------------------------------ -->
+
+      <mat-step [stepControl]="secondStepControlFormGroup" label="PAN Verify" editable="true">
+
+        <g4w-pan-verify [userData]="userData" (secondStepMove)="secondStepControlMover()"
+          (panNo)="userData.panNumber=$event" (panVerified)="userData.panVerified=$event"
+          (documentsReq)="setDocumentRequest()">
+        </g4w-pan-verify>
+
+      </mat-step>
+
+      <!-- ----------------------------------------------------------------------Basic Details------------------------------------------------------------------- -->
+
+      <mat-step label="Basic Details" editable="true">
+
+        <g4w-user-basic-details [userData]="userData" (nextStep)="gotoNextStep()"></g4w-user-basic-details>
+
+      </mat-step>
+
+      <!-- ----------------------------------------------------------------------Bank Details------------------------------------------------------------------- -->
+
+      <mat-step label="Bank Details" editable="true">
+        <p *ngIf="!isipAllowedStatus" class="isip-not-allowed">ISIP mandate is not allowed for bank which you have
+          provided. You can only proceed with NACH manadate(XSIP)</p>
+
+        <g4w-bank-details [userData]="userData" (nextStep)="gotoNextStep()"
+          (isipAllowedStatus)="isipAllowedStatus=$event"></g4w-bank-details>
+
+      </mat-step>
+
+      <!-- ----------------------------------------------------------------------Upload Documents------------------------------------------------------------------- -->
+
+      <mat-step label="Upload Documents" editable="true">
+
+        <g4w-documents [userData]="userData" [needAddressProof]="needAddressProof"
+          (onBoardingCompleted)="onBoardingSuccessMessage()"></g4w-documents>
+
+      </mat-step>
+
+    </mat-horizontal-stepper>
+
+    <div class="success-message" *ngIf="onBoardingCompletedMessage">
+      <h3>Congratulations! Your Investment Profile has been successfully completed</h3>
+      <h4>Please wait while we redirect you to your Dashboard...</h4>
+    </div>
+
+  </div>
+</div>

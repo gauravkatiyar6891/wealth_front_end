@@ -1,0 +1,41 @@
+<div class="new-section-head">
+  <p>Active SIP</p>
+</div>
+
+<div class="mat-container-fluid" class="view-transaction" *ngIf="activeSipList">
+  <div class="mat-container">
+
+    <table>
+      <thead>
+        <tr>
+          <th>SIP Regn. Id</th>
+          <th>Scheme Name</th>
+          <th>SIP Amount</th>
+          <th>SIP Date</th>
+          <!-- <th>Order Placement Date</th> -->
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let activeSip of activeSipList">
+          <td>{{activeSip.sipRegnId}}</td>
+          <td>{{activeSip.schemeName}}</td>
+          <td> &#8377; {{activeSip.amount}}</td>
+          <td>{{activeSip.dayOfSip}}</td>
+          <!-- <td>{{activeSip.sipDate}}</td> -->
+          <!-- <td>{{activeSip.status}}
+            <mat-icon class="success" *ngIf="activeSip.status =='Success'" fontSet="fas" fontIcon="fa-check-circle"></mat-icon>
+            <mat-icon class="failure" *ngIf="activeSip.status !='Success'" fontSet="fas" fontIcon="fa-exclamation-circle"></mat-icon>
+          </td> -->
+          <td *ngIf="activeSip.status=='IO' || activeSip.status=='AD' || activeSip.status=='M' || activeSip.status=='C' || activeSip.status=='AP' || activeSip.status=='PA'">
+            Active
+            <button mat-raised-button color="primary" (click)="cancelActiveSip(activeSip.orderId)"> Stop </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="no-transaction" *ngIf="activeSipList.length==0">
+      <p>You do not have done any Active SIP's yet !</p>
+    </div>
+  </div>
+</div>

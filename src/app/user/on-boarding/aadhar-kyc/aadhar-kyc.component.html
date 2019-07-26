@@ -1,0 +1,32 @@
+<div class="parent">
+  <h4>Aadhar Based Verification</h4>
+
+  <form [formGroup]="aadharFormGroup" (ngSubmit)="aadharFormSubmit()">
+
+    <mat-form-field class="input-fields">
+      <input type="number" matInput placeholder="Aadhar No" [formControl]="aadharFormGroup.controls['aadharNo']"
+        autocomplete="off">
+      <mat-error *ngIf="aadharFormGroup.controls['aadharNo'].hasError('required')">
+        Aadhar Number is Required </mat-error>
+      <mat-error
+        *ngIf="aadharFormGroup.controls['aadharNo'].hasError('minlength') || aadharFormGroup.controls['aadharNo'].hasError('maxlength')">
+        Aadhar Number must be 12 digits </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="input-fields">
+      <input type="number" matInput placeholder="Mobile Number as per Aadhar card" [formControl]="aadharFormGroup.controls['mobileNo']"
+        autocomplete="off">
+      <mat-error *ngIf="aadharFormGroup.controls['mobileNo'].hasError('required')">
+        Mobile Number is Required </mat-error>
+      <mat-error
+        *ngIf="aadharFormGroup.controls['mobileNo'].hasError('minlength') || aadharFormGroup.controls['mobileNo'].hasError('maxlength')">
+        Mobile Number must be 10 digits </mat-error>
+    </mat-form-field>
+
+    <div class="action">
+      <button mat-flat-button color="primary" type="reset" (click)="dismiss()">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!aadharFormGroup.valid">Submit</button>
+    </div>
+
+  </form>
+</div>

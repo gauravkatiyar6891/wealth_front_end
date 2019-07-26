@@ -1,0 +1,26 @@
+<div class="cont">
+  <p class="heading">Mandate Form Submit Instruction
+    <mat-icon class="mat-18" (click)="dialogRef.close()">close</mat-icon>
+  </p>
+
+  <div class="instruction">
+    <ol>
+      <li>Download Mandate form from below button</li>
+      <li>Upload the signed image of the downloaded Mandate Form</li>
+      <li>Make sure the size of image is less than 1MB</li>
+    </ol>
+    <mat-radio-group class="mandate-radio" [(ngModel)]="mandateFormType" *ngIf="showMandateType">
+      <label for="">Mandate Option:</label>
+      <mat-radio-button color="primary" value="Create" (click)="getMandateForm('Create')">Create</mat-radio-button>
+      <mat-radio-button color="primary" value="Modify" (click)="getMandateForm('Modify')">Modify</mat-radio-button>
+      <mat-radio-button color="primary" value="Cancel" (click)="getMandateForm('Cancel')">Cancel</mat-radio-button>
+    </mat-radio-group>
+    <input type="file" #mandateUploadInput (change)="mandateUpload($event)">
+    <div>
+      <a mat-raised-button [disabled]="mandateFormType == '' || mandateFormData == '' " href="{{mandateFormData}}"
+        download="{{mandateImageName}}">Download</a>
+      <button mat-raised-button color="primary" (click)="mandateUploadInput.click()">Upload</button>
+    </div>
+    <mat-error *ngIf="fileSizeError">Max File Size is 1MB</mat-error>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<div class="new-section-head">
+    <p>Bank Details</p>
+</div>
+
+<section class="user-details">
+    <div class="container">
+        <div class="alert alert-danger" *ngIf="failureMessage">
+            <p>{{failureMessage}}</p>
+        </div>
+        <div class="alert alert-success" *ngIf="successMessage">
+            <p>{{successMessage}}</p>
+        </div>
+        <div class="userdeatils">
+            <div class="userdeatils-header">
+                <h4>Bank Details</h4>
+            </div>
+            <div class="userdeatils-content">
+                <form class="form-horizontal" #bankInfoForm="ngForm" novalidate>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 col-xs-3">IFSC Code</label>
+                        <div class="col-md-9 col-xs-9">
+                            <input style="display:inline-block;width:80%;" type="text" placeholder="IFSC Code" name="ifsccode"
+                                #ifsccoderef="ngModel" required class="form-control" [(ngModel)]="ifscCode" />
+                            <button mat-raised-button type="submit" style="margin-left:15px;" (click)="changeIFSC()">Search</button>
+                            <p [hidden]="ifsccoderef.valid || ifsccoderef.pristine" class="error"> IFSC Code is
+                                required </p>
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="form-group">
+                            <label class="col-lg-3 col-xs-3">Bank Name : </label>
+                            <div class="col-md-9 col-xs-9">
+                                <input type="text" class="form-control" value="{{bankDetail.bankName}}" name="bankName"
+                                    [(ngModel)]="bankDetail.bankName" readonly required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 col-xs-3">IFSC Code : </label>
+                            <div class="col-md-9 col-xs-9">
+                                <input type="text" class="form-control" value="{{bankDetail.ifscCode}}" name="ifscCode"
+                                    [(ngModel)]="bankDetail.ifscCode" readonly required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 col-xs-3">MICR Code : </label>
+                            <div class="col-md-9 col-xs-9">
+                                <input type="text" class="form-control" value="{{bankDetail.micrCode}}" name="micrCode"
+                                    [(ngModel)]="bankDetail.micrCode" readonly required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 col-xs-3">Branch Name : </label>
+                            <div class="col-md-9 col-xs-9">
+                                <input type="text" class="form-control" value="{{bankDetail.bankBranch}}" name="bankBranch"
+                                    [(ngModel)]="bankDetail.bankBranch" readonly required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 col-xs-3">Account No. : </label>
+                            <div class="col-md-9 col-xs-9">
+                                <input type="text" class="form-control" value="{{bankDetail.accountNumber}}" name="accountNumber"
+                                    [(ngModel)]="bankDetail.accountNumber" required pattern="[0-9]*">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 col-xs-3">Branch Address : </label>
+                            <div class="col-md-9 col-xs-9">
+                                <input type="text" class="form-control" value="{{bankDetail.bankAddress}}" name="bankAddress"
+                                    [(ngModel)]="bankDetail.bankAddress" readonly required>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" style="margin-left: 15px; float: right; margin-top: 10px;" mat-raised-button
+                        color="primary" [disabled]="!bankInfoForm.form.valid" (click)="changeInfo()">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

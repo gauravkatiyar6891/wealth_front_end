@@ -1,0 +1,90 @@
+<div class="new-section-head">
+  <p>Transactions</p>
+</div>
+
+<div class="mat-container-fluid" *ngIf="transactionStatusProcessing">
+  <div class="mat-container status-check">
+    <h4>Please wait while we verify your payment status</h4>
+    <div class="loading-circle">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</div>
+
+<div class="mat-container-fluid" *ngIf="viewTransaction" class="view-transaction">
+  <div class="mat-container">
+
+    <table>
+      <thead>
+        <tr>
+          <!-- <th>Order Id</th> -->
+          <th>Investment</th>
+          <th>Amount</th>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transaction of transactionList">
+          <!-- <td>{{transaction.orderId}}</td> -->
+          <td *ngIf="!modelPortfolioSuccess">{{transaction.schemeName}}</td>
+          <td *ngIf="modelPortfolioSuccess">{{transaction.investmentType}}</td>
+          <td *ngIf="!modelPortfolioSuccess"> &#8377; {{transaction.amount}}</td>
+          <td *ngIf="modelPortfolioSuccess">{{transaction.investmentType}}</td>
+          <td>{{transaction.orderDate | date:'dd MMM yyy'}}</td>
+          <td>{{transaction.type}}</td>
+          <td>{{transaction.status}}
+            <mat-icon class="success" *ngIf="transaction.status =='Success'" fontSet="fas" fontIcon="fa-check-circle">
+            </mat-icon>
+            <mat-icon class="failure" *ngIf="transaction.status !='Success'" fontSet="fas"
+              fontIcon="fa-exclamation-circle"></mat-icon>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="no-transaction" *ngIf="transactionList.length==0">
+      <p>You do not have done any transaction yet !</p>
+    </div>
+
+    <h3>Redeemption Status</h3>
+    <table>
+      <thead>
+        <tr>
+          <!-- <th>Folio No</th> -->
+          <!-- <th>Scheme Name</th> -->
+          <th>Date</th>
+          <th>Amount</th>
+          <!-- <th>Type</th> -->
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let redeem of redeemptionDetail">
+          <!-- <td>{{redeem.follioNo}}</td> -->
+          <!-- <td>{{redeem.schemeName}}</td> -->
+          <td>{{redeem.redumptionDate | date:'dd MMM yyy'}}</td>
+          <td>&#8377; {{redeem.redumptionAmount}}</td>
+          <!-- <td>{{redeem.type}}</td> -->
+          <td *ngIf="redeem.redumptionStatus=='P'">Pending
+            <mat-icon class="failure" fontSet="far" fontIcon="fa-clock"></mat-icon>
+          </td>
+          <td *ngIf="redeem.redumptionStatus=='R' || redeem.redumptionStatus=='C'">Redeemed
+            <mat-icon class="success" fontSet="fas" fontIcon="fa-check-circle"></mat-icon>
+          </td>
+          <td *ngIf="redeem.redumptionStatus=='F'">Failed
+            <mat-icon class="failure" fontSet="far" fontIcon="fa-clock"></mat-icon>
+          </td>
+        </tr>
+        <tr *ngIf="!redeemptionDetail">
+          <td colspan="6" class="no-redeemption">You have not Redeemed any units</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="action" *ngIf="modelPortfolioSuccess">
+      <a mat-raised-button color="primary" routerLink="/user/portfolios">Check Order Status</a>
+    </div>
+  </div>
+</div>

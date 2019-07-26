@@ -1,0 +1,108 @@
+@import '../../../../theme.scss';
+
+.order-cont {
+  padding: 60px 20px;
+
+  .head {
+    padding: 20px;
+    background-color: $primary-color;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+
+    p {
+      color: white;
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+
+  .body {
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+
+    table {
+      width: 98%;
+      margin: 0 auto;
+
+      thead {
+        font-weight: 600;
+
+        tr {
+          td {
+            padding: 10px;
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          td {
+            padding: 10px;
+
+            a {
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+
+      tr {
+        .clm-1 {
+          width: 130px;
+        }
+
+        .clm-2 {
+          width: 200px;
+        }
+
+        .clm-3 {
+          width: 110px;
+        }
+      }
+    }
+
+    .action {
+      text-align: right;
+      padding: 20px;
+    }
+  }
+}
+
+@media only screen and (max-width:576px) {
+  .order-cont {
+    padding: 35px 5px;
+
+    .head {
+      padding: 15px;
+
+      p {
+        font-size: 17px;
+      }
+    }
+
+    .body {
+      table {
+        tbody {
+          tr {
+            .clm-0 {
+              min-width: 240px;
+            }
+
+            .clm-1 {
+              min-width: 100px;
+            }
+
+            .clm-2 {
+              min-width: 120px;
+            }
+
+            .clm-3 {
+              min-width: 90px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

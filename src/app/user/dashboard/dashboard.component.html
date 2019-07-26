@@ -1,0 +1,105 @@
+<div class="new-section-head">
+  <p>Dashboard</p>
+</div>
+
+<app-mandate></app-mandate>
+
+
+<div class="mat-container-fluid">
+  <div class="mat-container">
+
+    <div class="onboarding-status" *ngIf="accountActivationStatus!=0 && showActivationStatus" [ngClass]="{'reverse-onboarding-status': !showOnboardingStatus}">
+      <h3>Account Activation
+        <mat-icon class="mat-18" (click)="showActivationStatus=false">close</mat-icon>
+      </h3>
+      <p *ngIf="accountActivationStatus==3">Your account activation is in progress. It will take atleast two working
+        days. Please contact us at <a href="tel:+918588926926">8588-926-926</a> if you have any query.</p>
+      <p *ngIf="accountActivationStatus==2">Your onboarding process has been completed. Now you can start investing.</p>
+      <p *ngIf="accountActivationStatus==1">It seems, you have not completed your profile registration process.
+        It is one time process needed before making any investment.</p>
+      <p *ngIf="accountActivationStatus==1">Please use below button to complete your profile registration. </p>
+    </div>
+
+    <div class="profile">
+
+      <div>
+        <h3>Welcome {{globalUtility.userData ? globalUtility.userData.userName : 'User'}}</h3>
+        <p>Mutual Fund is one of the best ways to create wealth and save tax. Now, you can create your wealth easily
+          with go4wealth.com</p>
+        <button *ngIf="accountActivationStatus != 1" color="primary" routerLink="/mutual-funds" mat-flat-button>Invest
+          Now</button>
+        <button *ngIf="accountActivationStatus == 1" color="primary" routerLink="/user/onboarding" mat-flat-button>Complete
+          Profile</button>
+      </div>
+
+      <div>
+        <a routerLink="/user/profile">Profile <mat-icon fontSet="fas" fontIcon="fa-user"></mat-icon> </a>
+        <a routerLink="/user/my-orders">Orders <mat-icon fontSet="fas" fontIcon="fa-cart-plus"></mat-icon></a>
+        <a routerLink="/user/portfolios">Portfolios <mat-icon fontSet="fas" fontIcon="fa-chart-line"></mat-icon></a>
+        <a routerLink="/user/watchlist">WatchList <mat-icon fontSet="fas" fontIcon="fa-clock"></mat-icon></a>
+        <a routerLink="/user/view-goals">Goals <mat-icon fontSet="fas" fontIcon="fa-bullseye"></mat-icon></a>
+      </div>
+
+    </div>
+
+    <div class="recommended-funds" *ngIf="recommendedSchemesList.length!=0">
+      <h3>Our Recommended Funds
+        <a routerLink="/mutual-funds">See All
+          <mat-icon class="mat-18">keyboard_arrow_right</mat-icon>
+        </a>
+      </h3>
+
+      <div class="mutual-funds-list">
+        <a routerLink="/mutual-funds/scheme/{{scheme.schemeKeyword}}" *ngFor="let scheme of recommendedSchemesList">
+          <mat-card>
+            <img matCardImage src="../../../../assets/funds/{{scheme.amcCode}}.png">
+            <mat-card-content>
+              <div class="scheme-name">
+                {{scheme.schemeName}}
+              </div>
+              <div class="scheme-info-cont">
+                <span>Launch Date</span>
+                <span>Type</span>
+              </div>
+              <div class="scheme-info-details">
+                <span>{{scheme.schemeLaunchDate}} </span>
+                <span>{{scheme.schemeType}}</span>
+              </div>
+              <div class="min-amount">
+                <span> Min SIP Amount </span>
+                <span>&#8377; {{scheme.minSipAmount}} </span>
+              </div>
+              <div class="min-amount">
+                <span> Min Lumpsum Amount </span>
+                <span>&#8377; {{scheme.minimumPurchaseAmount}} </span>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </a>
+      </div>
+
+    </div>
+
+    <div class="articles" *ngIf="false">
+      <h3>Latest Articles</h3>
+
+      <div *ngIf="blogs.length!=0">
+        <mat-card *ngFor="let blog of blogs">
+          <mat-card-header>
+            <mat-card-title>{{blog.title}}</mat-card-title>
+            <mat-card-subtitle>
+              <p>By {{blog.postedBy}}</p>
+              <p> Publish Date : {{blog.postDate}} </p>
+            </mat-card-subtitle>
+          </mat-card-header>
+          <img matCardImage src="{{articleImageUrl}}{{blog.blogId}}" alt="article - image">
+          <mat-card-content>
+            <p>{{blog.shortDescription | truncateBlog}} </p>
+            <button mat-raised-button color="primary" (click)="gotoBlog(blog.blogId)">Read More</button>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+  </div>
+</div>

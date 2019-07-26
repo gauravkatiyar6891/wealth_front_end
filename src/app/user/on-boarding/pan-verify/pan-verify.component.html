@@ -1,0 +1,52 @@
+<div class="pan-step">
+
+  <mat-card>
+    <mat-card-content>
+
+      <form [formGroup]="panFormGroup" (ngSubmit)="panButtonSubmit()">
+        <!-- (ngSubmit)="panFormGroup.controls['panNotVerifiedradio'].value != '-1' ? gotoNextStep(true) : panCardVerify()"> -->
+
+        <mat-form-field>
+          <input class="pan-field" matInput type="text" placeholder="Enter Your PAN Card No. here"
+            [formControl]="panFormGroup.controls['pan']" required spellcheck="false">
+          <mat-error *ngIf="panFormGroup.controls['pan'].hasError('required')">PAN Id is required</mat-error>
+          <mat-error *ngIf="panFormGroup.controls['pan'].hasError('pattern')">Incorrect PAN Id Format
+          </mat-error>
+        </mat-form-field>
+        <!-- <br> -->
+        <mat-error class="pan-error" *ngIf="panErrorMessage!=''">{{panErrorMessage}}</mat-error>
+        <br>
+
+        <div class="check-box">
+
+          <mat-radio-group *ngIf="userData?.panNumber && !userData?.panVerified"
+            [formControl]="panFormGroup.controls['panNotVerifiedradio']" required>
+            <mat-radio-button color="primary" value="0">Verify Kyc Using Aadhar (Instant Kyc)</mat-radio-button>
+            <mat-radio-button color="primary" value="1">Verify Kyc Withour Using Aadhar (Upto 7 Working Days)
+            </mat-radio-button>
+          </mat-radio-group>
+
+          <!-- <mat-checkbox *ngIf="showPanNotVerifiedCheckBox"
+            [formControl]="panFormGroup.controls['panNotVerifiedradio']" color="primary">My PAN Number is correct.
+            I will upload my address proof subsequently</mat-checkbox> -->
+        </div>
+        <!-- <br> -->
+        <button type="submit" [disabled]="!panFormGroup.valid || showProgressSpinner" color="primary"
+          mat-flat-button>{{panFormGroup.controls['panNotVerifiedradio'].value != '-1' ? 'Next' : 'Verify'}}
+          <mat-progress-spinner *ngIf="showProgressSpinner" mode="indeterminate" color="primary" [diameter]="20">
+          </mat-progress-spinner>
+        </button>
+
+      </form>
+
+    </mat-card-content>
+  </mat-card>
+
+  <div class="info">
+    <p>
+      <mat-icon class="mat-18">info</mat-icon>
+      PAN is mandatory for investing. Open your investment account to start investing. PAN is required by
+      regulations.
+    </p>
+  </div>
+</div>

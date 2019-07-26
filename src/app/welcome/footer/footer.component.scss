@@ -1,0 +1,172 @@
+@import './../../../theme.scss';
+
+footer {
+  background-color: $primary-color;
+
+  .flex-parent {
+    padding: 15px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    >div {
+      flex-basis: 20%;
+      color: white;
+      padding-top: 25px;
+
+      ul {
+        list-style-type: none;
+
+        .bold {
+          font-weight: 700;
+        }
+
+        .g-play {
+          img {
+            max-height: 35px;
+          }
+        }
+
+        .resp {
+          display: none;
+        }
+
+        .partners {
+          img {
+            width: 40px;
+            margin: 0 15px 5px 5px;
+          }
+        }
+
+        li {
+          padding: 2px 0;
+          line-height: 35px;
+
+          .logo {
+            width: 80px;
+            margin: -10px 0 10px;
+          }
+
+          mat-icon {
+            font-size: 16px;
+          }
+
+          .social-media-link {
+            margin-right: 10px;
+
+            mat-icon {
+              font-size: 22px;
+              margin-top: 10px;
+              margin-bottom: 10px;
+            }
+          }
+
+          a {
+            color: white;
+            position: relative;
+          }
+
+          .phone {
+            padding-left: 27px;
+
+            mat-icon {
+              position: absolute;
+              font-size: 22px;
+              left: 0;
+              top: 1px;
+            }
+          }
+
+          h5 {
+            display: inline-block;
+            color: white;
+            margin-top: 35px;
+          }
+        }
+      }
+    }
+
+    .no-padding {
+      padding: 0;
+    }
+  }
+
+  .declaration-cont {
+    color: white;
+
+    h6 {
+      text-align: center;
+      font-weight: normal;
+      margin: 5px 0;
+    }
+
+    .no-margin {
+      margin: 0;
+      padding: 0 0 10px;
+    }
+  }
+}
+
+@media only screen and (max-width:768px) {
+  footer {
+    .flex-parent {
+      justify-content: space-between;
+
+      >div {
+        flex-basis: 32%;
+
+        &:nth-child(3) {
+          display: none;
+        }
+
+        &:nth-child(4) {
+          padding-top: 25px;
+        }
+
+        &:nth-child(5) {
+          display: none;
+        }
+
+        ul {
+          li {
+            font-size: 14px;
+            line-height: 25px;
+          }
+
+          .hid,
+          .g-play-head,
+          .g-play,
+          .partners {
+            display: none;
+          }
+
+          .resp {
+            display: inherit;
+          }
+        }
+      }
+    }
+
+    .declaration-cont {
+      h5 {
+        font-size: 10px;
+        text-align: left;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width:576px) {
+  footer {
+    .flex-parent {
+
+      >div {
+        flex-basis: 50%;
+
+        &:nth-child(3) {
+          display: inherit;
+        }
+      }
+    }
+  }
+}

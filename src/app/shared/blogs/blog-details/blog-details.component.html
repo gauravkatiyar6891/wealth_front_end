@@ -1,0 +1,10 @@
+<div class="mat-container-fluid">
+  <div class="mat-container blog">
+    <img [src]="blogImage" alt="">
+    <div class="blog-body" *ngIf="blog">
+
+      <h2>{{blog.title}}</h2>
+      <div class="blog-content" [innerHTML]="blog.content"> </div>
+    </div>
+  </div>
+</div>

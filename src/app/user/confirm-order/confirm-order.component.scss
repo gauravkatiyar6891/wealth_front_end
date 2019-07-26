@@ -1,0 +1,132 @@
+@import './../../../theme.scss';
+
+.new-section-head {
+  p {
+    width: 200px;
+  }
+}
+
+.order-cont {
+  .head {
+    margin: 20px 0 0;
+    background-color: $primary-color;
+    padding: 15px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+
+    p {
+      font-size: 18px;
+      font-weight: 600;
+      color: $secondary-color-light;
+    }
+  }
+
+  .body {
+    box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.2);
+    padding: 0 0 15px;
+
+    table {
+      width: 100%;
+
+      thead {
+        tr {
+          td {
+            padding: 10px;
+            font-weight: 600;
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          td {
+            padding: 10px;
+            color: #777;
+          }
+
+          .delete-icon {
+            position: relative;
+
+            mat-icon {
+              font-size: 17px;
+              position: absolute;
+              top: 13px;
+              left: 80px;
+              cursor: pointer;
+              transition: 250ms;
+
+              &:hover {
+                transform: scale(1.1);
+                color: black;
+              }
+            }
+          }
+        }
+
+        .success {
+          color: green;
+        }
+
+        .failure {
+          color: rgb(119, 32, 32);
+        }
+      }
+    }
+
+    .action {
+      text-align: center;
+      padding: 10px 0 0;
+
+      button {
+        margin: 0 10px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .new-section-head {
+    p {
+      width: 125px;
+    }
+  }
+
+  .order-cont {
+    .head {
+      margin: 10px 0 0;
+      padding: 10px;
+
+      p {
+        font-size: 16px;
+      }
+    }
+
+    .body {
+      margin-bottom: 10px;
+    }
+
+    table {
+      .clm-1 {
+        min-width: 235px;
+      }
+
+      .clm-2 {
+        min-width: 150px;
+      }
+
+      .clm-3 {
+        min-width: 115px;
+      }
+
+      .clm-4 {
+        min-width: 100px;
+      }
+
+      .delete-icon {
+        mat-icon {
+          font-size: 14px !important;
+          left: 60px !important;
+        }
+      }
+    }
+  }
+}

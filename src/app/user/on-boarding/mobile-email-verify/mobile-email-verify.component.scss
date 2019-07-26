@@ -1,0 +1,75 @@
+@import './../../../../theme.scss';
+
+$step-body-margin: 50px;
+
+.email-mobile-step {
+  margin-top: $step-body-margin;
+  display: flex;
+  justify-content: space-around;
+
+  form {
+    mat-progress-spinner {
+      margin: auto;
+      display: inline-block;
+    }
+
+    mat-form-field {
+      margin: 10px 0px;
+
+      .fields-icon {
+        font-size: 18px;
+      }
+
+      .verified-icon {
+        color: green;
+      }
+    }
+  }
+
+  >mat-card {
+    flex-basis: 45%;
+    background: rgba(255, 255, 255, 0.75);
+
+    // align-items: center;
+    form {
+      text-align: center;
+
+      mat-form-field {
+        width: 70%;
+      }
+
+      &:first-child {
+        button {
+          margin: 0px 10px;
+        }
+      }
+
+      &:last-child {
+        .email-verify-query {
+          width: 70%;
+          margin: 0px auto;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width:768px) {
+  $step-body-margin: 10px;
+
+  .email-mobile-step {
+    margin-top: 15px;
+    flex-wrap: wrap;
+
+    >mat-card {
+      flex-basis: 80%;
+      margin: 10px 0;
+
+      form {
+        mat-form-field {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

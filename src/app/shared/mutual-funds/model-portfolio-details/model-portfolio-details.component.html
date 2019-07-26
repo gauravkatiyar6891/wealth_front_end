@@ -1,0 +1,30 @@
+<div class="mat-container-fluid">
+  <div class="mat-container order-cont">
+    <div class="head">
+      <p> {{portfolioCategoryName}} </p>
+    </div>
+    <div class="body">
+      <table>
+        <thead>
+          <tr>
+            <td class="clm-0">Scheme Name</td>
+            <td class="clm-1">Scheme Type</td>
+            <td class="clm-2">Min Sip/Lumpsum Amount</td>
+            <!-- <td class="clm-3">Launch Date</td> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let scheme of modelportfolioDetailList">
+            <td class="clm-0"><a routerLink="/mutual-funds/scheme/{{scheme.schemeKeyword}}" target="_blank">{{scheme.schemeName}}</a></td>
+            <td class="clm-1">{{scheme.schemeType}}</td>
+            <td class="clm-2">&#8377; {{scheme.minSipAmount}}/{{scheme.minimumPurchaseAmount}}</td>
+            <!-- <td class="clm-3">{{scheme.schemeLaunchDate}}</td> -->
+          </tr>
+        </tbody>
+      </table>
+      <div class="action">
+        <button mat-raised-button color="primary" (click)="investNow()">Edit and Invest</button>
+      </div>
+    </div>
+  </div>
+</div>

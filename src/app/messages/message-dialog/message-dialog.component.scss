@@ -1,0 +1,79 @@
+.message-portfolio {
+  min-width: 350px;
+  max-width: 500px;
+  text-align: center;
+
+  img {
+    width: 100px;
+    margin: 10px auto;
+  }
+
+  >div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    >div {
+      &:first-child {
+        flex-basis: 20%;
+
+        mat-icon {
+          font-size: 40px;
+        }
+
+        .success {
+          color: green;
+        }
+
+        .failure {
+          color: red;
+        }
+      }
+
+      &:last-child {
+        flex-basis: 75%;
+
+        p {
+          text-align: left;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  >button {
+    float: right;
+  }
+}
+
+.full-flex {
+  flex-basis: 100% !important;
+}
+
+@media only screen and (max-width: 576px) {
+  .message-portfolio {
+    min-width: 260px;
+    max-width: 350px;
+
+    img {
+      width: 50px;
+      margin: 0 auto 10px;
+    }
+
+    >div {
+      >div {
+        &:first-child {
+          mat-icon {
+            font-size: 30px;
+          }
+        }
+
+        &:last-child {
+          p {
+            font-size: 11px;
+          }
+        }
+      }
+    }
+  }
+}

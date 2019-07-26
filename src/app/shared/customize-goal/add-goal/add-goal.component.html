@@ -1,0 +1,29 @@
+<h4 class="heading">Add Goal</h4>
+
+<form [formGroup]="goalFormGroup">
+  <mat-form-field class="input-controls">
+    <mat-select placeholder="Select Goal" [formControl]="goalFormGroup.controls['goal']">
+      <mat-option *ngFor="let goal of goals;let i = index;" [value]="i">{{goal.name}}</mat-option>
+      <mat-option value="99">Other</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <mat-form-field class="input-controls" *ngIf="showCustomGoalField">
+    <input matInput [formControl]="goalFormGroup.controls['newGoal']" placeholder="Custom Goal Name">
+  </mat-form-field>
+  <br *ngIf="showCustomGoalField">
+  <mat-form-field class="input-controls">
+    <input type="number" matInput [formControl]="goalFormGroup.controls['duration']" placeholder="Goal Duration">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="input-controls">
+    <span matPrefix>
+      <mat-icon fontSet="fas" fontIcon="fa-rupee-sign"></mat-icon>
+    </span>
+    <input type="number" matInput [formControl]="goalFormGroup.controls['cost']" placeholder="Cost of Goal">
+  </mat-form-field>
+  <br>
+
+  <button mat-raised-button color="primary" [disabled]="!goalFormGroup.valid" (click)="submit()">Add Goal</button>
+
+</form>

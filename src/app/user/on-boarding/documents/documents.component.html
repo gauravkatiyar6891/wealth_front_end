@@ -1,0 +1,129 @@
+<div class="image-cropper-background" *ngIf="imageChangedEvent">
+  <mat-icon fontSet="fas" fontIcon="fa-times-circle" (click)="imageChangedEvent=null"> </mat-icon>
+  <image-cropper [imageChangedEvent]="imageChangedEvent" [aspectRatio]="1 / 1"
+    [maintainAspectRatio]="imageType=='profile' ? true : false" format="jpeg" (loadImageFailed)="loadImageFailed()"
+    (imageCropped)="imageCropped($event)"></image-cropper>
+  <button mat-raised-button color="primary" (click)="submitImage()">Submit</button>
+</div>
+
+<div class="doc-upload-step">
+  <mat-card>
+    <mat-card-content>
+      <h4>Please upload following documents. This is one time activity to activate your investment account.</h4>
+
+      <div class="form-parent">
+        <form>
+
+          <!-- <mat-error class="image-error" *ngIf="imageSizeError">Max File Size is 2MB</mat-error>
+          <mat-error class="image-error" *ngIf="imageExtensionError">Only jpg and png images are allowed
+          </mat-error> -->
+
+          <div class="img-upload-cont">
+            <input #profileImageInput type="file"
+              (change)="openImageCropper($event,'profile'); $event.stopPropagation()" required>
+            <div class="doc-text">
+              <button mat-stroked-button (click)="profileImageInput.click(); $event.stopPropagation()">Photo</button>
+            </div>
+            <div class="image">
+              <img *ngIf="uploadImageFormData.profile == '' " [src]="fallbackProfileImage" alt="Profile-Photo"
+                srcset="">
+              <img *ngIf="uploadImageFormData.profile != '' " [src]="uploadImageFormData.profile" alt="Profile-Photo"
+                srcset="">
+            </div>
+          </div>
+
+          <div class="img-upload-cont">
+            <input #signatureImageInput type="file"
+              (change)="openImageCropper($event,'signature'); $event.stopPropagation()" required>
+            <div class="doc-text">
+              <button mat-stroked-button
+                (click)="signatureImageInput.click(); $event.stopPropagation()">Signature</button>
+            </div>
+            <div class="image">
+              <img *ngIf="uploadImageFormData.signature == '' " [src]="fallbackSignatureImage" alt="Signature-Photo"
+                srcset="">
+              <img *ngIf="uploadImageFormData.signature != '' " [src]="uploadImageFormData.signature"
+                alt="Signature-Photo" srcset="">
+            </div>
+          </div>
+
+          <div class="img-upload-cont" *ngIf="needAddressProof">
+            <input #pancardImageInput type="file"
+              (change)="openImageCropper($event,'panCard'); $event.stopPropagation()">
+            <div class="doc-text">
+              <button mat-stroked-button (click)="pancardImageInput.click(); $event.stopPropagation()">PAN
+                Card</button>
+            </div>
+            <div class="image">
+              <img *ngIf="uploadImageFormData.panCard == '' " [src]="fallbackPanImage" alt="PanCard-Photo" srcset="">
+              <img *ngIf="uploadImageFormData.panCard != '' " [src]="uploadImageFormData.panCard" alt="PanCard-Photo"
+                srcset="">
+            </div>
+          </div>
+
+          <div class="img-upload-cont" *ngIf="needAddressProof">
+            <input #addressProofFrontImageInput type="file"
+              (change)="openImageCropper($event,'aadharFront'); $event.stopPropagation()">
+            <div class="doc-text">
+              <button mat-stroked-button (click)="addressProofFrontImageInput.click(); $event.stopPropagation()">Address
+                Pront Front</button>
+            </div>
+            <div class="image">
+              <img *ngIf="uploadImageFormData.aadharFront == '' " [src]="fallbackPanImage"
+                alt="Address-Proof-Front-Photo" srcset="">
+              <img *ngIf="uploadImageFormData.aadharFront != '' " [src]="uploadImageFormData.aadharFront"
+                alt="Address-Proof-Front-Photo" srcset="">
+            </div>
+          </div>
+
+          <div class="img-upload-cont" *ngIf="needAddressProof">
+            <input #addressProofBackImageInput type="file"
+              (change)="openImageCropper($event,'aadharBack'); $event.stopPropagation()">
+            <div class="doc-text">
+              <button mat-stroked-button (click)="addressProofBackImageInput.click(); $event.stopPropagation()">Address
+                Proof Back</button>
+            </div>
+            <div class="image">
+              <img *ngIf="uploadImageFormData.aadharBack == '' " [src]="fallbackPanImage" alt="Address-Proof-Back-Photo"
+                srcset="">
+              <img *ngIf="uploadImageFormData.aadharBack !='' " [src]="uploadImageFormData.aadharBack"
+                alt="Address-Proof-Back-Photo" srcset="">
+            </div>
+          </div>
+
+          <div class="declaration">
+            <mat-checkbox #agreeUser color="primary">
+              By continuing further, I accept the <a target="_blank" href="/terms-and-conditions"> Terms
+                and Conditions </a> and declare that I am an Indian born, Resident Indian citizen.
+              <!-- <p> By Signing here, I agree to Terms & Conditions. </p>
+                  <p>I am a Indian citizen born and residing in India. I am not a PEP(Politically Exposed) or
+                    related
+                    to PEP. </p> -->
+            </mat-checkbox>
+          </div>
+
+          <div class="submit-btn-cont">
+            <button (click)="uploadDocuments()" mat-flat-button color="primary"
+              [disabled]="uploadImageFormData.profile == '' || uploadImageFormData.signature == '' || (needAddressProof && (uploadImageFormData.panCard == '' || uploadImageFormData.aadharFront == '' || uploadImageFormData.aadharBack == '')) || !agreeUser.checked || showProgressSpinner"
+              color="primary">Submit
+              <mat-progress-spinner *ngIf="showProgressSpinner" mode="indeterminate" color="primary" [diameter]="20">
+              </mat-progress-spinner>
+            </button>
+
+          </div>
+
+          <div>
+            <mat-error>{{uploadDocumentErrorMessage}}</mat-error>
+            <a *ngIf="uploadDocumentErrorMessage!=''" (click)="gotoStep3()">Click here to process again</a>
+          </div>
+
+        </form>
+      </div>
+
+    </mat-card-content>
+    <mat-card-footer *ngIf="showProgressSpinner">
+      <p> Please wait while we upload all your data. This may take a while.
+      </p>
+    </mat-card-footer>
+  </mat-card>
+</div>

@@ -1,0 +1,43 @@
+.contact-us {
+	padding: 20px 5px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	mat-card {
+		flex-basis: 27%;
+	}
+	h4 {
+		margin: 10px auto 20px;
+	}
+	.customer-support {
+		p {
+			margin-bottom: 5px;
+		}
+	}
+	.address {
+		p {
+			font-size: 14px;
+			font-family: sans-serif;
+		}
+	}
+}
+
+.maps {
+	margin: 20px 0;
+}
+
+@media only screen and (max-width: 576px) {
+	.new-section-head {
+		p {
+			width: 170px;
+		}
+	}
+	.contact-us {
+		padding: 10px 5px;
+		justify-content: space-around;
+		mat-card {
+			flex-basis: 90%;
+			margin: 10px 0;
+		}
+	}
+}

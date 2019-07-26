@@ -1,0 +1,22 @@
+[
+  {
+    "context": [
+      "/api"
+    ],
+    "target": "http://13.234.131.118:8080/go4wealth-web/",
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "secure": "false"
+  },
+  {
+    "context": [
+      "/node"
+    ],
+    "target": "http://localhost:4243/",
+    "pathRewrite": {
+      "^/node": ""
+    },
+    "secure": "false"
+  }
+]

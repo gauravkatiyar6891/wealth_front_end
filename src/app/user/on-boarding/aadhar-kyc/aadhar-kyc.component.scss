@@ -1,0 +1,29 @@
+@import './../../../../theme.scss';
+
+.parent {
+  h4 {
+    background-color: $primary-color;
+    color: $secondary-color-light;
+    padding: 10px;
+    margin: 0;
+  }
+
+  form {
+    width: 76%;
+    margin: 10px 0 10px 60px;
+    padding: 10px 0;
+
+    .input-fields {
+      width: 100%;
+      margin: 5px 0;
+    }
+
+    .action {
+      text-align: center;
+
+      button {
+        margin: 5px 10px;
+      }
+    }
+  }
+}

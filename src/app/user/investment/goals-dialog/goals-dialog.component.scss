@@ -1,0 +1,74 @@
+@import '../../../../theme.scss';
+
+.cont {
+  max-width: 500px;
+
+  .heading {
+    margin: -24px;
+    padding: 12px 24px;
+    background-color: $primary-color;
+
+    >p {
+      color: white;
+      font-size: 22px;
+      margin: 0;
+    }
+  }
+
+  .goals {
+    margin: 24px -24px;
+    padding: 0 24px;
+
+    >form {
+      padding: 10px 0;
+
+      mat-radio-button {
+        width: 35%;
+        margin: 5px 30px;
+        font-size: 12px;
+
+        span {
+          color: red;
+        }
+      }
+
+      >mat-error {
+        margin-left: 30px;
+      }
+
+      >button {
+        float: right;
+        right: 20px;
+      }
+    }
+
+    .no-goals {
+      padding: 20px 0 0;
+
+      h5 {
+        text-align: center;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .cont {
+    display: flow-root;
+    max-height: 325px;
+
+    .heading {
+      >p {
+        font-size: 18px;
+      }
+    }
+
+    .goals {
+      >form {
+        >button {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}

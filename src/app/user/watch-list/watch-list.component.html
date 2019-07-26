@@ -1,0 +1,53 @@
+<div class="new-section-head">
+  <p>Your Watchlist Items</p>
+</div>
+
+<div class="mat-container-fluid empty-watch-list" *ngIf="!showWatchListLoader && watchList.length==0">
+  <div class="mat-container">
+    <h3>You do not have any Mutual Fund Schemes in your Watchlist yet.</h3>
+    <h4>Click <a routerLink="/mutual-funds">here</a> to see Mutual Funds.</h4>
+  </div>
+</div>
+
+<div class="mat-container watch-list-loader" *ngIf="showWatchListLoader">
+  <mat-progress-spinner mode="indeterminate" diameter="40" color="primary"></mat-progress-spinner>
+</div>
+
+<div class="mat-container-fluid">
+  <div class="mat-container">
+
+    <div class="mutual-funds-list">
+      <a routerLink="/mutual-funds/scheme/{{scheme.schemeKeyword}}" *ngFor="let scheme of watchList; let i = index">
+        <mat-card>
+          <img matCardImage src="../../../../assets/funds/{{scheme.amcCode}}.png">
+          <mat-card-content>
+            <div class="scheme-name">
+              {{scheme.schemeName}}
+            </div>
+            <div class="scheme-info-cont">
+              <span>Plan</span>
+              <span>Type</span>
+            </div>
+            <div class="scheme-info-details">
+              <span>{{scheme.schemePlan}} </span>
+              <span>{{scheme.schemeType}}</span>
+            </div>
+            <!-- <div class="min-amount">
+              <span> Min SIP Amount </span>
+              <span>&#8377; {{scheme.minSipAmount | number : '1.0-0'}} </span>
+            </div>
+            <div class="min-amount">
+              <span> Min Lumpsum Amount </span>
+              <span>&#8377; {{scheme.minInvestment | number : '1.0-0'}} </span>
+            </div> -->
+            <div class="action">
+              <button mat-flat-button color="primary" (click)="$event.preventDefault(); $event.stopPropagation(); removeFromWatchList(scheme.schemeCode,i);">Remove</button>
+              <button mat-flat-button color="primary" (click)="$event.preventDefault(); $event.stopPropagation(); purchaseFromWatchList(scheme.schemeKeyword,scheme.schemeId)">Purchase</button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </a>
+    </div>
+
+  </div>
+</div>

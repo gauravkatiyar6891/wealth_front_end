@@ -1,0 +1,23 @@
+<div class="details-cont">
+
+  <div class="details-left">
+    <img [src]="teamMember[memberId].image" alt="">
+    <div class="social">
+      <a [href]="teamMember[memberId].socialMediaHandle.linkedIn" target="_blank" rel="noopener noreferrer">
+        <mat-icon class="linkedin" fontSet="fab" fontIcon="fa-linkedin"></mat-icon>
+      </a>
+      <a [href]="teamMember[memberId].socialMediaHandle.twitter" target="_blank" rel="noopener noreferrer">
+        <mat-icon class="twitter" fontSet="fab" fontIcon="fa-twitter-square"></mat-icon>
+      </a>
+    </div>
+  </div>
+
+  <div class="details-right">
+    <p class="name"> {{teamMember[memberId].name}} </p>
+    <p class="designation"> {{teamMember[memberId].designation}} </p>
+    <div class="info">
+      <p *ngFor="let desc of teamMember[memberId].info">{{desc}}</p>
+    </div>
+  </div>
+
+</div>

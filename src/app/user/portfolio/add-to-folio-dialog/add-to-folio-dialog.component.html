@@ -1,0 +1,55 @@
+<div class="parent">
+  <h4>Transfer Scheme Order Place</h4>
+
+  <form [formGroup]="orderForm">
+
+    <div class="investment-type">
+      <button mat-raised-button [color]="investmentType=='sip' ? 'primary' : ''"
+        (click)="investmentType='SIP';setMinMaxValidators()" [disabled]="!dataIn.isSipAllowed">SIP</button>
+      <button mat-raised-button [color]="investmentType!='sip' ? 'primary': ''"
+        (click)="investmentType='LUMPSUM';setMinMaxValidators()" [disabled]="!dataIn.isLumpsumAllowed">LumpSum</button>
+    </div>
+
+    <mat-form-field class="input-fields">
+      <span matPrefix>
+        <mat-icon fontSet="fas" fontIcon="fa-rupee-sign"></mat-icon>
+      </span>
+      <input matInput type="number" placeholder="Enter Amount You Want to Invest"
+        [formControl]="orderForm.controls['amount']" autocomplete="scheme-amount">
+      <mat-error *ngIf="orderForm.controls['amount'].hasError('min')">Min Amount Should be &#8377;
+        {{getMinAmountRequired()}}</mat-error>
+      <mat-error *ngIf="orderForm.controls['amount'].hasError('max')">Max Amount Can be &#8377;
+        {{getMaxAmountRequired()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="input-fields" *ngIf="investmentType=='SIP'">
+      <mat-select placeholder="SIP Date" required [formControl]="orderForm.controls['sipDate']">
+        <mat-option *ngFor="let date of dataIn.availSipDates" [value]="dateSuffix(date)">{{dateSuffix(date)}} of Every
+          Month</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div *ngIf="investmentType=='SIP'">
+      <p>Payment Option :</p>
+      <mat-radio-group [formControl]="orderForm.controls['paymentType']">
+        <mat-radio-button color="primary" value="Natch">XSIP(NACH)</mat-radio-button>
+        <mat-radio-button color="primary" value="Biller" [disabled]="!dataIn.isISipAllowed">ISIP(BILLER)
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div>
+      <p>Folio : </p>
+      <mat-radio-group [formControl]="orderForm.controls['folioType']" required>
+        <mat-radio-button color="primary" value="0">New Folio</mat-radio-button>
+        <mat-radio-button color="primary" value="1">Existing Folio</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class="t-right">
+      <button mat-raised-button color="primary" type="submit"
+        [disabled]="!orderForm.valid || !(dataIn.isSipAllowed || dataIn.isLumpsumAllowed)"
+        (click)="formSubmit()">Confirm</button>
+    </div>
+  </form>
+</div>

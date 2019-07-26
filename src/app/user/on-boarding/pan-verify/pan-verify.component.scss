@@ -1,0 +1,103 @@
+@import './../../../../theme.scss';
+
+$step-body-margin: 50px;
+
+.pan-step {
+  margin-top: $step-body-margin;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  form {
+    mat-progress-spinner {
+      margin: auto;
+      display: inline-block;
+    }
+
+    mat-form-field {
+      margin: 10px 0px;
+
+      .fields-icon {
+        font-size: 18px;
+      }
+
+      .verified-icon {
+        color: green;
+      }
+
+      .pan-field {
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  >mat-card {
+    flex-basis: 45%;
+    background: rgba(255, 255, 255, 0.75);
+
+    form {
+      text-align: center;
+
+      .pan-error {
+        display: inline-block;
+        font-weight: 600;
+        font-size: 12px;
+        margin: 10px 0;
+        text-align: justify;
+        line-height: 15px;
+        width: 95%;
+      }
+
+      .check-box {
+        text-align: left;
+        font-size: 12px;
+        margin-bottom: 15px;
+      }
+
+      mat-form-field {
+        width: 70%;
+      }
+    }
+  }
+
+  .info {
+    flex-basis: 45%;
+
+    p {
+      mat-icon {
+        position: relative;
+        top: 5px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width:768px) {
+  $step-body-margin: 10px;
+
+  .pan-step {
+    margin-top: 15px;
+    flex-wrap: wrap-reverse;
+
+    >mat-card,
+    .info {
+      flex-basis: 100%;
+
+      p {
+        font-size: 12px;
+
+        mat-icon {
+          font-size: 20px;
+        }
+      }
+    }
+
+    >mat-card {
+      form {
+        mat-form-field {
+          width: 85%;
+        }
+      }
+    }
+  }
+}

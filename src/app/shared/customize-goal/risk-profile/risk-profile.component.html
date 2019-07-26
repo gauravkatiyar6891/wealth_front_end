@@ -1,0 +1,29 @@
+<h4 class="heading">Risk Profile Tool</h4>
+
+<form [formGroup]="questionFormGroup">
+  <mat-horizontal-stepper #stepper class="stepper-question">
+    <mat-step *ngFor="let question of questions;let qno=index">
+      <div class="question-cont">
+        <h4>{{question.quest}}</h4>
+        <mat-radio-group [formControl]="questionFormGroup.controls[question.formControl]">
+          <mat-radio-button color="primary" [value]="i" *ngFor="let option of question.options; let i=index">{{option}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</form>
+
+<div class="stepper-controls">
+  <ul>
+    <li *ngFor="let number of [0,1,2,3,4,5]">
+      <div class="circle" [ngClass]="{'active-step': stepper.selectedIndex==number}" (click)="stepper.selectedIndex = number"></div>
+    </li>
+  </ul>
+  <div>
+    <button mat-flat-button color="primary" (click)="stepper.previous()" [disabled]="stepper.selectedIndex===0">Previous</button>
+    <button mat-flat-button color="primary" (click)="questionFormGroup.valid ? submit() : stepper.next()">
+      {{questionFormGroup.valid ? 'Submit' :
+      'Next'}} </button>
+  </div>
+</div>

@@ -1,0 +1,106 @@
+<div class="new-section-head">
+    <p>Investment Portfolio</p>
+</div>
+
+<div class="mat-container-fluid filters-cont">
+    <div class="mat-container">
+        <div class="filters">
+
+            <form [formGroup]="mutualFundFormGroup" (ngSubmit)="addSearchKeyParameter()">
+                <mat-form-field>
+                    <mat-select placeholder="Select Category" [formControl]="mutualFundFormGroup.controls['schemeCategory']">
+                        <mat-option *ngFor="let scheme of schemeTypes" value="{{scheme}}">{{scheme}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-select placeholder="Scheme Type" [formControl]="mutualFundFormGroup.controls['schemeType']">
+                        <mat-option value="Growth">Growth</mat-option>
+                        <mat-option value="Dividend">Dividend</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input type="search" matInput placeholder="Search Mutual Funds" [formControl]="mutualFundFormGroup.controls['keywordMutualFund']"
+                        [matAutocomplete]="auto">
+                    <span matSuffix>
+                        <mat-icon class="mat-18" (click)="addSearchKeyParameter()">search</mat-icon>
+                    </span>
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="autoCompleteNavigate($event)">
+                        <mat-option *ngFor="let scheme of autoCompleteSchemes" [value]="scheme.schemeKeyword" class="auto-complete">
+                            <a routerLink="../scheme/{{scheme.schemeKeyword}}">
+                                <img src="../../../assets/funds/{{scheme.amcCode}}.png" alt="">
+                                <span>{{scheme.schemeName}}</span>
+                            </a>
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </form>
+
+            <ul class="filters-applied">
+                <span>
+                    <li *ngIf="mutualFundFormGroup.controls['schemeCategory'].value != null">
+                        <mat-icon class="mat-18" (click)="popKeyword(0)">close</mat-icon>
+                        {{mutualFundFormGroup.controls['schemeCategory'].value}}
+                    </li>
+                    <li *ngIf="mutualFundFormGroup.controls['keywordMutualFund'].value != null && mutualFundFormGroup.controls['keywordMutualFund'].value != ''">
+                        <mat-icon class="mat-18" (click)="popKeyword(1)">close</mat-icon>
+                        {{mutualFundFormGroup.controls['keywordMutualFund'].value}}
+                    </li>
+                </span>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div class="mat-container-fluid funds-loader-cont" *ngIf="retrievingFundsBySearch">
+    <mat-progress-spinner mode="indeterminate" color="primary" diameter="40"></mat-progress-spinner>
+</div>
+
+<div class="container-fluid scheme-list" *ngIf="schemesList.length!=0">
+    <div class="mat-container">
+
+        <div class="mutual-funds-list" [ngClass]="{'animate-card': showModelPortfolio, 'sliding-down': !showModelPortfolio}">
+
+            <a routerLink="../scheme/{{scheme.schemeKeyword}}" *ngFor="let scheme of schemesList">
+                <mat-card>
+                    <img matCardImage src="../../../assets/funds/{{scheme.amcCode}}.png">
+                    <mat-card-content>
+                        <div class="scheme-name">
+                            {{scheme.schemeName}}
+                        </div>
+                        <div class="scheme-info-cont">
+                            <span>Launch Date</span>
+                            <span>Type</span>
+                        </div>
+                        <div class="scheme-info-details">
+                            <span>{{scheme.schemeLaunchDate}} </span>
+                            <span>{{scheme.schemeType}}</span>
+                        </div>
+                        <div class="min-amount">
+                            <span> Min SIP Amount </span>
+                            <span>&#8377; {{scheme.minSipAmount | number : '1.0-0'}} </span>
+                        </div>
+                        <div class="min-amount">
+                            <span> Min Lumpsum Amount </span>
+                            <span>&#8377; {{scheme.minimumPurchaseAmount | number : '1.0-0'}} </span>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </a>
+
+        </div>
+
+        <div class="show-more" *ngIf="!showModelPortfolio || !retrievingFunds">
+            <p (click)="nextSchemesList()">Show More
+                <mat-icon class="mat-18">keyboard_arrow_down</mat-icon>
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<div class="mat-container-fluid funds-loader-cont" *ngIf="retrievingFunds && (schemesList.length!=0)">
+    <mat-progress-spinner mode="indeterminate" color="primary" diameter="40"></mat-progress-spinner>
+</div>

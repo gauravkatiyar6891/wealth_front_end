@@ -1,0 +1,118 @@
+@import '../../../theme.scss';
+
+.empty-watch-list {
+  min-height: 400px;
+
+  >div {
+    padding: 100px 0px 0px;
+    text-align: center;
+
+    h3 {
+      color: $primary-color;
+    }
+
+    h4 {
+      a {
+        color: $primary-color;
+
+        &:visited {
+          color: $primary-color;
+        }
+
+        &:hover {
+          color: darkslategray;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+.watch-list-loader {
+  position: relative;
+  top: -90px;
+
+  mat-progress-spinner {
+    margin: 100px auto;
+  }
+}
+
+.mutual-funds-list {
+  >a {
+    >mat-card {
+      background-color: $secondary-color-light;
+
+      img {
+        margin: 0px 20% 20px;
+      }
+
+      .action {
+        margin-top: 20px;
+        padding: 0 3px;
+
+        >button {
+          width: 90px;
+          font-size: 12px;
+
+          &:first-child {
+            margin-right: 25px;
+          }
+
+          &:last-child {
+            margin-left: 25px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .new-section-head {
+    p {
+      width: 200px;
+    }
+  }
+
+  .empty-watch-list {
+    min-height: 300px;
+
+    >div {
+      h2 {
+        font-size: 16px;
+      }
+
+      h3 {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .mutual-funds-list {
+    >a {
+      >mat-card {
+        flex-basis: 250px;
+
+        .scheme-name {
+          margin: 0 -16px;
+        }
+
+        .action {
+          padding: 0;
+
+          button {
+            width: 80px;
+
+            &:first-child {
+              margin-right: 5px;
+            }
+
+            &:last-child {
+              margin-left: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

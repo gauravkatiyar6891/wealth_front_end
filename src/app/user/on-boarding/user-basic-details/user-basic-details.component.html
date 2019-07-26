@@ -1,0 +1,141 @@
+<div class="basic-detail-step">
+
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="userDetailsFormGroup" (ngSubmit)="userDetailsFormSubmit()">
+
+        <mat-form-field>
+          <input matInput type="text" placeholder="Name as Per Your PAN Card"
+            [formControl]="userDetailsFormGroup.controls['name']" required spellcheck="false">
+          <mat-error *ngIf="userDetailsFormGroup.controls['name'].hasError('pattern')">Numbers and Special
+            characters are not allowed</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="date" placeholder="Date of Birth(Same as on PAN Card)"
+            [formControl]="userDetailsFormGroup.controls['dob']" required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="text" placeholder="Father's Name"
+            [formControl]="userDetailsFormGroup.controls['fathersName']" spellcheck="false" required>
+          <mat-error *ngIf="userDetailsFormGroup.controls['fathersName'].hasError('pattern')">Numbers and
+            Special characters are not allowed</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="text" placeholder="Mother's Name"
+            [formControl]="userDetailsFormGroup.controls['mothersName']" spellcheck="false" required>
+          <mat-error *ngIf="userDetailsFormGroup.controls['mothersName'].hasError('pattern')">Numbers and
+            Special characters are not allowed</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select placeholder="Gender" required [formControl]="userDetailsFormGroup.controls['gender']">
+            <mat-option value="M">Male</mat-option>
+            <mat-option value="F">Female</mat-option>
+            <mat-option value="O">Others</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select placeholder="Marital Status" required
+            [formControl]="userDetailsFormGroup.controls['maritalStatus']">
+            <mat-option value="Single">Single </mat-option>
+            <mat-option value="Married">Married </mat-option>
+            <mat-option value="Others">Others </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select placeholder="Occupation" required [formControl]="userDetailsFormGroup.controls['occupation']">
+            <mat-option *ngFor="let occupation of occupationList" [value]="occupation.value">
+              {{occupation.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select placeholder="Annual Income" required [formControl]="userDetailsFormGroup.controls['incomeSlab']">
+            <mat-option *ngFor="let incomeSlab of incomeSlabList" [value]="incomeSlab.value">
+              {{incomeSlab.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <label for="">Communication Address:</label>
+        <mat-form-field>
+          <mat-select placeholder="Address Type:" required [formControl]="userDetailsFormGroup.controls['addressType']">
+            <mat-option *ngFor="let addressType of addressTypeList" [value]="addressType.value">
+              {{addressType.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select placeholder="State:" required [formControl]="userDetailsFormGroup.controls['state']">
+            <mat-option *ngFor="let state of stateList" [value]="state.stateName">
+              {{state.stateName | titlecase}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="text" placeholder="Address Line 1:"
+            [formControl]="userDetailsFormGroup.controls['addressLine1']" required spellcheck="false">
+          <mat-error *ngIf="userDetailsFormGroup.controls['addressLine1'].hasError('maxlength')">Address Line 1
+            cannot be greater than 40 character</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select placeholder="City" required [formControl]="userDetailsFormGroup.controls['city']">
+            <mat-option *ngFor="let city of cityList" [value]="city.cityName">
+              {{city.cityName | titlecase}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="text" placeholder="Address Line 2:"
+            [formControl]="userDetailsFormGroup.controls['addressLine2']" spellcheck="false">
+          <mat-error *ngIf="userDetailsFormGroup.controls['addressLine2'].hasError('maxlength')">Address Line 2
+            cannot be greater than 40 character
+          </mat-error>
+          <mat-error *ngIf="userDetailsFormGroup.controls['addressLine2'].hasError('pattern')">Invalid Address
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="number" placeholder="PIN Code:" [formControl]="userDetailsFormGroup.controls['pinCode']"
+            minlength="6" maxlength="6" required>
+          <mat-error *ngIf="userDetailsFormGroup.controls['pinCode'].hasError('length')">Pin Code must be 6
+            digits
+          </mat-error>
+        </mat-form-field>
+
+        <mat-label>
+          <label>Are you a Politically Exposed Person(PEP):</label>
+        </mat-label>
+
+        <mat-radio-group [formControl]="userDetailsFormGroup.controls['pep']" required>
+          <mat-radio-button color="primary" value="N">NO</mat-radio-button>
+          <mat-radio-button color="primary" value="Y">YES</mat-radio-button>
+          <mat-radio-button color="primary" value="R">Related to PEP</mat-radio-button>
+        </mat-radio-group>
+
+        <div>
+          <button type="submit" mat-flat-button color="primary"
+            [disabled]="!userDetailsFormGroup.valid || showProgressSpinner">{{userDetailsFormGroup.dirty
+            ? 'Submit' : 'Next'}}
+            <mat-progress-spinner *ngIf="showProgressSpinner" mode="indeterminate" color="primary" [diameter]="20">
+            </mat-progress-spinner>
+          </button>
+        </div>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <div></div>
+
+</div>

@@ -1,0 +1,147 @@
+@import './../../../../theme.scss';
+
+$step-body-margin: 50px;
+
+.basic-detail-step {
+  margin-top: $step-body-margin;
+  display: flex;
+  justify-content: flex-start;
+
+  >mat-card {
+    flex-basis: 65%;
+    background: rgba(255, 255, 255, 0.75);
+
+    form {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      align-items: baseline;
+
+      mat-progress-spinner {
+        margin: auto;
+        display: inline-block;
+      }
+
+      mat-form-field {
+        margin: 10px 0px;
+        flex-basis: 40%;
+
+        .fields-icon {
+          font-size: 18px;
+        }
+
+        .verified-icon {
+          color: green;
+        }
+      }
+
+      label {
+        flex-basis: 90%;
+      }
+
+      mat-radio-group {
+        flex-basis: 45%;
+
+        label {
+          margin-right: 20px;
+        }
+
+        mat-radio-button {
+          width: 25%;
+        }
+      }
+
+      mat-label {
+        flex-basis: 45%;
+      }
+
+      .dob-icon {
+        font-size: 20px;
+      }
+
+      >div {
+        text-align: center;
+        flex-basis: 90%;
+        margin: 10px 0;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .basic-detail-step {
+    margin-top: 15px;
+
+    >mat-card {
+      flex-basis: 100%;
+
+      form {
+
+        mat-form-field,
+        mat-radio-group {
+          flex-basis: 48%;
+        }
+
+        mat-label {
+          flex-basis: 99%;
+          order: 16;
+
+          label {
+            font-size: 11px;
+          }
+        }
+
+        mat-radio-group {
+          order: 17;
+
+          mat-radio-button {
+            width: 25%;
+            font-size: 11px;
+          }
+        }
+
+        mat-form-field {
+          &:nth-child(11) {
+            order: 13;
+          }
+
+          &:nth-child(12) {
+            order: 11;
+          }
+
+          &:nth-child(13) {
+            order: 14;
+          }
+
+          &:nth-child(14) {
+            order: 12;
+          }
+
+          &:nth-child(15) {
+            order: 15;
+          }
+        }
+
+        >div {
+          order: 18;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .basic-detail-step {
+    >mat-card {
+      flex-basis: 100%;
+
+      form {
+
+        mat-form-field,
+        mat-radio-group {
+          flex-basis: 100%;
+        }
+      }
+    }
+  }
+}

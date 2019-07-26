@@ -1,0 +1,27 @@
+<h4 class="heading">Add Existing Asset/Investment</h4>
+
+<form [formGroup]="existingInvestmentFormGroup">
+    <mat-form-field class="input-controls">
+        <mat-select placeholder="Select Existing Asset/Investment" [formControl]="existingInvestmentFormGroup.controls['investment']">
+            <mat-option *ngFor="let investment of existingInvestment;let i = index;" [value]="i">{{investment.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="input-controls">
+        <mat-select placeholder="Associate Goal" [formControl]="existingInvestmentFormGroup.controls['associateGoal']">
+            <mat-option *ngFor="let goal of goals;let i = index;" [value]="goal.id">{{goal.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="input-controls">
+        <span matPrefix>
+            <mat-icon fontSet="fas" fontIcon="fa-rupee-sign"></mat-icon>
+        </span>
+        <input type="number" matInput [formControl]="existingInvestmentFormGroup.controls['currentValue']" placeholder="Current Value">
+    </mat-form-field>
+    <br>
+
+    <button mat-raised-button color="primary" [disabled]="!existingInvestmentFormGroup.valid" (click)="submit()">Add
+        Existing Asset/Investment</button>
+
+</form>

@@ -1,0 +1,475 @@
+@import '../../../theme.scss';
+
+.new-section-head {
+  p {
+    width: 350px;
+  }
+}
+
+.awaiting-payment-status {
+  .list-element {
+    display: flex;
+    box-shadow: 0 0 20px -2px rgba(0, 0, 0, 0.2);
+    margin: 20px 0;
+    padding: 0 20px;
+
+    >div {
+      &:first-child {
+        flex-basis: 20%;
+
+        img {
+          width: 80%;
+        }
+      }
+
+      &:last-child {
+        flex-basis: 70%;
+
+        h4 {
+          color: $primary-color;
+
+          >span {
+            font-size: 14px;
+          }
+        }
+
+        mat-progress-bar {
+          margin: 15px 0;
+        }
+
+        >div {
+          margin-top: 15px;
+          display: flex;
+          justify-content: space-between;
+
+          >div {
+            flex-basis: 23%;
+
+            p {
+              &:first-child {
+                font-weight: 600;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.empty-portfolio-list {
+  min-height: 400px;
+
+  >div {
+    padding: 100px 0px 0px;
+    text-align: center;
+
+    h3 {
+      color: $primary-color;
+    }
+
+    h4 {
+      a {
+        color: $primary-color;
+
+        &:visited {
+          color: $primary-color;
+        }
+
+        &:hover {
+          color: darkslategray;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+.overview-cont {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 30px 0;
+
+  >div {
+    flex-basis: 30%;
+    box-shadow: 0px 0px 5px 2px $secondary-color;
+    border-radius: 2px;
+
+    &:nth-child(1) {
+      background: linear-gradient(-45deg, #fcdad8, #f8e2ee);
+    }
+
+    &:nth-child(2) {
+      background: linear-gradient(-45deg, #f8e2ee, #d1effa);
+    }
+
+    &:nth-child(3) {
+      background: linear-gradient(-45deg, #d1effa, #cdedfa);
+    }
+
+    >p {
+      &:first-child {
+        font-weight: 600;
+        font-size: 24px;
+        color: $primary-color;
+        margin: 30px 0 15px 50px;
+      }
+
+      &:last-child {
+        font-size: 20px;
+        color: darkslategrey;
+        margin: 20px 0 30px 50px;
+      }
+    }
+  }
+}
+
+.accordion-cont {
+  padding-left: 20px;
+
+  .accordion {
+
+    >mat-expansion-panel {
+      margin: 15px 0;
+    }
+
+    .mat-expansion-panel-body {
+      padding: 0;
+    }
+
+    .expansion-panel-header {
+      height: 54px !important;
+
+      .mat-content {
+        position: relative;
+        line-height: 52px;
+
+        .fund-logo {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          border-radius: 50%;
+          width: 50px;
+        }
+      }
+    }
+
+    .title {
+      font-weight: 600;
+      width: 600px;
+      line-height: 20px;
+      padding: 5px 5px 5px 65px;
+    }
+
+    .panel-desc {
+      >span {
+        >span {
+          margin: 0 4px;
+
+          &:first-child {
+            font-weight: 600;
+          }
+
+          &:last-child {
+            color: $primary-color-alternate;
+          }
+        }
+      }
+    }
+
+    .folio-cont {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      padding-bottom: 10px;
+
+      .panel-body {
+        display: flex;
+        justify-content: start;
+        flex-wrap: wrap;
+
+        >div {
+          flex-basis: 31%;
+          margin: 10px 0;
+          padding: 5px 20px;
+          position: relative;
+
+          span {
+            &:first-child {
+              float: left;
+              font-weight: 600;
+            }
+
+            &:nth-child(2) {
+              float: right;
+              background-color: $primary-color-alternate;
+              color: white;
+              padding: 2px 10px;
+              border-radius: 5px;
+              width: 110px;
+              text-align: center;
+            }
+          }
+
+          p {
+            font-size: 11px;
+            display: inline-block;
+            font-weight: normal;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+          }
+        }
+      }
+
+      .goal {
+        margin-left: 34px;
+
+        span {
+          font-weight: 600;
+        }
+      }
+
+      .action-buttons {
+        margin: 10px 35px 5px;
+        text-align: right;
+
+        button {
+          margin: 0 10px;
+
+          &:first-child {
+            float: left;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width:1200px) {
+  .accordion-cont {
+    .accordion {
+
+      .panel-desc {
+        font-size: 14px;
+        margin: 5px 0 0 55px;
+        width: 100%;
+
+        >span {
+          display: inline-block;
+          margin: 0 5px;
+          width: 45%;
+
+          >span {
+            margin: 0 5px;
+
+            &:last-child {
+              font-weight: 600;
+            }
+          }
+        }
+      }
+
+      .expansion-panel-header {
+        padding: 0 12px !important;
+        height: 96px !important;
+
+        .mat-content {
+          line-height: 12px;
+          flex-wrap: wrap;
+
+          .fund-logo {
+            width: 45px;
+            left: 5px;
+            top: 0px;
+          }
+        }
+      }
+
+      .panel-body {
+        padding: 0;
+        justify-content: center;
+
+        >div {
+          padding: 5px;
+          font-size: 12px;
+          margin: 10px 5px;
+
+          span {
+            display: block;
+            float: none !important;
+          }
+
+          p {
+            top: 50px;
+            left: 5px;
+          }
+        }
+      }
+
+      .goal {
+        margin-top: 10px;
+        margin-left: 5%;
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width:992px) {
+
+  .overview-cont {
+    >div {
+      p {
+        &:first-child {
+          font-size: 18px;
+          margin: 10px 0 10px 10px;
+        }
+
+        &:last-child {
+          font-size: 18px;
+          margin: 10px 0 20px 20px;
+        }
+      }
+    }
+  }
+
+  .accordion-cont {
+    .accordion {
+      .folio-cont {
+        .action-buttons {
+          margin: 10px 11px 5px;
+          display: flex;
+          justify-content: space-around;
+          flex-wrap: wrap;
+
+          button {
+            flex-basis: 42%;
+            margin: 5px 0;
+          }
+        }
+      }
+
+    }
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .new-section-head {
+    p {
+      width: 250px;
+    }
+  }
+
+  .awaiting-payment-status {
+    .list-element {
+      flex-direction: column;
+
+      >div {
+        &:first-child {
+          text-align: center;
+
+          img {
+            width: 30%;
+          }
+        }
+
+        &:last-child {
+          h4 {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+
+  .empty-portfolio-list {
+    min-height: 200px;
+
+    >div {
+      padding: 70px 0;
+
+      h2 {
+        font-size: 18px;
+      }
+
+      h3 {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .accordion-cont {
+    .accordion {
+
+      .panel-desc {
+        font-size: 12px;
+      }
+
+    }
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .new-section-head {
+    p {
+      width: 225px;
+    }
+  }
+
+  .overview-cont {
+    >div {
+      flex-basis: 90%;
+
+      >p {
+        &:first-child {
+          margin: 10px 15px;
+          font-size: 18px;
+        }
+
+        &:last-child {
+          font-size: 16px;
+          margin: 10px 20px 20px;
+        }
+      }
+    }
+  }
+
+  .accordion-cont {
+
+    // padding-left: 20px;
+    .accordion {
+
+      .title {
+        font-size: 12px;
+      }
+
+      .panel-desc {
+        font-size: 11px;
+        margin-left: 50px;
+
+        >span {
+
+          >span {
+
+            &:last-child {
+              display: block;
+              font-weight: normal;
+            }
+          }
+        }
+      }
+
+      .expansion-panel-header {
+
+        .mat-content {
+
+          .fund-logo {
+            width: 35px;
+            left: 5px;
+            top: 30px;
+          }
+        }
+      }
+    }
+  }
+}

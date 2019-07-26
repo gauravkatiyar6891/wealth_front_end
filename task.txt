@@ -1,0 +1,116 @@
+
+//Onboarding Process - State - City -  Alphabetical Order - Done
+// Disable Auto Completer on Bank Name, A/c IFSC Code
+//Calendar for DOB - Change
+//robot file
+//meta tags
+//sitemap
+//check token expiry when user navigates on site which require no server calls
+//after using return value calculator and using download report button if user logout and then again click on download button it show json error in new tab as failure 500
+//focus out event on user profile drop down menu
+//check whether user receives otp on email during register
+//session expire dialog box not showing when another dialog box is already open - Dismissed - As user may have important data on previous dialog box
+//Implement Async validator in register emaild address for duplicate email Id - Done Partial
+//Report not downloading - Done - but anyone can download report with the requested url
+//Difference b/w guest register and mobile register is guest user doesn't automatically sign in - Leave as it is
+//fetch mobile no and password for auto login from globalUtility instead of browser's storage - Approved
+//Clear mobile no. from local storage after password reset - Pending - Need to change code - Approved
+//anything in local storage in the name of token can display any guarded route - Done
+//add Router Change Transition - Done
+//Selective Preloading Strategy - Done
+//set title of page accordingly - Done
+//Custom Validator for Confirm Password Field - Done
+//User can download report if token expired when report dialog box is open - Done
+//resend OTP - Done
+//set New Password - Done
+//Unable to handle invalid OTP - Done
+//validations of all field of my account - Done
+//Disable Register tab and Submit after password reset - Done
+//After user resends otp, check whether previous otp works or not - Done
+//Password reset vulnerablity check - Done
+//Emaild  dialog box on cancel sending email - Done
+//Verify Function of email report - Done
+//emailId dialog box design - Done
+//MyAccount convert to dialog box - Done
+//When Logged in not showing login state - Done
+//OTP sent to your Mobile should be coloured - Done
+//check whether token monitoring starts when user opens the website and it is already logged in - Done
+//Token Monitoring started twice when user log in - Done
+//disable hiding of myaccount dialog when clicked outside - Done
+//hide loader when user click outside myaccount dialog - Done
+
+//sight seal
+//mcafee
+
+//platform partners image change -Done
+//mutual fund 
+//explore button color change - Done
+//mobile colour change
+//cover image change - Done
+//contact no on bottom - Done
+
+
+//change profile picture - Done
+//need to change header image when profile picture is changed - Done
+//forget password - Done
+//document upload section in profile
+//user defined goals in invest page - Done
+//disable redeemption in portfolios - Done
+//page hangs when login from home page and going to dashboard - Done
+
+//sip dot removal - Done
+//model portfolio descriptin small font size - Done
+//login dialog slider removal - Done
+//upload documents clicked without uploading photos - Done
+//row wise photo upload - Done
+//email verify - Done
+
+//watchlist purchase not working - Done
+//advance sip automatically routes to home after clicking on customize goals - Done
+//if user goes to payment gateway and then returns to website then it will redirect to home page if the token of g4w got expired on server
+
+// -----------------------For Seo ----------------------------
+//mutual fund name on url - Done
+//blog name on url
+//alternate to mutual fund infinite scroll - Done
+//jquery removal - Done
+//bootstrap removal - Done
+//sitemap
+//home redirect - Done
+//global single loader instead on individual loader - Done
+//jspdf
+
+//amcCode on order page and confirm order
+//portfolio all previous day data
+
+//sitemap to main site - Done
+//hide loader in ssr via try catch - Done
+//understand google webmaster and its criteria
+//aws domain transfership - Done
+//ebs health with instance capacity
+//apache in ebs
+//mutual fund name on url - Done
+//crawling check
+//ngoninit calls complete on server before sending page
+//analytics should only when running in prod mode on browser
+
+//requirements
+//getSchemeDetailsByKeyword
+//seo meta data for each route needed including every scheme
+//web service to traverse all scheme in db for building sitemap via scheduler
+//web service for blogs also as above
+//recommended funds scheme keyword
+//model portfolio order place internal server error
+
+
+bse physical(bse) - sip(bse)-> RTA Code - 
+
+---------Home Page----------
+Investment Amount -> Investment Amount(Monthly)
+In - Years investment of (in single line for mobile)
+Queries or feedback
+Go4Wealth Advantage in Mobile with dropdown
+Goal Calculator to scroll when calculating goal
+bse and amfi certificate on there logos
+godaddy sight seal
+Add New Goal and Add Ex Inv and Save Goals on same line

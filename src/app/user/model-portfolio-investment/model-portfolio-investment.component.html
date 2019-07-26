@@ -1,0 +1,82 @@
+<div class="mandate">
+  <app-mandate [hidden]="investmentType != 'sip'"></app-mandate>
+</div>
+
+<div class="mat-container-fluid">
+  <div class="mat-container">
+
+    <div class="portolio-cont">
+
+      <div class="head">
+        <p>{{schemeKeyword}}</p>
+      </div>
+
+      <div class="body">
+
+        <div class="investment-type">
+          <span>Schemes in this Portfolio</span>
+          <div class="action-button">
+            <button mat-raised-button [color]="investmentType == 'lumpsum' ? 'primary': ''" (click)="investmentType='lumpsum'; fillAmountInFields()">One
+              Time</button>
+            <button mat-raised-button [color]="investmentType == 'sip' ? 'primary': ''" (click)="investmentType='sip'; fillAmountInFields()">Monthly
+              (SIP)</button>
+          </div>
+        </div>
+
+        <hr>
+
+        <table>
+          <thead>
+            <tr>
+              <td>Scheme Name</td>
+              <td class="clm-1">Scheme Type</td>
+              <td class="clm-2" *ngIf="investmentType=='sip'">SIP Date</td>
+              <td class="clm-3"> Amount(&#8377;)</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let scheme of modelportfolioDetailList; let i = index">
+              <td>{{scheme.schemeName}}</td>
+              <td class="clm-1">{{scheme.schemeType}}</td>
+              <td class="clm-2" *ngIf="investmentType=='sip'">
+                <select [(ngModel)]="dateFields[i]">
+                  <option *ngFor="let date of scheme.sipDateList" value="{{date}}">{{date}}</option>
+                </select>
+              </td>
+              <td class="clm-3">
+                <input type="number" [(ngModel)]="amountFields[i]" [ngClass]="{'field-error': fieldError[i]}">
+                <mat-error *ngIf="amountFields[i] < (investmentType == 'sip' ? scheme.minSipAmount : scheme.minimumPurchaseAmount)">Min
+                  Amount Should be &#8377; {{investmentType == 'sip' ? scheme.minSipAmount :
+                  scheme.minimumPurchaseAmount | inrCurrency:0}}</mat-error>
+                <mat-icon class="mat-18" (click)="deleteScheme(i)">cancel</mat-icon>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="estimates">
+          <p>Total Investment Amount : <span>&#8377; {{sumAllAmounts() | inrCurrency:0}}</span></p>
+          <div>
+            <mat-radio-group class="payment-radio" *ngIf="showPaymentType && investmentType=='sip'" [(ngModel)]="paymentOptions">
+              <label for="">Payment Option</label>
+              <mat-radio-button color="primary" value="Natch">XSIP(NACH)</mat-radio-button>
+              <mat-radio-button color="primary" value="Biller" [disabled]="!isISipAllowed">ISIP(BILLER)</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <button mat-raised-button color="primary" [disabled]="showPaymentType && paymentOptions=='' && investmentType=='sip'"
+            (click)="validateInvestment()">
+            Place Order</button>
+        </div>
+      </div>
+
+      <p class="declaration">Please note that the NAV applicable to your order, would depend on the type of the fund,
+        amount invested and the time you enter the order. For orders less than 2 Lac before cut-off (3 pm) on a
+        business day for non-Liquid schemes, the order will be processed at the NAV as at the close of the business
+        day. For orders greater than 2 Lac before cut-off (1 pm) on a business day for non-Liquid schemes, the order
+        will be processed at the NAV as at the close of the business day. For orders before cut-off (3 pm) on a
+        business day for Liquid schemes, the order will be processed at the NAV as at the close of the previous
+        business day. For orders placed after cut-off time or on a Non-Business day, the NAV of the next business day
+        will be applicable.</p>
+
+    </div>
+  </div>
+</div>

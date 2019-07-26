@@ -1,0 +1,174 @@
+@import '../../../theme.scss';
+
+.mandate-radio {
+  line-height: 35px;
+
+  mat-radio-button {
+    margin: 0 15px;
+  }
+}
+
+.warning {
+  background-color: #fcf8e3;
+  border-left: 6px solid yellow;
+  padding: 8px 12px;
+
+  p {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+  }
+}
+
+.investment {
+  box-shadow: 0 0 20px -2px rgba(0, 0, 0, 0.2);
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+
+  h4 {
+    background-color: $primary-color;
+    color: white;
+    padding: 25px 30px;
+    border-radius: 3px;
+
+    p {
+      margin: 15px 0 0 0;
+      font-size: 15px;
+    }
+  }
+
+  .actions {
+    padding: 15px 20px;
+
+    >button {
+      &:first-child {
+        margin-left: 10px;
+      }
+
+      &:nth-child(2) {
+        margin-left: 20px;
+      }
+
+      &:last-child {
+        float: right;
+        right: 50px;
+      }
+    }
+  }
+
+  >form {
+    margin: 20px 30px;
+
+    .input-fields {
+      width: 300px;
+
+      >span {
+        margin-right: 5px;
+      }
+    }
+
+    .payment-radio {
+      line-height: 35px;
+
+      mat-radio-button {
+        margin: 0 15px;
+      }
+
+      .ex-folio-p {
+        margin: -10px 0 0px;
+        font-weight: 600;
+        text-decoration: underline;
+
+      }
+    }
+
+    >span {
+      font-weight: 600;
+      font-size: 15px;
+      margin-left: 18px;
+    }
+
+    mat-checkbox {
+      a {
+        color: $primary-color;
+        text-decoration: underline;
+      }
+    }
+
+    button {
+      margin: 15px 15px 0 0;
+    }
+  }
+
+  >p {
+    border-left: 5px solid $primary-color;
+    margin: 10px 110px 30px 10px;
+    background-color: aliceblue;
+    padding: 5px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .new-section-head {
+    p {
+      width: 110px;
+    }
+  }
+
+  .warning {
+    p {
+      margin: 0 10px;
+      font-size: 11px;
+    }
+  }
+
+  .investment {
+    h4 {
+      padding: 15px;
+      font-size: 16px;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+
+      button {
+        margin: 5px 10px;
+        flex-basis: 120px;
+
+        &:last-child {
+          right: 0;
+          float: none;
+        }
+      }
+    }
+
+    form {
+      >span {
+        font-size: 11px;
+      }
+
+      mat-checkbox {
+        font-size: 11px;
+      }
+
+      .input-fields {
+        mat-icon {
+          font-size: 14px;
+        }
+      }
+
+      .payment-radio {
+        font-size: 12px;
+      }
+    }
+
+    >p {
+      margin: 0 10px;
+      font-size: 11px;
+    }
+  }
+}

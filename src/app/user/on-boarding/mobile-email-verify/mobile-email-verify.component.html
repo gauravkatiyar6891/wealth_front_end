@@ -1,0 +1,81 @@
+<div class="email-mobile-step">
+
+  <!-- ------------------------------------------------------------------Mobile Form------------------------------------------------- -->
+
+  <mat-card>
+    <mat-card-content>
+
+      <form [formGroup]="mobileFormGroup">
+        <mat-form-field>
+          <input matInput type="tel" placeholder="Mobile No" [formControl]="mobileFormGroup.controls['mobileNo']"
+            required>
+          <span matSuffix *ngIf="userData?.mobileVerified">
+            <mat-icon class="fields-icon verified-icon" fontSet="fas" fontIcon="fa-check-circle"></mat-icon>
+          </span>
+          <mat-hint *ngIf="userData?.mobileVerified">Your Mobile No has Verified.</mat-hint>
+        </mat-form-field>
+        <br>
+
+        <mat-form-field *ngIf="!userData?.mobileVerified">
+          <input matInput type="number" placeholder="OTP" [formControl]="mobileFormGroup.controls['otp']" required>
+          <mat-error *ngIf="mobileFormGroup.controls['otp'].hasError('required')">OTP is required</mat-error>
+          <mat-error *ngIf="mobileFormGroup.controls['otp'].hasError('length')">OTP must be 4 digits
+          </mat-error>
+          <mat-hint *ngIf="otpSentMessage">OTP has been sent to Your Mobile</mat-hint>
+          <mat-hint *ngIf="sendingOtpMessage">Sending OTP</mat-hint>
+        </mat-form-field>
+        <mat-error *ngIf="invalidOtpMessage">Invalid OTP</mat-error>
+        <br>
+        <button *ngIf="!userData?.mobileVerified" class="resend-button" mat-raised-button (click)="sendMobileVerifyOTP()"
+          [disabled]="(sendOtpExecuted && resendOtpButtonEnableTimer != 0)">{{resendOtpButtonEnableTimer
+            | sendOtp : sendOtpExecuted}}
+          <mat-progress-spinner *ngIf="sendingOtpMessage" mode="indeterminate" color="primary" [diameter]="20">
+          </mat-progress-spinner>
+        </button>
+        <button *ngIf="!userData?.mobileVerified" color="primary" (click)="submitMobileVerfiyOTP()"
+          [disabled]="userData?.mobileVerified || !mobileFormGroup.valid" mat-flat-button>Verify Mobile
+          <mat-progress-spinner *ngIf="verifyingMobileOTP" mode="indeterminate" color="primary" [diameter]="20">
+          </mat-progress-spinner></button>
+      </form>
+
+    </mat-card-content>
+  </mat-card>
+
+  <!-- ------------------------------------------------------------------Email Form------------------------------------------------- -->
+
+  <mat-card>
+    <mat-card-content>
+
+      <form [formGroup]="emailFormGroup">
+        <mat-form-field>
+          <input matInput type="email" placeholder="Email Id" [formControl]="emailFormGroup.controls['email']" required>
+          <span matSuffix *ngIf="userData?.emailVerified">
+            <mat-icon class="fields-icon verified-icon" fontSet="fas" fontIcon="fa-check-circle"></mat-icon>
+          </span>
+          <mat-error *ngIf="emailFormGroup.controls['email'].hasError('required')">Email Id is required
+          </mat-error>
+          <mat-error *ngIf="emailFormGroup.controls['email'].hasError('email')">Invalid Email Id</mat-error>
+          <mat-hint *ngIf="userData?.emailVerified">Your Email Id has Verified.</mat-hint>
+          <mat-hint *ngIf="checkingEmailVerify">An Email has been sent to your Mail.</mat-hint>
+          <mat-hint *ngIf="sendingEmailVerification">Please wait, we are sending a verification link to your
+            Email Id</mat-hint>
+        </mat-form-field>
+        <br>
+
+        <mat-progress-bar *ngIf="checkingEmailVerify" class="email-verify-query" mode="query">
+        </mat-progress-bar>
+        <mat-hint *ngIf="checkingEmailVerify">Waiting For Email Verification</mat-hint>
+        <br>
+
+        <button *ngIf="!userData?.emailVerified" color="primary" (click)="emailIdVerify()"
+          [disabled]="userData?.emailVerified ||sendingEmailVerification || isVerificationEmailSent" mat-flat-button>Verify
+          Email
+          <mat-progress-spinner *ngIf="sendingEmailVerification" mode="indeterminate" color="primary" [diameter]="20">
+          </mat-progress-spinner>
+        </button>
+      </form>
+
+    </mat-card-content>
+  </mat-card>
+
+</div>

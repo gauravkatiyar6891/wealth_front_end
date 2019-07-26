@@ -1,0 +1,26 @@
+<div class="new-section-head">
+  <p>Frequently Asked Questions</p>
+</div>
+
+<div class="container-fluid back-image">
+
+  <div>
+    <div class="container accordion-cont">
+
+      <mat-accordion class="accordion" displayMode="default" [multi]="false" [hideToggle]="false">
+
+        <mat-expansion-panel [hideToggle]="false" *ngFor="let faq of faqs">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{faq.question}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          {{faq.answer}}
+        </mat-expansion-panel>
+
+      </mat-accordion>
+
+    </div>
+  </div>
+
+</div>

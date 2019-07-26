@@ -1,0 +1,9 @@
+<div class="message-portfolio">
+  <img src="../../assets/logo/go4wealth-header-logo.png">
+  <p>{{dialogData.message}}</p>
+
+  <div class="actions">
+    <button mat-raised-button (click)="cancel()">{{dialogData.cancelButtonName}}</button>
+    <button mat-raised-button color="primary" cdkFocusInitial (click)="continue()">{{dialogData.confirmButtonName}}</button>
+  </div>
+</div>

@@ -1,0 +1,98 @@
+@import '../../../../theme.scss';
+
+.parent {
+	margin: -24px;
+	background-color: $secondary-color;
+	> p {
+		font-weight: 600;
+		background-color: $primary-color;
+		color: $secondary-color-light;
+		padding: 5px 15px;
+		font-size: 20px;
+	}
+	> div {
+		padding: 0 24px 24px;
+		h4 {
+			color: $primary-color;
+		}
+		.data {
+			display: flex;
+			width: 50%;
+			margin: 10px 0;
+			> div {
+				flex-basis: 50%;
+				&:first-child {
+					font-weight: 600;
+				}
+				&:last-child {
+					text-align: right;
+					> span {
+						background-color: $primary-color-alternate;
+						color: white;
+						padding: 2px 5px;
+						border-radius: 3px;
+						width: 20px;
+					}
+				}
+			}
+		}
+		.exit-load {
+			width: 50%;
+			> div {
+				font-weight: 600;
+			}
+		}
+		form {
+			.input-fields {
+				width: 50%;
+			}
+			.fields-icon {
+				font-size: 15px;
+			}
+			> button {
+				margin-top: 5px;
+			}
+		}
+		p {
+			font-size: 13px;
+			&:last-child {
+				color: red;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 576px) {
+	.parent {
+		> p {
+			font-size: 18px;
+		}
+		> div {
+			padding: 0 16px 16px;
+			h4 {
+				font-size: 16px;
+			}
+			.data {
+				width: 275px;
+				> div {
+					font-size: 12px;
+					&:first-child {
+						flex-basis: 60%;
+					}
+					&:last-child {
+						flex-basis: 40%;
+					}
+				}
+			}
+			form {
+				.input-fields {
+					width: 275px;
+				}
+			}
+			>p{
+				font-size: 12px;
+				margin-top: 10px;
+			}
+		}
+	}
+}

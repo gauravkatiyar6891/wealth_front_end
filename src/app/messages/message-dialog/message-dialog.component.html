@@ -1,0 +1,13 @@
+<div class="message-portfolio">
+  <img src="../../../assets/logo/go4wealth-header-logo.png">
+  <div>
+    <div *ngIf="success || failure">
+      <mat-icon class="success" *ngIf="success" fontSet="fas" fontIcon="fa-check-circle"></mat-icon>
+      <mat-icon class="failure" *ngIf="failure" fontSet="fas" fontIcon="fa-exclamation-circle"></mat-icon>
+    </div>
+    <div [ngClass]="{'full-flex': !success && !failure}">
+      <p>{{message}}</p>
+    </div>
+  </div>
+  <button mat-raised-button color="primary" mat-dialog-close cdkFocusInitial> OK </button>
+</div>

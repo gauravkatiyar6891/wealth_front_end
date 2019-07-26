@@ -1,0 +1,76 @@
+{
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "resources": {
+        "files": [
+          "/favicon.ico",
+          "/index.html",
+          "/*.css",
+          "/*.js"
+        ],
+        "urls": [
+          "https://d3js.org/d3.v5.min.js",
+          "https://use.fontawesome.com/releases/v5.3.1/css/all.css",
+          "https://fonts.googleapis.com/icon?family=Material+Icons",
+          "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css",
+          "https://cdn.jsdelivr.net/npm/billboard.js@1.0.0/dist/billboard.min.css",
+          "https://cdn.jsdelivr.net/npm/billboard.js@1.0.0/dist/billboard.min.js",
+          "https://use.fontawesome.com/releases/v5.3.1/webfonts/fa-solid-900.woff2",
+          "https://use.fontawesome.com/releases/v5.3.1/webfonts/fa-brands-400.woff2",
+          "https://fonts.gstatic.com/s/materialicons/v43/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2",
+          "https://seal.godaddy.com/getSeal?sealID=3OUWdkoa3qPFnTXeVxLpjgSQTivyYAnlB96Qe3T1sUu1zioNPYn4IG7px1I4"
+        ]
+      }
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "/assets/**"
+        ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "goal",
+      "urls": [
+        "/go4wealth-web/sip/api/getCityList",
+        "/go4wealth-web/sip/advance/getPredefinedGoal",
+        "/go4wealth-web/sip/advance/getAssetClassList",
+        "/go4wealth-web/sip/advance/getUserRiskProfileV2/17"
+      ],
+      "version": "1",
+      "cacheConfig": {
+        "maxSize": 10,
+        "maxAge": "10d",
+        "strategy": "performance",
+        "timeout": "1s"
+      }
+    },
+    {
+      "name": "schemes",
+      "urls": [
+        "/go4wealth-web/prs/fund-scheme/api/allSchemeType",
+        "/go4wealth-web/prs/modelportfolio/getModelportfolioList",
+        "/go4wealth-web/prs/fund-scheme/api/getAllRecommendedScheme",
+        "/go4wealth-web/prs/modelportfolio/getModelportfolioDetailByCategory/Tax-Saver-ELSS",
+        "/go4wealth-web/prs/modelportfolio/getModelportfolioDetailByCategory/Short-Term-Funds",
+        "/go4wealth-web/prs/modelportfolio/getModelportfolioDetailByCategory/Funds-For-Emergency",
+        "/go4wealth-web/prs/modelportfolio/getModelportfolioDetailByCategory/Long-Term-Wealth-Creation"
+      ],
+      "version": "1",
+      "cacheConfig": {
+        "maxSize": 15,
+        "maxAge": "7d",
+        "strategy": "freshness",
+        "timeout": "1s"
+      }
+    }
+  ]
+}

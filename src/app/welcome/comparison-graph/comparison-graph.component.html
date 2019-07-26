@@ -1,0 +1,24 @@
+<div class="mat-container-fluid graph-cont">
+  <div class="mat-container">
+    <h2>Mutual Fund is the best investment option to create long term wealth</h2>
+    <div class="amount">
+      <span>Investment <b>Amount</b>(Monthly)</span>
+      <mat-slider (change)="amountChange($event)" #amount min="10000" max="100000" step="10000" color="accent">
+      </mat-slider>
+      <p>&#8377; {{amount.value | inrCurrency:0}}</p>
+    </div>
+    <div class="flex-parent">
+      <div id="chart"></div>
+      <div>
+        <h4>In {{graphHelper.currentYears}} Years, your investment of </h4>
+        <h4>&#8377; {{amount.value*12*graphHelper.currentYears | inrCurrency:0}} would become :</h4>
+        <h5 class="mf"><span>&#8377; {{graphHelper.currentMF| inrCurrency:0}}</span> Mutual Funds</h5>
+        <h5 class="pf"><span>&#8377; {{graphHelper.currentPF| inrCurrency:0}}</span> Provident Fund</h5>
+        <h5 class="fd"><span>&#8377; {{graphHelper.currentFD| inrCurrency:0}}</span> Fixed Deposit</h5>
+        <h5 class="savings"><span>&#8377; {{graphHelper.currentSavings| inrCurrency:0}}</span> Savings</h5>
+        <p class="margin-p">Assumed Rate: MF - 14% | PPF - 8.5% | FD - 7% | Savings - 3.5%</p>
+        <p>Figures are representative and do not gurantee anything</p>
+      </div>
+    </div>
+  </div>
+</div>

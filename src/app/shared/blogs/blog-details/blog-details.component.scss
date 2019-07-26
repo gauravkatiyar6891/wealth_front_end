@@ -1,0 +1,27 @@
+@import './../../../../theme.scss';
+
+.blog {
+  padding: 20px 0;
+  text-align: center;
+
+  h2 {
+    color: $primary-color;
+  }
+
+  img {
+    width: 600px;
+  }
+
+  .blog-body {
+
+    .blog-content {
+      text-align: justify;
+      font-size: 16px;
+
+      a {
+        color: $primary-color;
+        text-decoration: underline;
+      }
+    }
+  }
+}

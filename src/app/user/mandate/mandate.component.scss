@@ -1,0 +1,33 @@
+@import '../../../theme.scss';
+
+.warn-cont {
+	padding: 10px 0 20px;
+	p {
+		font-size: 12px;
+		border-left: 10px solid yellow;
+		padding: 10px;
+		border-radius: 2px;
+		background-image: linear-gradient(to right, #ffffe9, white);
+		span {
+			&:first-child {
+				font-weight: bold;
+			}
+			&:last-child {
+				color: $primary-color;
+				text-decoration: underline;
+				cursor: pointer;
+			}
+		}
+		a {
+			color: $primary-color;
+			text-decoration: underline;
+		}
+	}
+	.error-status {
+		border-left: 10px solid red;
+		background-image: linear-gradient(to right, #ff9596, white);
+	}
+	input {
+		visibility: hidden;
+	}
+}

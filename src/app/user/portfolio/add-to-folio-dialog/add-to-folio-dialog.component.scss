@@ -1,0 +1,72 @@
+@import './../../../../theme.scss';
+
+.parent {
+  h4 {
+    background-color: $primary-color;
+    color: $secondary-color-light;
+    padding: 10px;
+    margin: 0;
+  }
+
+  form {
+    width: 76%;
+    margin: 10px 0 10px 60px;
+    padding: 10px 0;
+
+    .investment-type {
+      text-align: center;
+
+      button {
+        margin: 0 40px 10px;
+      }
+    }
+
+    .input-fields {
+      width: 100%;
+      margin: 5px 0;
+    }
+
+    mat-radio-group {
+      mat-radio-button {
+        margin: 0 10px;
+      }
+    }
+
+    >div {
+      margin: 10px 0;
+
+      p {
+        width: 115px;
+        margin: 0;
+        display: inline-block;
+        font-weight: 600;
+      }
+    }
+
+    .t-right {
+      text-align: right;
+    }
+  }
+}
+
+@media only screen and (max-width : 576px) {
+  .parent {
+    form {
+      width: 90%;
+      margin: 0 15px;
+
+      .investment-type {
+        button {
+          margin: 0 25px 10px;
+        }
+      }
+
+      >div {
+        p {
+          margin: 0 0 5px;
+          display: block;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+<h1 mat-dialog-title color="primary">Download Report</h1>
+
+<div mat-dialog-content>
+  <p>Enter Your Email Id , We will send a Link to Download Your Report</p>
+
+  <form (ngSubmit)="submit()">
+
+    <mat-form-field>
+      <input type="email" matInput [formControl]="emailId">
+      <mat-error *ngIf="emailId.hasError('email') && !emailId.hasError('required')">
+        Please enter a valid Email Address
+      </mat-error>
+      <mat-error *ngIf="emailId.hasError('required')">
+        Email Address is required
+      </mat-error>
+    </mat-form-field>
+
+  </form>
+
+  <div class="action-buttons">
+    <button mat-button (click)="dismiss()">No Thanks</button>
+    <button mat-flat-button color="primary" (click)="submit()">Submit <mat-icon>send</mat-icon> </button>
+  </div>
+
+</div>

@@ -1,0 +1,576 @@
+@import './../../../theme.scss';
+
+$short-term-color: orange;
+$mid-term-color: blue;
+$long-term-color: green;
+
+.goal-calc-cont {
+
+  .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    color: white;
+  }
+
+  h3 {
+    color: $primary-color;
+    margin-bottom: 0;
+    // text-align: center;
+  }
+
+  .seperator {
+    color: $primary-color;
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  .goal-calc {
+    padding: 10px 0 0;
+    margin: 10px 0 0;
+    display: flex;
+    // justify-content: space-around;
+
+    .calc-controls {
+      // display: inline-block;
+      width: 40%;
+      padding: 30px 30px 10px;
+      border-radius: 5px;
+      color: $secondary-color-light;
+      background: linear-gradient(to bottom, $primary-color-alternate, $primary-color);
+      // float: left;
+
+      form {
+        display: flex;
+        flex-direction: column;
+
+        .select-form-field {
+          display: inline-flex;
+          margin: 5px 0;
+          justify-content: space-between;
+
+          mat-form-field {
+            flex-basis: 47%;
+
+            .mat-select-value,
+            .mat-form-field-appearance-legacy .mat-form-field-label {
+              color: white !important;
+            }
+          }
+        }
+
+        .slider {
+          display: inline-flex;
+          margin: 10px 0 15px;
+
+          >div {
+            &:first-child {
+              flex: 15;
+
+              p {
+                font-weight: 600;
+                display: inline-block;
+                margin-bottom: 0px;
+              }
+
+              mat-slider {
+                width: 98%;
+              }
+
+              .caps {
+                width: 95%;
+                margin-top: -10px;
+
+                >span {
+                  &:last-child {
+                    float: right;
+                  }
+                }
+              }
+            }
+
+            &:last-child {
+              flex: 5;
+
+              .slider-box {
+                border: 1px solid white;
+                text-align: center;
+                margin: 25px auto;
+                box-shadow: 0 0 8px rgba(166, 167, 169, 0.6);
+
+                h5 {
+                  margin: 5px 0 7px;
+                }
+              }
+            }
+          }
+        }
+
+        .action {
+          text-align: center;
+          padding: 10px 0px;
+        }
+      }
+    }
+
+    .side-image {
+      // display: inline-block;
+      width: 60%;
+      padding: 0;
+      text-align: center;
+      background-color: $secondary-color;
+
+      .glide {
+        .glide__bullets {
+          button {
+            background: $primary-color;
+            border: 1px solid black;
+            border-radius: 50%;
+            height: 12px;
+            margin: 0 5px;
+            transition: all 200ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+
+            &:hover {
+              border: 1px solid $primary-color;
+              background: $secondary-color;
+            }
+          }
+
+          margin-top: 40x;
+        }
+
+        ul {
+          li {
+            img {
+              width: 375px;
+            }
+
+            p {
+              font-weight: 600;
+              font-size: 20px;
+            }
+          }
+        }
+      }
+    }
+
+    .goal-result-table {
+      // display: inline-block;
+      width: 60%;
+      background-color: $secondary-color-light;
+      padding: 20px 10px 0;
+      animation: swipe-right 700ms ease-in-out forwards;
+
+      .no-margin {
+        font-size: 20px;
+        color: $primary-color;
+        margin-bottom: 0px;
+      }
+
+      .sum {
+        margin: 20px 0;
+        display: flex;
+        justify-content: space-around;
+
+        >div {
+          flex-basis: 45%;
+
+          &:first-child {
+            .row-sec {
+              display: flex;
+              justify-content: space-around;
+
+              >div {
+                flex-basis: 48%;
+
+                p {
+                  text-align: center;
+                }
+
+                &:first-child {
+                  p {
+                    color: $primary-color;
+                    font-size: 18px;
+                    font-weight: 500;
+                    text-align: left;
+                  }
+                }
+
+                &:last-child {
+                  p {
+                    background-color: $primary-color-alternate;
+                    color: white;
+                    padding: 5px 2px;
+                    font-size: 16px;
+                  }
+                }
+              }
+            }
+          }
+
+          &:last-child {
+            p {
+              margin: 0;
+            }
+
+            >p {
+              font-size: 18px;
+              font-weight: 600;
+              color: $primary-color;
+            }
+
+            >div {
+              display: flex;
+              justify-content: space-around;
+              margin-top: 20px;
+
+              >div {
+                flex-basis: 45%;
+
+                >p {
+                  text-align: center;
+
+                  &:first-child {
+                    background-color: $yellow-color;
+                    color: white;
+                    font-size: 18px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .table-cont {
+        table {
+          font-size: 12px;
+          font-family: Montserrat, sans-serif;
+          width: 100%;
+
+          thead {
+            background-color: $primary-color;
+            color: white;
+
+            tr {
+              .col-center {
+                text-align: center;
+              }
+            }
+          }
+
+          >tr {
+            border: 1px solid $secondary-color;
+          }
+
+          td {
+            padding: 5px;
+          }
+
+          .col-seperator {
+            border-right: 1px solid $secondary-color;
+          }
+
+          .seperator {
+            td {
+              border-top: 2px solid $primary-color;
+              border-bottom: 2px solid $primary-color;
+              padding: 1px;
+            }
+          }
+
+          .goal-estimate {
+            font-weight: 600;
+            border: none;
+
+            td {
+              border: none;
+            }
+          }
+
+          .goal-term {
+            p {
+              content: '';
+              display: block;
+              width: 10px;
+              height: 10px;
+              position: relative;
+              top: 2px;
+              float: right;
+              right: 10px;
+              border-radius: 2px;
+            }
+          }
+        }
+      }
+
+      .table-cont-footer {
+        margin: 20px 0 0;
+        display: flex;
+        justify-content: space-between;
+
+        .left {
+          flex-basis: 75%;
+
+          .legend-goal-term {
+            margin-top: 25px;
+            display: flex;
+            flex-basis: 25%;
+            justify-content: space-around;
+
+            p::before {
+              content: '';
+              display: inline-block;
+              width: 10px;
+              height: 10px;
+              position: relative;
+              border-radius: 2px;
+              margin-right: 5px;
+            }
+
+            .first-goal-term {
+              order: 3;
+
+              p::before {
+                background-color: $short-term-color;
+              }
+            }
+
+            .second-goal-term {
+              order: 2;
+
+              p::before {
+                background-color: $mid-term-color;
+              }
+            }
+
+            .third-goal-term {
+              order: 1;
+
+              p::before {
+                background-color: $long-term-color;
+              }
+            }
+          }
+
+          .not-right-goals {
+            margin-top: 30px;
+          }
+
+          .add-ex-goals {
+            margin-top: 12px;
+          }
+
+          .resp-buttons {
+            display: none;
+          }
+
+          .p-bold {
+            font-weight: 600;
+          }
+
+          .declaration {
+            margin: 15px 0;
+
+            p {
+              margin: 0;
+              color: $primary-color;
+              font-size: 12px;
+              font-weight: 500;
+            }
+          }
+        }
+
+        .right {
+          flex-basis: 20%;
+          text-align: center;
+          padding-top: 15px;
+
+          a {
+            margin: 10px 0;
+            width: 165px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .goal-calc-cont {
+    padding: 0;
+
+    h3 {
+      font-size: 20px;
+      padding: 0 10px;
+      margin: 10px 0 0;
+    }
+
+    .side-image {
+      display: none;
+    }
+
+    .seperator {
+      font-size: 16px;
+      padding: 5px 10px;
+    }
+
+    .goal-calc {
+      margin: 10px 0 15px;
+      flex-wrap: wrap;
+
+      .calc-controls {
+        flex-basis: 100%;
+        padding: 30px 30px 10px;
+      }
+
+      .goal-result-table {
+        flex-basis: 100%;
+        padding: 10px;
+        animation: swipe-down 700ms ease-in-out forwards;
+
+        .no-margin {
+          font-size: 16px;
+        }
+
+        .sum {
+          margin: 10px 0;
+          flex-wrap: wrap;
+
+          >div {
+            flex-basis: 90%;
+
+            &:first-child {
+              .row-sec {
+                >div {
+                  &:first-child {
+                    p {
+                      font-size: 16px;
+                    }
+                  }
+
+                  &:last-child {
+                    p {
+                      font-size: 15px;
+                    }
+                  }
+                }
+              }
+            }
+
+            &:last-child {
+              >p {
+                font-size: 15px;
+              }
+            }
+          }
+        }
+      }
+
+      .goal-result-table {
+        .table-cont {
+          table {
+            .goal-term {
+              p {
+                right: 0;
+              }
+            }
+          }
+        }
+
+        .table-cont-footer {
+          flex-wrap: wrap;
+
+          .left {
+            flex-basis: 100%;
+
+            .legend-goal-term {
+              margin-top: 0;
+            }
+
+            .not-right-goals {
+              margin-top: 10px;
+            }
+
+            .add-ex-goals {
+              display: none;
+            }
+
+            .resp-buttons {
+              display: block;
+              text-align: center;
+
+              a {
+                margin: 0 10px;
+              }
+            }
+
+            .declaration {
+              p {
+                font-size: 10px;
+              }
+            }
+          }
+
+          .right {
+            display: none;
+            flex-basis: 100%;
+            padding-top: 0;
+
+            a {
+
+              &:nth-child(2),
+              &:nth-child(3) {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .goal-calc-cont {
+
+    h3 {
+      font-size: 18px;
+    }
+
+    .goal-calc {
+
+      .calc-controls {
+        padding: 30px 10px 10px;
+      }
+
+      .goal-result-table {
+        .table-cont-footer {
+
+          .left {
+            flex-basis: 90%;
+          }
+
+          .right {
+            flex-basis: 90%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .goal-calc-cont {
+    .goal-calc {
+      .calc-controls {
+        form {
+          .select-form-field {
+            flex-wrap: wrap;
+
+            mat-form-field {
+              flex-basis: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,304 @@
+<!-- --------------------------------------Cover-------------------------------------------- -->
+
+<div class="mat-container-fluid cover-cont">
+  <div class="mat-container">
+    <div class="heading">
+      <h1 class="top-heading">One Life, Live all your dreams</h1>
+      <h1 class="below-heading">Build Wealth for
+        <span>Retirement <span></span></span>
+        <span>Home <span></span></span>
+        <span>Education <span></span></span>
+        <span>Holiday <span></span></span>
+      </h1>
+      <img class="desktop" src="../../../assets/home_new/1.png" alt="Go4wealth money">
+      <!-- <img class="mob" src="../../../assets/home_new/portrait-banner.jpg" alt=""> -->
+    </div>
+
+    <!-- <h3 class="sahi-hai">#MutualFundSahiHai</h3>
+    <h3 class="investit">#SimplyInvestIt</h3> -->
+
+    <a routerLink="/mutual-funds" mat-raised-button>GET STARTED</a>
+  </div>
+</div>
+
+<div class="mat-container-fluid cover-actions-cont">
+  <div class="mat-container">
+    <div class="cover-actions">
+      <div>
+        <div>
+          <h3>New to Investing</h3>
+          <h3 class="minus-margin">Let's start with GOAL Planning</h3>
+        </div>
+        <div>
+          <button mat-raised-button color="primary" (click)="plan()"> Get Started</button>
+        </div>
+      </div>
+      <div>
+        <div>
+          <h3>Want to create wealth</h3>
+          <h3 class="minus-margin">Know the best investment option</h3>
+        </div>
+        <div>
+          <a routerLink="/mutual-funds/topfunds" mat-raised-button color="primary"> Get Started</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- -------------------------------------------Why Go4Wealth----------------------------------------------------- -->
+
+<div class="mat-container-fluid why-g4w-cont">
+  <div class="mat-container why-g4w">
+    <h3>Go4Wealth Advantage</h3>
+    <div class="flex-parent">
+      <div>
+        <div> <img src="../../../assets/home_new/wgw-1.png" alt="Go4wealth Fund Selection"> </div>
+        <p class="sec-head">RESEARCH BASED FUND SELECTION</p>
+        <p class="sec-desc">Funds are selected using defined statistical parameters and long term growth prospect</p>
+        <p class="sec-desc">Funds selected are unbiased and chosen specifically for sustained superior returns</p>
+      </div>
+      <div>
+        <div> <img src="../../../assets/home_new/wgw-2.png" alt="Go4wealth Goal Planning"> </div>
+        <p class="sec-head">COMPREHENSIVE GOAL PLANNING</p>
+        <p class="sec-desc">Our tool helps you discover goals and suggest investment required</p>
+        <p class="sec-desc">It gives precise planning by mapping current investment</p>
+      </div>
+      <div>
+        <div> <img src="../../../assets/home_new/wgw-3.png" alt="Go4wealth and easy Tracking"> </div>
+        <p class="sec-head">SAFE AND EASY TRACKING</p>
+        <p class="sec-desc">Place your investment with us and sit back and relax for a secured and seamless investment
+          and tracking experience</p>
+        <p class="sec-desc">Track your portfolio anytime and we help with periodic review</p>
+      </div>
+      <div>
+        <div> <img src="../../../assets/home_new/wgw-4.png" alt="Go4wealth Invest 24x7 from home"> </div>
+        <p class="sec-head">CONVENIENT AND HASSLE FREE</p>
+        <p class="sec-desc">Invest 24x7 from home, office or anywhere. All it takes is less than 3 minutes of your time
+        </p>
+        <p class="sec-desc">Process is completely automated and does not require any paperwork</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mat-container-fluid one-stop-solution-cont">
+  <div class="mat-container one-stop-solution">
+    <h3>Financial planning is the first step to building long term wealth </h3>
+    <p>Our comprehensive planning tool helps you discover Financial Goals and Investment Needs </p>
+    <!-- <p>Let's plan for everything our home needs and our heart desires, shall we?</p> -->
+    <div class="div-parent">
+      <div class="glide">
+        <div class="glide__track" data-glide-el="track">
+          <ul class="glide__slides">
+            <li>
+              <p>Discover and identify goals</p> <img src="../../../assets/home_new/SLIDER-1.png" alt="Go4wealth Discover and identify goals">
+            </li>
+            <li>
+              <p>Know Precise Investment required</p> <img src="../../../assets/home_new/SLIDER-2.png" alt="Go4wealth Precise Investment required">
+            </li>
+            <li>
+              <p>Map existing investment to your goals</p> <img src="../../../assets/home_new/SLIDER-3.png" alt="Map existing investment to your goals">
+            </li>
+            <li>
+              <p>Get going on your investments</p> <img src="../../../assets/home_new/SLIDER-4.png" alt="Get going on your investments">
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- -------------------------------------Goals Calculator----------------------------------------- -->
+<g4w-goal-planner></g4w-goal-planner>
+
+<!-- ------------------------------------------MF Comparison Graph----------------------------------------------------------- -->
+
+<g4w-comparison-graph></g4w-comparison-graph>
+
+<div class="mat-container-fluid money-calc-cont">
+  <div class="mat-container">
+    <div class="flex-parent">
+      <div #money_target>
+        <section>
+          <h3>Want to Know</h3>
+          <h3>How Much your <b>money</b> would become in <b>future</b>?</h3>
+        </section>
+        <button mat-raised-button color="primary" (click)="showMoneyCalculate=false;showMoneyTarget=true"> Yes, Show
+          me</button>
+      </div>
+      <div>
+        <section>
+          <h3>Want to Know</h3>
+          <h3>How much to <b>invest</b> today to create desired <b>Wealth</b>?</h3>
+        </section>
+        <button mat-raised-button color="primary" (click)="showMoneyTarget=false;showMoneyCalculate=true"> Yes, Show
+          me</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ------------------------------------------Money Target----------------------------------------------------------- -->
+
+<div class="mat-container-fluid money-target-result-cont" *ngIf="showMoneyTarget">
+  <div class="mat-container money-target-result">
+    <div class="flex-parent">
+      <div class="left">
+        <form [formGroup]="moneyTarget" (ngSubmit)="moneyTargetSubmit()">
+          <div>
+            <h3>Amount Invested</h3>
+            <mat-radio-group [formControl]="moneyTarget.controls['invType']" required>
+              <mat-radio-button color="primary" value="1">Monthly</mat-radio-button>
+              <mat-radio-button color="primary" value="0">One Time</mat-radio-button>
+            </mat-radio-group>
+            <mat-form-field>
+              <span matPrefix class="prefix">&#8377;</span>
+              <input type="number" matInput placeholder="Enter the amount"
+                [formControl]="moneyTarget.controls['amount']" autocomplete="transaction-amount">
+            </mat-form-field>
+          </div>
+          <div>
+            <h3>No. of Years</h3>
+            <h5></h5>
+            <mat-form-field>
+              <input type="number" matInput placeholder="Years" [formControl]="moneyTarget.controls['duration']"
+                autocomplete="transaction-duration">
+              <span matSuffix>(yrs)</span>
+            </mat-form-field>
+          </div>
+          <div>
+            <h3>Rate of return</h3>
+            <h5></h5>
+            <mat-form-field>
+              <input type="number" matInput placeholder="Roi" [formControl]="moneyTarget.controls['roi']"
+                autocomplete="roi">
+              <span matSuffix>%</span>
+            </mat-form-field>
+          </div>
+        </form>
+      </div>
+      <div class="right">
+        <div>
+          <button mat-raised-button color="primary" (click)="moneyTargetSubmit()"
+            [disabled]="!moneyTarget.valid">CALCULATE</button>
+        </div>
+        <div>
+          <a mat-raised-button color="primary" routerLink="/mutual-funds/topfunds">INVEST</a>
+        </div>
+      </div>
+    </div>
+    <div class="result-footer" *ngIf="moneyTargetAmountInvested != 0">
+      <h3>Amount invested &#8377; <b>{{ moneyTargetAmountInvested | inrCurrency:0}}</b>, Wealth created &#8377;
+        <b>{{ moneyTargetWealthCreated | inrCurrency:0}}</b></h3>
+    </div>
+  </div>
+</div>
+
+<!-- ----------------------------------------Money Calculate--------------------------------------------------- -->
+
+<div class="mat-container-fluid money-target-result-cont" *ngIf="showMoneyCalculate">
+  <div class="mat-container money-target-result">
+    <div class="flex-parent">
+      <div class="left">
+        <form [formGroup]="moneyCalculate" (ngSubmit)="moneyCalculateSubmit()">
+          <div>
+            <h3>Wealth Required</h3>
+            <mat-form-field>
+              <span matPrefix class="prefix">&#8377;</span>
+              <input type="number" matInput placeholder="Enter the amount"
+                [formControl]="moneyCalculate.controls['amount']" autocomplete="transaction-amount">
+            </mat-form-field>
+          </div>
+          <div>
+            <h3>Required After</h3>
+            <mat-form-field>
+              <input type="number" matInput placeholder="Years" [formControl]="moneyCalculate.controls['duration']"
+                autocomplete="duration">
+              <span matSuffix>(yrs)</span>
+            </mat-form-field>
+          </div>
+          <div>
+            <h3>Rate of return</h3>
+            <mat-form-field>
+              <input type="number" matInput placeholder="Roi" [formControl]="moneyCalculate.controls['roi']"
+                autocomplete="roi">
+              <span matSuffix>%</span>
+            </mat-form-field>
+          </div>
+        </form>
+      </div>
+      <div class="right">
+        <div>
+          <button mat-raised-button color="primary" (click)="moneyCalculateSubmit()"
+            [disabled]="!moneyCalculate.valid">CALCULATE</button>
+        </div>
+        <div>
+          <a mat-raised-button color="primary" routerLink="/mutual-funds/topfunds">INVEST</a>
+        </div>
+      </div>
+    </div>
+    <div class="result-footer" *ngIf="moneyCalculateSip != 0">
+      <h3>Monthly SIP &#8377; <b>{{ moneyCalculateSip | inrCurrency:0}}</b>, Onetime investment &#8377; <b>{{
+          moneyCalculateLumpsum | inrCurrency:0}}</b></h3>
+    </div>
+  </div>
+</div>
+
+<!-- ----------------------------------------Fund Partners --------------------------------- -->
+
+<div class="mat-container-fluid fund-partners">
+  <div class="mat-container">
+    <h2>Mutual Fund Companies</h2>
+
+
+    <div class="glide">
+      <div class="glide__track" data-glide-el="track">
+        <ul class="glide__slides">
+          <li><img src="../../../assets/funds/HDFCMutualFund_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/KOTAKMAHINDRAMF.png" alt=""></li>
+          <li><img src="../../../assets/funds/MIRAEASSET.png" alt=""></li>
+          <li><img src="../../../assets/funds/ICICIPrudentialMutualFund_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/AXISMUTUALFUND_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/BirlaSunLifeMutualFund_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/SBIMutualFund_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/RelianceMutualFund_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/DSP_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/UTIMUTUALFUND_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/L&TMUTUALFUND_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/INVESCOMUTUALFUND_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/TATAMutualFund_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/FRANKLINTEMPLETON.png" alt=""></li>
+          <li><img src="../../../assets/funds/IDFCMUTUALFUND_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/CANARAROBECOMUTUALFUND_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/BNPSUNDARAMPARIBAS_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/BHARTIAXAMUTUALFUND_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/LICMUTUALFUND_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/BARODAPIONEERMUTUALFUND_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/ESSELMUTUALFUND_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/HSBCMUTUALFUND_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/IDBIMUTUALFUND_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/MAHINDRA MUTUAL FUND_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/MOTILALOSWAL_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/BNPPARIBAS_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/DHFLPRAMERICAMUTUALFUND_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/EDELWEISSMUTUALFUND_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/IIFLMUTUALFUND_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/INDIABULLSMUTUALFUND_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/JM FINANCIAL MUTUAL FUND_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/PPFAS_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/PRINCIPALMUTUALFUND_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/QUANTUMMUTUALFUND_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/SHRIRAMMUTUALFUND_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/TAURUSMUTUALFUND_MF.png" alt=""></li>
+          <li><img src="../../../assets/funds/UNIONMUTUALFUND_MF.png" alt=""></li>
+        </ul>
+      </div>
+      <div class="glide__arrows" data-glide-el="controls">
+        <mat-icon class="mat-18 left" data-glide-dir="<">arrow_back_ios</mat-icon>
+        <mat-icon class="mat-18 right" data-glide-dir=">">arrow_forward_ios</mat-icon>
+      </div>
+    </div>
+  </div>
+</div>

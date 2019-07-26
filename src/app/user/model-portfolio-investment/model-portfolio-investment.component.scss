@@ -1,0 +1,253 @@
+@import '../../../theme.scss';
+
+.mandate {
+  margin: 40px 0 0px;
+}
+
+.portolio-cont {
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  margin: 30px 0 20px;
+  padding-bottom: 5px;
+
+  .head {
+    background-color: $primary-color;
+    padding: 20px;
+
+    p {
+      color: white;
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+    }
+  }
+
+  .body {
+    padding: 0 20px;
+
+    .investment-type {
+      text-align: right;
+      margin: 20px 0;
+
+      span {
+        float: left;
+        font-weight: 600;
+        font-size: 16px;
+      }
+
+      >div {
+        button {
+          margin: 0 10px;
+        }
+      }
+    }
+
+    table {
+      width: 98%;
+      margin: 0 auto;
+
+      thead {
+        font-weight: 600;
+        font-size: 16px;
+
+        tr {
+          td {
+            padding: 10px;
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          td {
+            padding: 10px;
+
+            input {
+              outline: none;
+              border: none;
+              box-shadow: 0px 0px 2px 0px;
+              padding: 2px 20px 2px 2px;
+              border-bottom: 2px solid white;
+              width: 93%;
+
+              &:focus {
+                border-bottom: 2px solid $primary-color;
+              }
+            }
+
+            .field-error {
+              border: 1px solid red;
+            }
+
+            mat-error {
+              font-weight: 600;
+              font-size: 11px;
+            }
+          }
+        }
+      }
+
+      tr {
+        .clm-1 {
+          width: 130px;
+        }
+
+        .clm-2 {
+          width: 100px;
+
+          select {
+            width: 100%;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            padding: 3px 8px;
+          }
+        }
+
+        .clm-3 {
+          width: 275px;
+          position: relative;
+
+          mat-icon {
+            right: -2px;
+            top: 12px;
+            position: absolute;
+            font-size: 20px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .estimates {
+      position: relative;
+      padding: 5px 50px;
+      text-align: right;
+      margin: 15px 0;
+
+      &:before {
+        position: absolute;
+        content: '';
+        height: 2px;
+        background-color: $primary-color;
+        top: 0;
+        width: 40%;
+        right: 40px;
+      }
+
+      &:after {
+        position: absolute;
+        content: '';
+        height: 2px;
+        background-color: $primary-color-alternate;
+        top: 4px;
+        width: 40%;
+        right: 40px;
+      }
+
+      p {
+        text-align: right;
+        margin: 10px 120px;
+        font-size: 16px;
+
+        span {
+          font-weight: 600;
+          color: #555;
+          margin: 0 15px;
+        }
+      }
+
+      >div {
+        margin: 10px 0;
+
+        .payment-radio {
+          line-height: 35px;
+
+          mat-radio-button {
+            margin: 0 15px;
+          }
+        }
+      }
+    }
+  }
+
+  .declaration {
+    border-left: 5px solid $primary-color;
+    margin: 10px 110px 30px 10px;
+    background-color: aliceblue;
+    padding: 5px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .portolio-cont {
+    margin: 0 0 20px;
+
+    .body {
+      .investment-type {
+        .action-button {
+          padding: 35px 0 0;
+
+          button {
+            margin: 0 22px;
+          }
+        }
+      }
+
+      table {
+        tr {
+          td {
+            &:nth-child(1) {
+              min-width: 200px;
+            }
+          }
+
+          .clm-1 {
+            min-width: 100px;
+          }
+
+          .clm-2 {
+            min-width: 120px;
+          }
+
+          .clm-3 {
+            min-width: 100px;
+
+            mat-icon {
+              right: -15px;
+              top: 15px;
+            }
+          }
+        }
+      }
+
+      .estimates {
+        padding: 5px;
+
+        p {
+          margin: 10px;
+          font-size: 14px;
+        }
+
+        &:before {
+          width: 95%;
+          right: 2%;
+        }
+
+        &:after {
+          width: 95%;
+          right: 2%;
+        }
+
+        >div {
+          .payment-radio {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+    .declaration {
+      margin: 10px 10px 20px;
+    }
+  }
+}

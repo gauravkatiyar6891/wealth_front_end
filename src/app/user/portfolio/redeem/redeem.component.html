@@ -1,0 +1,46 @@
+<div class="parent">
+  <p>Redeem</p>
+
+  <div>
+    <h4> {{data.schemeName}} </h4>
+    <div class="data">
+      <div> Min Redeemable Amount </div>
+      <div><span>&#8377; {{data.minRedeemAmount}}</span> </div>
+    </div>
+    <div class="data">
+      <div> Total Amount </div>
+      <div><span>&#8377; {{data.totalAmount}}</span> </div>
+    </div>
+    <!-- <div class="exit-load">
+      <div>Applicable Exit Load</div>
+      <p>If redeemed bet.0 month to 3 month; exit load is 0.0%;</p>
+    </div> -->
+    <form [formGroup]="redeemFormGroup" (ngSubmit)="redeemFormSubmit()">
+      <mat-form-field class="input-fields">
+        <input type="number" matInput placeholder="Amount" [formControl]="redeemFormGroup.controls['amount']"
+          autocomplete="off">
+        <span matSuffix>
+          <mat-icon class="fields-icon" fontSet="fas" fontIcon="fa-rupee-sign"></mat-icon>
+        </span>
+        <mat-error *ngIf="redeemFormGroup.controls['amount'].hasError('min') && data.minRedeemAmount <= data.totalAmount">Min
+          Redeemable Amount is &#8377; {{data.minRedeemAmount}} </mat-error>
+        <mat-error *ngIf="redeemFormGroup.controls['amount'].hasError('max') && data.minRedeemAmount <= data.totalAmount">You
+          Cannot Redeem More Amount Than Total Value </mat-error>
+      </mat-form-field>
+      <mat-error *ngIf="data.minRedeemAmount > data.totalAmount">You do not have min. Amount to Redeem.</mat-error>
+      <br>
+
+      <mat-checkbox [formControl]="redeemFormGroup.controls['fullAmountCheckBox']" color="primary">Redeem All Units</mat-checkbox>
+      <br>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!redeemFormGroup.valid || data.minRedeemAmount>data.totalAmount">Redeem</button>
+    </form>
+    <p>
+      Please note that the NAV applicable to your order, would depend on the time you enter the order. For orders
+      before cut-off (3 pm) on a business day, the order will be processed at the NAV as at the close of the business
+      day. For orders placed after cut-off time or on a Non-Business day, the NAV of the next business day will be
+      applicable.
+    </p>
+    <p>*Your redemption may have certain exit load, please check from scheme details</p>
+  </div>
+
+</div>

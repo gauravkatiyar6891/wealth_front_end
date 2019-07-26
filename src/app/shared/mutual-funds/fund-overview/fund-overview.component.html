@@ -1,0 +1,166 @@
+<div class="mat-container-fluid heading-cont" *ngIf="modelPortfolios.length!=0">
+  <div class="mat-container">
+    <h3>GOAL BASED PORTFOLIO</h3>
+  </div>
+</div>
+<div class="mat-container-fluid model-portfolio" *ngIf="modelPortfolios.length!=0">
+  <div class="mat-container">
+
+    <div class="mutual-funds-list" *ngIf="!isScreenWidthMobile">
+      <a routerLink="../portfolio/{{portfolio.keyword}}" *ngFor="let portfolio of modelPortfolios">
+        <mat-card>
+          <mat-card-content>
+            <div class="scheme-name">
+              <p> {{portfolio.name}} </p>
+              <!-- <p> {{portfolio.description}} </p> -->
+            </div>
+            <div class="points">
+              <p> Investment Goals </p>
+              <p>{{portfolio.goals}}</p>
+            </div>
+            <div class="points">
+              <p> Features </p>
+              <p>{{portfolio.features}}</p>
+            </div>
+            <div class="min-amount">
+              <span> Min SIP Investment </span>
+              <span>&#8377; {{portfolio.minSipAmount | number : '1.0-0'}} </span>
+            </div>
+            <div class="min-amount">
+              <span> Min OneTime Investment </span>
+              <span>&#8377; {{portfolio.minLumpSumAmount | number : '1.0-0'}} </span>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </a>
+    </div>
+
+
+    <div class="mutual-fund-list-mob-mod" *ngIf="isScreenWidthMobile">
+      <div class="glide">
+        <div class="glide__track" data-glide-el="track">
+          <ul class="glide__slides">
+            <li class="glide__slide" routerLink="../portfolio/{{portfolio.keyword}}"
+              *ngFor="let portfolio of modelPortfolios">
+              <div class="fund-card">
+                <div class="scheme-name">
+                  <p> {{portfolio.name}} </p>
+                  <!-- <p> {{portfolio.description}} </p> -->
+                </div>
+                <div class="points">
+                  <p> Investment Goals </p>
+                  <p>{{portfolio.goals}}</p>
+                </div>
+                <div class="points">
+                  <p> Features </p>
+                  <p>{{portfolio.features}}</p>
+                </div>
+                <div class="min-amount">
+                  <span> Min SIP Investment </span>
+                  <span>&#8377; {{portfolio.minSipAmount | number : '1.0-0'}} </span>
+                </div>
+                <div class="min-amount">
+                  <span> Min OneTime Investment </span>
+                  <span>&#8377; {{portfolio.minLumpSumAmount | number : '1.0-0'}} </span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="glide__arrows" data-glide-el="controls">
+          <mat-icon class="mat-18 left" data-glide-dir="<">arrow_back_ios</mat-icon>
+          <mat-icon class="mat-18 right" data-glide-dir=">">arrow_forward_ios</mat-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="mat-container-fluid heading-cont" *ngIf="recommendedSchemesList.length!=0">
+  <div class="mat-container">
+    <h3>RECOMMENDED FUNDS
+      <a routerLink="/mutual-funds/all">See All
+        <mat-icon class="mat-18">keyboard_arrow_right</mat-icon>
+      </a>
+    </h3>
+  </div>
+</div>
+
+<div class="mat-container-fluid mutual-fund-cont" *ngIf="recommendedSchemesList.length!=0">
+  <div class="mat-container">
+
+    <div class="mutual-funds-list" *ngIf="!isScreenWidthMobile">
+      <a routerLink="../scheme/{{scheme.schemeKeyword}}" *ngFor="let scheme of recommendedSchemesList">
+        <mat-card>
+          <img matCardImage src="../../../../assets/funds/{{scheme.amcCode}}.png">
+          <mat-card-content>
+            <div class="scheme-name">
+              {{scheme.schemeName}}
+            </div>
+            <div class="scheme-info-cont">
+              <span>Launch Date</span>
+              <span>Type</span>
+            </div>
+            <div class="scheme-info-details">
+              <span>{{scheme.schemeLaunchDate}} </span>
+              <span>{{scheme.schemeType}}</span>
+            </div>
+            <div class="min-amount">
+              <span> Min SIP Amount </span>
+              <span>&#8377; {{scheme.minSipAmount}} </span>
+            </div>
+            <div class="min-amount">
+              <span> Min Lumpsum Amount </span>
+              <span>&#8377; {{scheme.minimumPurchaseAmount}} </span>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </a>
+    </div>
+
+    <div class="mutual-fund-list-mob-sch" *ngIf="isScreenWidthMobile">
+      <div class="glide">
+        <div class="glide__track" data-glide-el="track">
+          <ul class="glide__slides">
+            <li class="glide__slide" routerLink="../scheme/{{scheme.schemeKeyword}}"
+              *ngFor="let scheme of recommendedSchemesList">
+              <div class="fund-card">
+
+                <img src="../../../../assets/funds/{{scheme.amcCode}}.png">
+                <div class="scheme-name">
+                  {{scheme.schemeName}}
+                </div>
+                <div class="scheme-info-cont">
+                  <span>Launch Date</span>
+                  <span>Type</span>
+                </div>
+                <div class="scheme-info-details">
+                  <span>{{scheme.schemeLaunchDate}} </span>
+                  <span>{{scheme.schemeType}}</span>
+                </div>
+                <div class="min-amount">
+                  <span> Min SIP Amount </span>
+                  <span>&#8377; {{scheme.minSipAmount}} </span>
+                </div>
+                <div class="min-amount">
+                  <span> Min Lumpsum Amount </span>
+                  <span>&#8377; {{scheme.minimumPurchaseAmount}} </span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="glide__arrows" data-glide-el="controls">
+          <mat-icon class="mat-18 left" data-glide-dir="<">arrow_back_ios</mat-icon>
+          <mat-icon class="mat-18 right" data-glide-dir=">">arrow_forward_ios</mat-icon>
+        </div>
+      </div>
+    </div>
+
+    <div class="see-all" *ngIf="isScreenWidthMobile">
+      <p routerLink="/mutual-funds/all">See All</p>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,71 @@
+@import '../../../../theme.scss';
+
+.cont {
+	margin: -24px;
+	.heading {
+		background-color: $primary-color;
+		color: $secondary-color-light;
+		font-weight: 600;
+		font-size: 18px;
+		padding: 12px;
+		width: 500px;
+		mat-icon {
+			float: right;
+			cursor: pointer;
+			&:hover {
+				color: $secondary-color;
+			}
+		}
+	}
+	.instruction {
+		padding-bottom: 20px;
+		input {
+			visibility: hidden;
+		}
+		ol {
+			font-size: 16px;
+			font-weight: 600;
+			> li {
+				margin: 5px 0;
+				font-weight: normal;
+			}
+		}
+		.mandate-radio {
+			margin: 20px 25px;
+			mat-radio-button {
+				margin: 0 5px;
+				label {
+					margin-right: 10px;
+				}
+			}
+		}
+		> div {
+			text-align: right;
+			margin: 0 15px;
+			button {
+				margin: 0 10px;
+			}
+		}
+		mat-error {
+			margin-left: 30px;
+		}
+	}
+}
+
+@media only screen and (max-width: 576px) {
+	.cont {
+		.heading {
+			font-size: 12px;
+			width: inherit;
+			mat-icon {
+				font-size: 20px;
+			}
+		}
+	}
+	.instruction {
+		ol {
+			font-size: 12px;
+			padding-left: 30px;
+		}
+	}
+}

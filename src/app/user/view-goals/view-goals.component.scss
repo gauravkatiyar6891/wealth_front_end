@@ -1,0 +1,354 @@
+@import '../../../theme.scss';
+
+$short-term-color: orange;
+$mid-term-color: blue;
+$long-term-color: green;
+
+.short-term {
+  background-color: $short-term-color;
+}
+
+.mid-term {
+  background-color: $mid-term-color;
+}
+
+.long-term {
+  background-color: $long-term-color;
+}
+
+#chart {
+  margin: 30px 0;
+}
+
+.chart-controls {
+  text-align: center;
+
+  mat-form-field {
+    margin: 0 20px;
+  }
+}
+
+.table-cont {
+  position: relative;
+  padding-bottom: 40px;
+
+  >a {
+    position: absolute;
+    bottom: 0;
+    right: 5px;
+    margin-bottom: 5px;
+  }
+
+  .existing-asset {
+    margin: 60px 0 10px;
+    font-size: 12px;
+    font-family: Montserrat, sans-serif;
+    width: 100%;
+
+    thead,
+    .estimate-heading {
+      background-color: $primary-color;
+      color: white;
+
+      td {
+        padding: 5px;
+      }
+    }
+
+    >thead {
+      tr {
+        td {
+          padding: 5px;
+        }
+      }
+    }
+
+    td {
+      table {
+        width: 100%;
+
+        tr {
+          border: 1px solid $secondary-color;
+
+          td {
+            padding: 5px;
+            border-right: 1px solid $secondary-color;
+          }
+        }
+      }
+    }
+
+    .fix-width {
+      td {
+        &:nth-child(1) {
+          width: 20%;
+        }
+
+        &:nth-child(2) {
+          width: 30%;
+        }
+
+        &:nth-child(3) {
+          width: 10%;
+        }
+
+        &:nth-child(4) {
+          width: 20%;
+        }
+
+        &:nth-child(5) {
+          width: 20%;
+        }
+      }
+    }
+
+    .col-seperator {
+      border-right: 1px solid $secondary-color;
+    }
+
+    .status {
+      position: relative;
+
+      .delete-icon {
+        cursor: pointer;
+        position: absolute;
+        right: 5px;
+        font-size: 14px;
+      }
+
+      .goal-progress-spinner {
+        position: absolute;
+        right: 15px;
+        animation: rotate-spinner 2000ms linear infinite;
+      }
+
+      .success {
+        position: absolute;
+        right: 3px;
+        color: green;
+      }
+
+      .failure {
+        position: absolute;
+        right: 3px;
+        color: red;
+      }
+    }
+
+    .add-existing-investment {
+      td {
+        padding: 10px 5px 5px;
+      }
+
+      mat-icon {
+        font-size: 15px;
+        margin-left: 5px;
+        color: $primary-color;
+        cursor: pointer;
+      }
+
+      p {
+        display: inline-block;
+        margin: 0;
+        cursor: pointer;
+      }
+    }
+
+    .goal-estimate {
+      font-weight: 600;
+
+      td {
+        border: none;
+        position: relative;
+
+        .goal-progress-spinner {
+          position: absolute;
+          right: 15px;
+          animation: rotate-spinner 2000ms linear infinite;
+        }
+      }
+    }
+  }
+}
+
+.goal-table {
+  margin: 30px 0 10px;
+  font-size: 12px;
+  font-family: Montserrat, sans-serif;
+  width: 100%;
+
+  thead {
+    background-color: $primary-color;
+    color: white;
+
+    tr {
+      .col-center {
+        text-align: center;
+      }
+
+      .fix-width {
+        width: 180px;
+      }
+    }
+  }
+
+  tbody {
+    >tr {
+      border: 1px solid $secondary-color;
+    }
+  }
+
+  td {
+    padding: 5px;
+
+    input {
+      outline: none;
+      border: none;
+      box-shadow: 0px 0px 2px 0px;
+      padding: 2px 20px 2px 2px;
+    }
+  }
+
+  .add-goal {
+    mat-icon {
+      font-size: 15px;
+      margin-left: 5px;
+      color: $primary-color;
+      cursor: pointer;
+    }
+
+    p {
+      display: inline-block;
+      margin: 0;
+      cursor: pointer;
+    }
+  }
+
+  .status {
+    position: relative;
+
+    .delete-icon {
+      cursor: pointer;
+      position: absolute;
+      right: 25px;
+      font-size: 14px;
+    }
+
+    .goal-progress-spinner {
+      position: absolute;
+      right: 15px;
+      animation: rotate-spinner 2000ms linear infinite;
+    }
+
+    .success {
+      position: absolute;
+      right: 3px;
+      color: green;
+    }
+
+    .failure {
+      position: absolute;
+      right: 3px;
+      color: red;
+    }
+  }
+
+  .col-seperator {
+    border-right: 1px solid $secondary-color;
+  }
+
+  .seperator {
+    td {
+      border-top: 2px solid $primary-color;
+      border-bottom: 2px solid $primary-color;
+      padding: 1px;
+    }
+  }
+
+  .goal-term {
+    position: relative;
+    padding: 5px 25px 5px 2px;
+
+    p {
+      content: '';
+      display: block;
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      top: 10px;
+      float: right;
+      right: 10px;
+      border-radius: 2px;
+    }
+
+    input {
+      width: 100%;
+    }
+  }
+
+  .time-to-goal {
+    width: 90px;
+  }
+
+  .goal-estimate {
+    font-weight: 600;
+  }
+}
+
+@media only screen and(max-width:576px) {
+  .goal-table {
+    thead {
+      tr {
+        &:first-child {
+          td {
+            &:first-child {
+              min-width: 200px;
+            }
+
+            &:nth-child(2) {
+              min-width: 90px;
+            }
+          }
+        }
+
+        &:last-child {
+          td {
+            min-width: 90px;
+
+            &:last-child {
+              min-width: 130px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .table-cont {
+    .existing-asset {
+      tr {
+        td {
+          &:nth-child(1) {
+            min-width: 250px;
+          }
+
+          &:nth-child(2) {
+            min-width: 220px;
+          }
+
+          &:nth-child(3) {
+            min-width: 90px;
+          }
+
+          &:nth-child(4) {
+            min-width: 100px;
+          }
+
+          &:nth-child(5) {
+            min-width: 150px;
+          }
+        }
+      }
+    }
+  }
+}

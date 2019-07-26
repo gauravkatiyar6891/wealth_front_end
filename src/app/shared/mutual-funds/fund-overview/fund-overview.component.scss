@@ -1,0 +1,316 @@
+@import '../../../../theme.scss';
+
+.new-section-head {
+  p {
+    width: 250px;
+  }
+}
+
+.heading-cont {
+  margin: 20px 0 0;
+  background: linear-gradient(to right, $primary-color-alternate, $primary-color);
+  padding: 10px 0;
+
+  h3 {
+    color: $primary-color;
+    text-align: center;
+    color: white;
+    margin: 1px 0 10px;
+
+    a {
+      margin-right: 10px;
+      float: right;
+      color: white;
+      font-size: 22px;
+
+      mat-icon {
+        position: relative;
+        top: 5px;
+        font-size: 28px;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.mutual-fund-list-mob-mod {
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+
+  .glide__arrows {
+    mat-icon {
+      position: absolute;
+      top: 40%;
+    }
+
+    .left {
+      left: -15px;
+    }
+
+    .right {
+      right: -15px;
+    }
+  }
+
+  li {
+    padding: 5px 30px;
+  }
+
+  .fund-card {
+    display: inline-block;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+    width: 100%;
+
+    .scheme-name {
+      color: white;
+      text-align: center;
+      line-height: 16px;
+      padding: 20px 10px;
+      height: 80px;
+      font-size: 15px;
+      background: linear-gradient(-45deg, $primary-color-alternate, $primary-color);
+
+      p {
+        text-align: left;
+
+        &:first-child {
+          font-weight: 600;
+          font-size: 16px;
+        }
+
+        &:last-child {
+          font-size: 20px;
+          line-height: 25px;
+          margin: 0;
+          text-align: center;
+        }
+      }
+    }
+
+    .points {
+      height: 85px;
+      padding: 0 5px;
+
+      >p {
+        &:first-child {
+          font-size: 14px;
+          font-weight: 600;
+          margin: 0 0 5px;
+        }
+
+        &:last-child {
+          font-size: 13px;
+        }
+      }
+    }
+
+    .min-amount {
+      padding: 0 5px;
+
+      >span {
+        &:first-child {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+.model-portfolio {
+  >div {
+    padding: 20px 0;
+  }
+
+  .mutual-funds-list {
+    >a {
+      .scheme-name {
+        background: linear-gradient(-45deg, $primary-color-alternate, $primary-color) !important;
+      }
+
+      >mat-card {
+        position: relative;
+
+        img {
+          width: calc(100% + 48px);
+          opacity: 1;
+          height: inherit;
+          margin: -24px;
+        }
+
+        .scheme-name {
+          margin: -16px -16px 10px;
+          font-size: 15px;
+          padding: 20px 10px;
+          height: 80px;
+          color: white;
+
+          p {
+            text-align: left;
+
+            &:first-child {
+              font-weight: 600;
+              font-size: 16px;
+            }
+
+            &:last-child {
+              font-size: 20px;
+              line-height: 25px;
+              margin: 0;
+              text-align: center;
+            }
+          }
+        }
+
+        .desc {
+          height: 60px;
+
+          p {
+            font-size: 14px;
+            font-weight: 600;
+          }
+        }
+
+        .points {
+          height: 85px;
+          margin: 0 -8px;
+
+          >p {
+            &:first-child {
+              font-size: 14px;
+              font-weight: 600;
+              margin: 0 0 5px;
+            }
+
+            &:last-child {
+              font-size: 13px;
+            }
+          }
+        }
+
+        .min-amount {
+          margin: 0 -8px 10px;
+
+          >span {
+            &:first-child {
+              font-weight: 600;
+            }
+          }
+        }
+
+        >mat-card-content {
+          position: relative;
+        }
+
+        &:before {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          background-color: rgba(255, 255, 255, 0.4);
+        }
+      }
+    }
+  }
+}
+
+.mutual-funds-list {
+  >a {
+    >mat-card {
+      background-color: $secondary-color-light;
+      animation: none;
+
+      img {
+        margin: 0px 20% 20px;
+      }
+    }
+  }
+}
+
+.mutual-fund-cont {
+  >div {
+    padding: 20px 0;
+  }
+}
+
+.see-all {
+  margin: 20px 0 0;
+
+  p {
+    width: fit-content;
+    margin: 0 auto;
+    background-color: $secondary-color;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 5px 20px;
+    font-weight: 600;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .new-section-head {
+    p {
+      width: 150px;
+    }
+  }
+
+  .heading-cont {
+    h3 {
+      font-size: 18px;
+
+      a {
+        display: none;
+      }
+    }
+  }
+
+  .model-portfolio {
+    h1 {
+      font-size: 22px;
+    }
+
+    .mutual-funds-list {
+      >a {
+        flex-basis: 80%;
+
+        >mat-card {
+          .scheme-name {
+            margin: -24px -16px 10px;
+          }
+
+          .points {
+            margin: 0 -10px;
+          }
+
+          .min-amount {
+            margin: 0 -10px 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .mutual-fund-cont {
+    >div {
+      >h1 {
+        font-size: 16px;
+
+        a {
+          font-size: 16px;
+          position: relative;
+          top: -5px;
+
+          mat-icon {
+            top: 5px;
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+}

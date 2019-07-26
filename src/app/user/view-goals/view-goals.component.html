@@ -1,0 +1,115 @@
+<div class="mat-container-fluid">
+  <div class="mat-container">
+    <div id="chart"></div>
+  </div>
+</div>
+
+
+<div class="mat-container-fluid" *ngIf="goalData">
+  <div class="mat-container">
+
+    <div class="chart-controls">
+      <mat-form-field>
+        <mat-select placeholder="Display By" [formControl]="chartControls.controls['displayBy']">
+          <mat-option value="name">Goal Name</mat-option>
+          <mat-option value="term">Goal Term</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Investment By" [formControl]="chartControls.controls['investmentBy']">
+          <mat-option value="currentCost">Current Cost</mat-option>
+          <mat-option value="futureCost">Future Cost</mat-option>
+          <mat-option value="monthlySip">Required SIP</mat-option>
+          <mat-option value="lumpsum">Required Lumpsum</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="table-cont">
+      <table class="goal-table">
+        <thead>
+          <tr>
+            <td class="col-seperator" rowspan="2">Name of Goal</td>
+            <td class="col-seperator time-to-goal" rowspan="2">Time To Goal</td>
+            <td class="col-center col-seperator" colspan="2">Cost of Goals (&#8377;)</td>
+            <td class="col-center col-seperator" colspan="2">Investment Required (&#8377;)</td>
+          </tr>
+          <tr>
+            <td class="fix-width">Current Cost*</td>
+            <td class="col-seperator fix-width">Future Value**</td>
+            <td>Monthly SIP**</td>
+            <td>OneTime Lumpsum**</td>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let goal of goalData.goals; let i = index">
+            <td class="goal-term col-seperator"> {{goal.name}} <p [ngClass]="goal.term"></p>
+            </td>
+            <td class="time-to-goal">{{goal.duration }} </td>
+            <td> {{goal.currentCost | inrCurrency:2}} </td>
+            <td class="col-seperator"> {{goal.futureCost | inrCurrency:2}}</td>
+            <td> {{goal.monthlySip | inrCurrency:1}}</td>
+            <td class="status"> {{goal.lumpsum | inrCurrency:2}} </td>
+          </tr>
+
+          <tr class="seperator">
+            <td colspan="6"></td>
+          </tr>
+
+          <tr class="goal-estimate">
+            <td colspan="3"></td>
+            <td> Goal Estimate</td>
+            <td> {{goalData.monthlyGoalEstimate | inrCurrency:1}}</td>
+            <td> {{goalData.lumpsumGoalEstimate | inrCurrency:2}} </td>
+          </tr>
+        </tbody>
+
+      </table>
+      <a mat-raised-button routerLink="/goal-planning" (click)="clearLocalGoals()" color="primary">Edit Goals</a>
+
+      <table class="existing-asset">
+        <thead>
+          <tr class="fix-width">
+            <td>Investment / Asset Name</td>
+            <td>Associated Goal Name</td>
+            <td>Time To Goal</td>
+            <td>Current Value (&#8377;)</td>
+            <td>Future Value (&#8377;)**</td>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let goals of goalData.goals;let j = index">
+            <td colspan="5">
+              <table>
+                <tr *ngFor="let exInv of goals.existingInvestment; let i = index" class="fix-width">
+                  <td>{{exInv.name}}</td>
+                  <td>{{goals.name}}</td>
+                  <td>{{goals.duration}}</td>
+                  <td>{{exInv.currentValue}}</td>
+                  <td class="status">{{exInv.futureValue | inrCurrency:2}} </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr class="estimate-heading">
+            <td colspan="3"></td>
+            <td>Net Monthly SIP</td>
+            <td>Net Lumpsum</td>
+          </tr>
+          <tr class="goal-estimate">
+            <td></td>
+            <td colspan="2"> Net Estimate</td>
+            <td> {{goalData.netMonthlySipEstimate | inrCurrency:1}}</td>
+            <td> {{goalData.netLumpSumEstimate | inrCurrency:2}} </td>
+          </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+</div>

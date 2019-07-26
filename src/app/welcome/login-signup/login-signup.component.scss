@@ -1,0 +1,248 @@
+@import '../../../theme.scss';
+
+mat-progress-spinner {
+  margin: auto;
+  display: inline-block;
+}
+
+.parent {
+  margin: -24px;
+}
+
+.flex-parent {
+  display: flex;
+  background-image: radial-gradient(circle,
+    rgba(242, 242, 242, 1),
+    rgba(255, 255, 255, 1));
+
+  >div {
+    flex-basis: 50%;
+  }
+
+  .left {
+    img {
+      min-width: 290px;
+      width: 100%;
+    }
+  }
+
+  .right {
+    padding: 0px 25px;
+    position: relative;
+
+    form {
+      text-align: center;
+      width: 325px;
+
+      .input-fields {
+        width: 75%;
+      }
+
+      .fields-icon {
+        font-size: 15px;
+      }
+
+      .error-message {
+        margin-bottom: 5px;
+      }
+    }
+
+    .login-form {
+      padding: 50px 0px;
+
+      .go-back-button {
+        margin-right: 50px;
+      }
+
+      p {
+        cursor: pointer;
+        transition: 500ms;
+        width: fit-content;
+        margin: 10px auto;
+        color: darkslategrey;
+
+        &:hover {
+          transform: scale(1.01);
+        }
+      }
+    }
+
+    .close-button {
+      position: absolute;
+      right: -20px;
+      top: 5px;
+      cursor: pointer;
+
+      mat-icon {
+        font-size: 20px;
+        transition: 250ms;
+        color: $primary-color;
+      }
+
+      &:hover {
+        mat-icon {
+          color: darkslategrey;
+          transform: scale(1.2);
+        }
+      }
+    }
+
+    .otp-form {
+      padding: 70px 0px;
+
+      button {
+        margin: 5px 0px;
+      }
+
+      .info-message {
+        color: ūūō$primary-color;
+        margin-top: 5px;
+      }
+
+      .resend-button {
+        margin-right: 50px;
+      }
+    }
+
+    .new-password-form {
+      padding: 70px 0px;
+
+      button {
+        margin: 15px 0px;
+      }
+    }
+
+    .register-form {
+      padding: 15px 0 0;
+
+      .error-message {
+        margin-bottom: 5px;
+      }
+
+      button {
+        margin-bottom: 20px;
+      }
+
+      mat-checkbox {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .parent {
+    padding: 0;
+    max-height: 95vh;
+  }
+
+  .flex-parent {
+    .left {
+      display: none;
+    }
+
+    .right {
+      padding: 0;
+      flex-basis: 100%;
+
+      form {
+        width: 400px;
+
+        .input-fields {
+          width: 80%;
+        }
+      }
+
+      .login-form {
+        padding: 20px 0;
+
+        .input-fields {
+          width: 80%;
+        }
+      }
+
+      .close-button {
+        right: 0;
+        z-index: 50;
+      }
+
+      .login-form {
+        .go-back-button {
+          margin-right: 10px;
+        }
+      }
+
+      .otp-form {
+        .resend-button {
+          margin-right: 10px;
+        }
+      }
+
+      .register-form {
+        button {
+          margin: 0;
+        }
+
+        mat-checkbox {
+          font-size: 11px;
+        }
+      }
+    }
+  }
+}
+
+
+@media only screen and (max-width: 576px) {
+  .parent {
+    padding: 0;
+    max-height: 95vh;
+  }
+
+  .flex-parent {
+    .left {
+      display: none;
+    }
+
+    .right {
+      padding: 0;
+      flex-basis: 100%;
+
+      form {
+        width: 300px;
+      }
+
+      .login-form {
+        padding: 20px 0;
+
+        .input-fields {
+          width: 80%;
+        }
+      }
+
+      .close-button {
+        right: 0;
+        z-index: 50;
+      }
+
+      .login-form {
+        .go-back-button {
+          margin-right: 10px;
+        }
+      }
+
+      .otp-form {
+        .resend-button {
+          margin-right: 10px;
+        }
+      }
+
+      .register-form {
+        padding: 15px 10px;
+
+        button {
+          margin: 0;
+        }
+      }
+    }
+  }
+}

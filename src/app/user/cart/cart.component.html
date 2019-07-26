@@ -1,0 +1,79 @@
+<div class="new-section-head">
+  <p>Cart</p>
+</div>
+
+<div class="mat-container-fluid">
+  <div class="mat-container">
+
+    <div class="table-cont" *ngIf="ordersList!=null">
+      <h3 *ngIf="ordersList.length==0">Cart is Empty</h3>
+      <table *ngIf="ordersList.length!=0" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+        <ng-container matColumnDef="bseOrderId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Order Id </th>
+          <td mat-cell *matCellDef="let order"> {{order.bseOrderId}} </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="schemeName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Scheme Name </th>
+          <td mat-cell *matCellDef="let order"> {{order.schemeName}} </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount (&#8377;)</th>
+          <td mat-cell *matCellDef="let order"> {{order.amount}} </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+          <td mat-cell *matCellDef="let order"> {{order.investmentType}} </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Order Status </th>
+          <td mat-cell *matCellDef="let order">
+            {{getOrderStatusString(order.status)}}
+            <mat-icon *ngIf="order.status=='M'" class="success" fontSet="fas" fontIcon="fa-check-circle"></mat-icon>
+            <mat-icon *ngIf="order.status=='P'" class="failure" fontSet="fas" fontIcon="fa-exclamation-circle">
+            </mat-icon>
+            <mat-progress-spinner *ngIf="order.status=='W'" mode="indeterminate" color="primary" [diameter]="20">
+            </mat-progress-spinner>
+          </td>
+          <td mat-footer-cell *matFooterCellDef>
+            <a mat-stroked-button color="primary" routerLink="/mutual-funds/all"> Add New Order</a>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action</th>
+          <td mat-cell *matCellDef="let order; let i = index">
+            <button mat-stroked-button color="primary" *ngIf="order.status == 'P' || order.status == 'W'"
+              (click)="placeOrderIndividually(order)" [disabled]="order.status=='W'">Place Order</button>
+            <button mat-stroked-button color="primary" *ngIf="order.status == 'M'"
+              (click)="payIndividualOrder(order)">Pay Now</button>
+            <mat-icon class="delete-icon" fontSet="fas" fontIcon="fa-trash"
+              (click)="displayConfirmCancelDialog(i,order.status == 'M')"> </mat-icon>
+            <!-- <mat-icon class="delete-icon" *ngIf="order.status == 'P' || order.status == 'W'" fontSet="fas"
+              fontIcon="fa-trash" (click)="displayConfirmCancelDialog(i)"> </mat-icon> -->
+          </td>
+          <td mat-footer-cell *matFooterCellDef>
+            <button mat-raised-button color="primary" *ngIf="!getPayAllButtonStatus()" (click)="placeAllOrders()"> Place
+              All Orders</button>
+            <button mat-raised-button color="primary" *ngIf="getPayAllButtonStatus()" (click)="payAllOrders()"> Pay
+              All</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+      </table>
+    </div>
+
+
+  </div>
+</div>

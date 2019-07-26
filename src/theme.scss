@@ -1,0 +1,75 @@
+@import '~@angular/material/theming';
+@include mat-core();
+$mat-g4w-primary: (50: #e2ecef,
+100: #b6cfd8,
+200: #86afbe,
+300: #568fa3,
+400: #317790,
+500: #0d5f7c,
+600: #0b5774,
+700: #094d69,
+800: #07435f,
+900: #03324c,
+A100: #80caff,
+A200: #4db5ff,
+A400: #1a9fff,
+A700: #0095ff,
+contrast: (50: #000000,
+100: #000000,
+200: #000000,
+300: #000000,
+400: #ffffff,
+500: #ffffff,
+600: #ffffff,
+700: #ffffff,
+800: #ffffff,
+900: #ffffff,
+A100: #000000,
+A200: #000000,
+A400: #000000,
+A700: #ffffff));
+$mat-g4w-secondary: (50: #fff5e1,
+100: #ffe6b3,
+200: #ffd580,
+300: #ffc44d,
+400: #ffb827,
+500: #ffab01,
+600: #ffa401,
+700: #ff9a01,
+800: #ff9101,
+900: #ff8000,
+A100: #ffffff,
+A200: #fff8f2,
+A400: #ffdcbf,
+A700: #ffcea6,
+contrast: (50: #000000,
+100: #000000,
+200: #000000,
+300: #000000,
+400: #000000,
+500: #ffffff,
+600: #000000,
+700: #000000,
+800: #000000,
+900: #000000,
+A100: #000000,
+A200: #000000,
+A400: #000000,
+A700: #000000));
+$primary-color: #0d5f7c;
+// $primary-color: #035f7d; new change
+// $yellow-color: #fcbf0f;
+$yellow-color: #f9c325;
+// $primary-color-alternate: #24ace3;
+$primary-color-alternate: #00b8f1; //new changed
+$secondary-color: #f2f2f2;
+$secondary-color-light: #f8f8f8;
+$Go4Wealth-v2-primary: mat-palette($mat-g4w-primary);
+$Go4Wealth-v2-accent: mat-palette($mat-g4w-secondary);
+// The warn palette is optional (defaults to red).
+$Go4Wealth-v2-warn: mat-palette($mat-red);
+$Go4Wealth-v2-theme: mat-light-theme($Go4Wealth-v2-primary,
+$Go4Wealth-v2-accent,
+$Go4Wealth-v2-warn);
+// Include theme styles for core and each component used in your app.
+@include angular-material-theme($Go4Wealth-v2-theme);

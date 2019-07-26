@@ -1,0 +1,279 @@
+<div mat-dialog-content class="parent">
+
+  <div class="flex-parent">
+
+    <div class="left">
+      <img src="../../../assets/home/login{{randomImageNumber}}.png" alt="">
+    </div>
+
+    <div class="right">
+      <span class="close-button" (click)="closeDialog(false)">
+        <mat-icon fontSet="fas" fontIcon="fa-times"></mat-icon>
+      </span>
+
+      <mat-tab-group mat-stretch-tabs dynamicHeight>
+
+        <mat-tab #tab [disabled]="!tab.isActive && (showProgressSpinner || showOtpForm)" label="LogIn">
+          <!-- -------------------------------Login-------------------------------------- -->
+
+          <form class="login-form" *ngIf="!showOtpForm && !showNewPasswordForm" [formGroup]="loginForm"
+            (ngSubmit)="showForgetPasswordForm ? forgetPasswordMobileNoVerify() : logIn()">
+
+            <mat-form-field class="input-fields">
+              <input type="tel" matInput placeholder="Mobile No" [formControl]="loginForm.controls['mobileNo']"
+                autocomplete="login-mobile">
+              <span matSuffix>
+                <mat-icon class="fields-icon" fontSet="fas" fontIcon="fa-phone"></mat-icon>
+              </span>
+              <mat-hint *ngIf="showForgetPasswordForm">Enter Mobile No. to Reset Password</mat-hint>
+              <mat-error
+                *ngIf="loginForm.controls['mobileNo'].hasError('minlength') || loginForm.controls['mobileNo'].hasError('maxlength')">
+                Mobile No must be of 10 digits
+              </mat-error>
+
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="input-fields" *ngIf="!showForgetPasswordForm">
+              <input type="password" matInput placeholder="Password" [formControl]="loginForm.controls['password']"
+                autocomplete="login-password">
+              <span matSuffix>
+                <mat-icon class="fields-icon" fontSet="fas" fontIcon="fa-lock"></mat-icon>
+              </span>
+              <mat-error *ngIf="loginForm.controls['password'].hasError('minlength')">
+                Minimum Password length is 7 characters
+              </mat-error>
+
+            </mat-form-field>
+            <br>
+
+            <mat-error class="error-message">{{loginErrorMessage}}</mat-error>
+            <p *ngIf="!showForgetPasswordForm" (click)="forgetPassword()">Forgot Password ?</p>
+
+            <button class="go-back-button" *ngIf="showForgetPasswordForm" mat-raised-button
+              [disabled]="showProgressSpinner" (click)="goBackToLogin()">Go
+              Back</button>
+            <button mat-flat-button color="primary" type="submit" [disabled]="!loginForm.valid">{{showForgetPasswordForm
+              ? "Verify" : "Login"}}
+              <mat-progress-spinner *ngIf="showProgressSpinner" mode="indeterminate" color="primary" [diameter]="20">
+              </mat-progress-spinner>
+            </button>
+          </form>
+
+          <!-- ---------------------------OTP Form---------------------------- -->
+
+          <form class="otp-form" *ngIf="showOtpForm" [formGroup]="otpForm" (ngSubmit)="forgetPasswordOtpVerify()">
+
+            <mat-form-field class="input-fields">
+              <input type="text" matInput placeholder="Enter OTP" [formControl]="otpForm.controls['otp']"
+                autocomplete="off">
+              <span matSuffix>
+                <mat-icon class="fields-icon" fontSet="fas" fontIcon="fa-lock"></mat-icon>
+              </span>
+
+              <mat-error
+                *ngIf="(otpForm.controls['otp'].hasError('minlength') || otpForm.controls['otp'].hasError('maxlength'))">
+                OTP must be 4 Digits
+              </mat-error>
+              <mat-error *ngIf="otpForm.controls['otp'].hasError('pattern')">
+                Only Numbers are allowed
+              </mat-error>
+
+            </mat-form-field>
+            <br>
+
+            <mat-error class="error-message">{{otpErrorMessage}}</mat-error>
+            <p class="info-message">{{otpMessage}}</p>
+
+            <button class="resend-button" mat-raised-button type="reset" (click)="forgetPasswordOtpResend()"
+              [disabled]="resendOtpButtonEnableTimer != 0 || showProgressSpinner">Resend
+              {{resendOtpButtonEnableTimer != 0 ? "("+resendOtpButtonEnableTimer+")":''}}</button>
+            <button type="submit" mat-flat-button color="primary" [disabled]="!otpForm.valid">Submit
+              <mat-progress-spinner *ngIf="showProgressSpinner" mode="indeterminate" color="primary" [diameter]="20">
+              </mat-progress-spinner>
+            </button>
+          </form>
+
+
+          <!-- ---------------------------Set New Password Form---------------------------- -->
+
+          <form class="new-password-form" *ngIf="showNewPasswordForm" [formGroup]="newPasswordForm"
+            (ngSubmit)="setNewPassword()">
+
+            <mat-form-field class="input-fields">
+              <input type="password" matInput placeholder="Password"
+                [formControl]="newPasswordForm.controls['password']" autocomplete="reset-password">
+              <span matSuffix>
+                <mat-icon class="fields-icon" fontSet="fas" fontIcon="fa-lock"></mat-icon>
+              </span>
+
+              <mat-error *ngIf="newPasswordForm.controls['password'].hasError('minlength')">
+                Password must be more than 7 characters
+              </mat-error>
+
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="input-fields">
+              <input type="password" matInput placeholder="Confirm Password"
+                [formControl]="newPasswordForm.controls['cnfPassword']" autocomplete="reset-confirm-password">
+              <span matSuffix>
+                <mat-icon class="fields-icon" fontSet="fas" fontIcon="fa-lock"></mat-icon>
+              </span>
+
+              <mat-error *ngIf="newPasswordForm.controls['cnfPassword'].hasError('passwordMatch')">
+                Password does not Match
+              </mat-error>
+              <mat-hint style="text-align:center;" *ngIf="passwordResetSuccess">Password Reset Successfuly. Please wait
+                while we redirect you...</mat-hint>
+
+            </mat-form-field>
+            <br>
+
+            <button type="submit" mat-flat-button color="primary" [disabled]="!newPasswordForm.valid">Submit
+              <mat-progress-spinner *ngIf="showProgressSpinner" mode="indeterminate" color="primary" [diameter]="20">
+              </mat-progress-spinner>
+            </button>
+          </form>
+
+        </mat-tab>
+
+        <!-- -------------------------------Register-------------------------------------- -->
+
+        <mat-tab #tab [disabled]="!tab.isActive && (showProgressSpinner || showOtpForm || showForgetPasswordForm)"
+          label="Register">
+
+          <form class="register-form" *ngIf="!showOtpForm" [formGroup]="registerForm" (ngSubmit)="register()">
+
+            <mat-form-field class="input-fields">
+              <input matInput placeholder="First Name" [formControl]="registerForm.controls['firstName']"
+                spellcheck="false" autocomplete="first-name">
+              <span matSuffix>
+                <mat-icon class="fields-icon" fontSet="fas" fontIcon="fa-user-circle"></mat-icon>
+              </span>
+
+              <mat-error
+                *ngIf="registerForm.controls['firstName'].hasError('pattern') && !registerForm.controls['firstName'].hasError('required')">
+                Only Alphabets are allowed
+              </mat-error>
+
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="input-fields">
+              <input matInput placeholder="Last Name" [formControl]="registerForm.controls['lastName']"
+                spellcheck="false" autocomplete="last-name">
+              <span matSuffix>
+                <mat-icon class="fields-icon" fontSet="fas" fontIcon="fa-user-circle"></mat-icon>
+              </span>
+
+              <mat-error
+                *ngIf="registerForm.controls['lastName'].hasError('pattern') && !registerForm.controls['lastName'].hasError('required')">
+                Only Alphabets are allowed
+              </mat-error>
+
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="input-fields">
+              <input type="email" matInput placeholder="Email" [formControl]="registerForm.controls['email']"
+                autocomplete="email">
+              <span matSuffix>
+                <mat-icon class="fields-icon" fontSet="fas" fontIcon="fa-at"></mat-icon>
+              </span>
+
+              <mat-error *ngIf="registerForm.controls['email'].hasError('email')">
+                Please enter a valid Email Address
+              </mat-error>
+
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="input-fields">
+              <input type="tel" matInput placeholder="Mobile No" [formControl]="registerForm.controls['mobNo']"
+                autocomplete="login-mobile">
+              <span matSuffix>
+                <mat-icon class="fields-icon" fontSet="fas" fontIcon="fa-phone"></mat-icon>
+              </span>
+
+              <mat-error
+                *ngIf="registerForm.controls['mobNo'].hasError('minlength') || registerForm.controls['mobNo'].hasError('maxlength')">
+                Mobile No must be of 10 digits
+              </mat-error>
+              <mat-error *ngIf="registerForm.controls['mobNo'].hasError('alreadyExist')">
+                Mobile No already Registered
+              </mat-error>
+
+
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="input-fields">
+              <input type="password" matInput placeholder="Password" [formControl]="registerForm.controls['password']"
+                autocomplete="off">
+              <span matSuffix>
+                <mat-icon class="fields-icon" fontSet="fas" fontIcon="fa-lock"></mat-icon>
+              </span>
+
+              <mat-error *ngIf="registerForm.controls['password'].hasError('minlength')">
+                Password must be more than 7 characters
+              </mat-error>
+
+            </mat-form-field>
+            <br>
+
+            <mat-checkbox [formControl]="registerForm.controls['tnC']" color="primary">I accept the <a target="_blank"
+                routerLink="/terms-and-conditions">Terms
+                & Conditions</a> for Mutual Funds</mat-checkbox>
+            <br>
+
+            <mat-error class="error-message">{{registerErrorMessage}}</mat-error>
+            <br>
+
+            <button type="submit" mat-flat-button color="primary" [disabled]="!registerForm.valid">Register
+              <mat-progress-spinner *ngIf="showProgressSpinner" mode="indeterminate" color="primary" [diameter]="20">
+              </mat-progress-spinner>
+            </button>
+
+          </form>
+
+          <!-- ---------------------------OTP Form---------------------------- -->
+
+          <form class="otp-form" *ngIf="showOtpForm" [formGroup]="otpForm" (ngSubmit)="registerUserOtpVerify()">
+
+            <mat-form-field class="input-fields">
+              <input type="text" matInput placeholder="Enter OTP" [formControl]="otpForm.controls['otp']"
+                autocomplete="off">
+              <span matSuffix>
+                <mat-icon class="fields-icon" fontSet="fas" fontIcon="fa-lock"></mat-icon>
+              </span>
+
+              <mat-error
+                *ngIf="(otpForm.controls['otp'].hasError('minlength') || otpForm.controls['otp'].hasError('maxlength'))">
+                OTP must be 4 Digits
+              </mat-error>
+
+            </mat-form-field>
+            <br>
+
+            <mat-error class="error-message">{{otpErrorMessage}}</mat-error>
+            <p class="info-message">{{otpMessage}}</p>
+
+            <button class="resend-button" mat-raised-button color="primary" type="reset"
+              (click)="registerUserOtpResend()" [disabled]="resendOtpButtonEnableTimer != 0 || showProgressSpinner">
+              Resend {{resendOtpButtonEnableTimer != 0 ? "("+resendOtpButtonEnableTimer+")":''}}</button>
+            <button type="submit" mat-flat-button [disabled]="!otpForm.valid">Submit
+              <mat-progress-spinner *ngIf="showProgressSpinner" mode="indeterminate" color="primary" [diameter]="20">
+              </mat-progress-spinner>
+            </button>
+
+          </form>
+
+        </mat-tab>
+
+      </mat-tab-group>
+    </div>
+
+  </div>
+
+</div>

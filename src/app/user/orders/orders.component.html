@@ -1,0 +1,247 @@
+<div class="new-section-head">
+  <p>Order History</p>
+</div>
+
+<!-- ---------------------------------------------------SIP--------------------------------------------- -->
+
+<div class="mat-container-fluid">
+  <div class="mat-container list-cont">
+
+    <div class="head">
+      <p>SIP's</p>
+    </div>
+
+
+    <table class="order-table sip-table">
+      <thead>
+        <tr>
+          <td class="clm-0"></td>
+          <!-- <td class="clm-1">Order Id</td> -->
+          <td class="clm-2">Scheme Name</td>
+          <td class="clm-3">Installment Date</td>
+          <td class="clm-4">Amount</td>
+          <td class="clm-5">Payment Status</td>
+          <td class="clm-6">Order Status</td>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- ---------------------------------------Simple SIP---------------------------------------- -->
+        <tr *ngFor="let order of sipOrders; let i = index">
+          <td colspan="6">
+            <table>
+              <tbody>
+                <tr>
+                  <td colspan="6">Created at: {{order.creationDate | date:'dd MMM yyyy - hh:mm a'}}</td>
+                </tr>
+                <tr>
+                  <td class="clm-0"><img src="../../../assets/funds/{{order.amcCode}}.png" alt=""></td>
+                  <!-- <td class="clm-1">{{order.bseOrderId}}</td> -->
+                  <td class="clm-2">{{order.schemeName}}</td>
+                  <td class="clm-3">
+                    <span *ngIf="order.status=='M' || true">{{order.dayOfSip}} of every month</span>
+                    <span *ngIf="order.status=='P'"> </span>
+                  </td>
+                  <td class="clm-4">&#8377; {{order.amount | inrCurrency:0}}</td>
+                  <td class="clm-5">
+                    <span *ngIf="order.status == 'P' || order.status == 'M'">Pending</span>
+                    <span *ngIf="order.status == 'C' || order.status == 'R'">First Installment Done</span>
+                  </td>
+                  <td class="clm-6">
+                    <span *ngIf="order.status == 'M' || order.status == 'C'">Confirm</span>
+                    <span *ngIf="order.status == 'P'">Pending</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3">
+                    <span>Assigned Goal : {{order.goalName == null ? 'None':order.goalName}}</span>
+                  </td>
+                  <td colspan="3">
+                    <button mat-raised-button *ngIf="order.status == 'M'" (click)="showConfirmCancel(order.orderId,i)">Cancel
+                      Order</button>
+                    <button mat-raised-button *ngIf="order.status == 'P'" (click)="deleteOrder(order.orderId,i)">Delete
+                      Order</button>
+                    <button mat-raised-button color="primary" *ngIf="order.status == 'P'" (click)="confirmOrder(order.orderId,i)">Confirm
+                      Order</button>
+                    <button mat-raised-button color="primary" *ngIf="order.status == 'M'" (click)="makePayment(order.orderId,order.amount)">Pay
+                      Now</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+
+        <!-- --------------------------------------------------Model Portfolio SIP---------------------------------------------------- -->
+
+        <tr *ngFor="let mp of modelPortfolioSipOrders; let i = index">
+          <td colspan="6">
+            <table class="model-portfolio-table">
+              <tbody>
+                <tr>
+                  <td colspan="6">Created at: {{mp[0].creationDate | date:'dd MMM yyyy - hh:mm a'}}</td>
+                </tr>
+                <tr class="rows" *ngFor="let order of mp; let j = index">
+                  <td class="clm-0"></td>
+                  <!-- <td class="clm-1">{{order.bseOrderId}}</td> -->
+                  <td class="clm-2">{{order.schemeName}}</td>
+                  <td class="clm-3">
+                    <span *ngIf="order.status=='M' || true">{{order.dayOfSip}} of every month</span>
+                    <!-- <span *ngIf="order.status=='P'"> </span> -->
+                  </td>
+                  <td class="clm-4">&#8377; {{order.amount | inrCurrency:0}}</td>
+                  <td class="clm-5">
+                    <span *ngIf="order.status == 'P' || order.status == 'M'">Pending</span>
+                    <span *ngIf="order.status == 'C' || order.status == 'R'">First Installment Done</span>
+                  </td>
+                  <td class="clm-6 cancel-icon">
+                    <span *ngIf="order.status == 'M' || order.status == 'C'">Confirm</span>
+                    <span *ngIf="order.status == 'P'">Pending</span>
+                    <mat-icon class="mat-18" *ngIf="order.status == 'P'" (click)="deleteOrder(order.orderId,i,true,true,j)">cancel</mat-icon>
+                    <mat-icon class="mat-18" *ngIf="order.status == 'M'" (click)="showConfirmCancel(order.orderId,i,true,true,j)">cancel</mat-icon>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3">
+                    <!-- <span>Assigned Goal : {{order.goalName == null ? 'None':order.goalName}}</span> -->
+                  </td>
+                  <td colspan="3">
+                    <button mat-raised-button *ngIf="mp[0].status == 'M'" (click)="showConfirmCancelAllModelPortfolio(i)">Cancel
+                      All Order</button>
+                    <button mat-raised-button *ngIf="mp[0].status == 'P'" (click)="deleteAllOrderModelPortfolio(i)">Delete
+                      All
+                      Order</button>
+                    <button mat-raised-button color="primary" *ngIf="mp[0].status == 'P'" (click)="confirmOrderModelPortfolio(i)">Confirm
+                      All</button>
+                    <button mat-raised-button color="primary" *ngIf="mp[0].status == 'M'" (click)="makePaymentModelPortfolio(i)">Pay
+                      Now</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+
+        <!-- -------------------------------------------------No SIP---------------------------------------------- -->
+        <tr class="empty-list" *ngIf="sipOrders.length==0 && modelPortfolioSipOrders.length==0">
+          <td colspan="6">You do not have any SIP</td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<!-- ---------------------------------------------------Lumpsum--------------------------------------------- -->
+
+<div class="mat-container-fluid">
+  <div class="mat-container list-cont">
+
+    <div class="head">
+      <p>LUMPSUM</p>
+    </div>
+
+
+    <table class="order-table lumpsum-table">
+      <thead>
+        <tr>
+          <td class="clm-0"></td>
+          <!-- <td class="clm-1">Order Id</td> -->
+          <td class="clm-2">Scheme Name</td>
+          <td class="clm-3">Amount</td>
+          <td class="clm-4">Payment Status</td>
+          <td class="clm-5">Order Status</td>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- ---------------------------------------Simple Lumpsum---------------------------------------- -->
+        <tr *ngFor="let order of lumpSumOrders; let i = index">
+          <td colspan="5">
+            <table>
+              <tbody>
+                <tr>
+                  <td colspan="5">Created at: {{order.creationDate | date:'dd MMM yyyy - hh:mm a'}}</td>
+                </tr>
+                <tr>
+                  <td class="clm-0"><img src="../../../assets/funds/{{order.amcCode}}.png" alt=""></td>
+                  <!-- <td class="clm-1">{{order.lumpsumOrderId}}</td> -->
+                  <td class="clm-2">{{order.schemeName}}</td>
+                  <td class="clm-3">&#8377; {{order.amount | inrCurrency:0}}</td>
+                  <td class="clm-4"> <span *ngIf="order.status == 'P' || order.status == 'M'">Pending</span> </td>
+                  <td class="clm-5">
+                    <span *ngIf="order.status == 'M' || order.status == 'C'">Confirm</span>
+                    <span *ngIf="order.status == 'P'">Pending</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <span>Assigned Goal : {{order.goalName == null ? 'None':order.goalName}}</span>
+                  </td>
+                  <td colspan="3">
+                    <button mat-raised-button *ngIf="order.status == 'M'" (click)="showConfirmCancel(order.orderId,i,false)">Cancel
+                      Order</button>
+                    <button mat-raised-button *ngIf="order.status == 'P'" (click)="deleteOrder(order.orderId,i,false)">Delete
+                      Order</button>
+                    <button mat-raised-button color="primary" *ngIf="order.status == 'P'" (click)="confirmOrder(order.orderId,i,false)">Confirm
+                      Order</button>
+                    <button mat-raised-button color="primary" *ngIf="order.status == 'M'" (click)="makePayment(order.orderId,order.amount)">Pay
+                      Now</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+
+        <!-- --------------------------------------------------Model Portfolio Lumpsum---------------------------------------------------- -->
+
+        <tr *ngFor="let mp of modelPortfolioLumpsumOrders; let i = index">
+          <td colspan="5">
+            <table class="model-portfolio-table">
+              <tbody>
+                <tr>
+                  <td colspan="5">Created at: {{mp[0].creationDate | date:'dd MMM yyyy - hh:mm a'}}</td>
+                </tr>
+                <tr class="rows" *ngFor="let order of mp; let j = index">
+                  <td class="clm-0"></td>
+                  <!-- <td class="clm-1">{{order.lumpsumOrderId}}</td> -->
+                  <td class="clm-2">{{order.schemeName}}</td>
+                  <td class="clm-3">&#8377; {{order.amount | inrCurrency:0}}</td>
+                  <td class="clm-4"> <span *ngIf="order.status == 'P' || order.status == 'M'">Pending</span> </td>
+                  <td class="clm-5 cancel-icon">
+                    <span *ngIf="order.status == 'M'">Confirm</span>
+                    <span *ngIf="order.status == 'P'">Pending</span>
+                    <mat-icon class="mat-18" *ngIf="order.status == 'P'" (click)="deleteOrder(order.orderId,i,false,true,j)">cancel</mat-icon>
+                    <mat-icon class="mat-18" *ngIf="order.status == 'M'" (click)="showConfirmCancel(order.orderId,i,false,true,j)">cancel</mat-icon>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <!-- <span>Assigned Goal : {{order.goalName == null ? 'None':order.goalName}}</span> -->
+                  </td>
+                  <td colspan="3">
+                    <button mat-raised-button *ngIf="mp[0].status == 'M'" (click)="showConfirmCancelAllModelPortfolio(i,false)">Cancel
+                      All Order</button>
+                    <button mat-raised-button *ngIf="mp[0].status == 'P'" (click)="deleteAllOrderModelPortfolio(i,false)">Delete
+                      All Order</button>
+                    <button mat-raised-button color="primary" *ngIf="mp[0].status == 'P'" (click)="confirmOrderModelPortfolio(i,false)">Confirm
+                      All</button>
+                    <button mat-raised-button color="primary" *ngIf="mp[0].status == 'M'" (click)="makePaymentModelPortfolio(i,false)">Pay
+                      Now</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+
+        <!-- -------------------------------------------------No LumpSum---------------------------------------------- -->
+        <tr class="empty-list" *ngIf="lumpSumOrders.length==0 && modelPortfolioLumpsumOrders.length==0">
+          <td colspan="5">You do not have any LumpSum</td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+</div>

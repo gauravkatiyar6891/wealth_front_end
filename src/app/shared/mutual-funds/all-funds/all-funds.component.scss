@@ -1,0 +1,407 @@
+@import '../../../../theme.scss';
+
+.auto-complete {
+	.mat-option-text {
+		a {
+			padding: 15px 0;
+			img {
+				width: 30px;
+			}
+			span {
+				font-size: 14px;
+				padding-left: 15px;
+			}
+		}
+	}
+}
+
+.filters-cont {
+	background-color: $secondary-color-light;
+	margin-bottom: 10px;
+	.filters {
+		padding-top: 10px;
+		form {
+			display: flex;
+			justify-content: space-around;
+			> mat-form-field {
+				&:nth-child(1) {
+					flex-basis: 20%;
+				}
+				&:nth-child(2) {
+					flex-basis: 20%;
+				}
+				&:nth-child(3) {
+					flex-basis: 50%;
+					mat-icon {
+						cursor: pointer;
+					}
+				}
+				img {
+					margin-right: 10px;
+				}
+			}
+		}
+		.filters-applied {
+			min-height: 40px;
+			list-style-type: none;
+			padding: 5px 10px;
+			li {
+				color: $primary-color;
+				display: inline-block;
+				padding: 2px 7px 0px;
+				background-color: $secondary-color;
+				margin: 0px 5px;
+				border-radius: 2px;
+				font-size: 12px;
+				line-height: 25px;
+				font-weight: 600;
+				mat-icon {
+					font-size: 14px;
+					cursor: pointer;
+					position: relative;
+					top: 3px;
+				}
+			}
+		}
+	}
+}
+
+.scheme-list {
+	h3 {
+		color: $primary-color;
+		span {
+			color: $primary-color;
+			float: right;
+			margin-right: 10px;
+			cursor: pointer;
+			position: relative;
+			bottom: 7px;
+			mat-icon {
+				position: relative;
+				top: 7px;
+				font-size: 30px;
+			}
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+	.mutual-funds-list {
+		> a {
+			> mat-card {
+				background-color: $secondary-color-light;
+				img {
+					margin: 0px 20% 20px;
+				}
+			}
+		}
+	}
+	.show-more {
+		margin: 10px 0;
+		p {
+			cursor: pointer;
+			font-weight: 600;
+			font-size: 16px;
+			width: fit-content;
+			margin: 0 auto;
+			padding: 5px 30px 5px 10px;
+			border-radius: 1px;
+			transition: 250ms;
+			border-bottom: 2px solid white;
+			position: relative;
+			&:hover {
+				box-shadow: 0 0 1px 0px rgba(0, 0, 0, 0.2);
+				border-bottom: 2px solid $primary-color;
+			}
+			mat-icon {
+				position: absolute;
+				right: 5px;
+				top: 5px;
+				font-size: 26px;
+			}
+		}
+	}
+}
+
+.model-portfolio {
+	h3 {
+		color: $primary-color;
+	}
+	.mutual-funds-list {
+		> mat-card {
+			flex-basis: 23%;
+			position: relative;
+			&:nth-child(1) {
+				.scheme-name {
+					background: linear-gradient(-45deg, #fce3df, #fbe4ee);
+				}
+			}
+			&:nth-child(2) {
+				.scheme-name {
+					background: linear-gradient(-45deg, #f8e0ed, #e5e3f1);
+				}
+			}
+			&:nth-child(3) {
+				.scheme-name {
+					background: linear-gradient(-45deg, #e0e6f6, #d1edf8);
+				}
+			}
+			&:nth-child(4) {
+				.scheme-name {
+					background: linear-gradient(-45deg, #d0edf5, #ceecf4);
+				}
+			}
+			img {
+				width: calc(100% + 48px);
+				opacity: 1;
+				height: inherit;
+				margin: -24px;
+			}
+			.scheme-name {
+				margin: -16px -16px 10px;
+				font-size: 15px;
+				padding: 20px 10px;
+				height: 110px;
+				color: $primary-color;
+				p {
+					text-align: left;
+					&:first-child {
+						font-weight: 600;
+						font-size: 16px;
+					}
+					&:last-child {
+						font-size: 13px;
+					}
+				}
+			}
+			.desc {
+				height: 60px;
+				p {
+					font-size: 14px;
+					font-weight: 600;
+				}
+			}
+			.points {
+				height: 85px;
+				margin: 0 -8px;
+				> p {
+					&:first-child {
+						font-size: 14px;
+						font-weight: 600;
+						margin: 0 0 5px;
+					}
+					&:last-child {
+						font-size: 13px;
+					}
+				}
+			}
+			.min-amount {
+				margin: 0 -8px 10px;
+				> span {
+					&:first-child {
+						font-weight: 600;
+					}
+				}
+			}
+			> mat-card-content {
+				position: relative;
+			}
+			&:before {
+				content: '';
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				background-color: rgba(255, 255, 255, 0.4);
+			}
+		}
+	}
+}
+
+.animate-card {
+	> mat-card {
+		&:nth-child(1) {
+			opacity: 0;
+			transform: translateX(-200px);
+			animation: slide-in-first 800ms cubic-bezier(0.03, 0.4, 0.38, 0.87)
+				forwards;
+		}
+		&:nth-child(2) {
+			opacity: 0;
+			transform: translateX(-290px);
+			animation: slide-in-second 800ms cubic-bezier(0.03, 0.4, 0.38, 0.87)
+				forwards;
+		}
+		&:nth-child(3) {
+			opacity: 0;
+			transform: translateX(-580px);
+			animation: slide-in-third 800ms cubic-bezier(0.03, 0.4, 0.38, 0.87)
+				forwards;
+		}
+		&:nth-child(4) {
+			opacity: 0;
+			transform: translateX(-780px);
+			animation: slide-in-fourth 800ms cubic-bezier(0.03, 0.4, 0.38, 0.87)
+				forwards;
+		}
+	}
+}
+.funds-loader-cont {
+	mat-progress-spinner {
+		margin: 10px auto 25px;
+	}
+}
+
+.new-section-head {
+	p {
+		width: 250px;
+	}
+}
+
+@keyframes fade-down {
+	from {
+		opacity: 0;
+		transform: translateY(-300px);
+	}
+	50% {
+		opacity: 0.4;
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0px);
+	}
+}
+
+@keyframes slide-in-first {
+	0% {
+		opacity: 0;
+		transform: translateX(-200px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0px);
+	}
+}
+@keyframes slide-in-second {
+	0% {
+		opacity: 0;
+		transform: translateX(-290px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0px);
+	}
+}
+@keyframes slide-in-third {
+	0% {
+		opacity: 0;
+		transform: translateX(-580px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0px);
+	}
+}
+@keyframes slide-in-fourth {
+	0% {
+		opacity: 0;
+		transform: translateX(-780px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0px);
+	}
+}
+@keyframes slide-up {
+	from {
+		opacity: 1;
+		max-height: 500px;
+	}
+	to {
+		opacity: 0;
+		max-height: 0px;
+		display: none;
+	}
+}
+.slide-up {
+	animation: slide-up 400ms 200ms ease-in-out forwards;
+}
+@keyframes search-slide-down {
+	from {
+		max-height: 0px;
+		opacity: 0;
+	}
+	to {
+		max-height: 200px;
+		opacity: 1;
+	}
+}
+.sliding-down {
+	animation: fade-down 800ms cubic-bezier(0.03, 0.4, 0.38, 0.87) forwards;
+}
+
+@media only screen and (max-width: 576px) {
+	.new-section-head {
+		p {
+			padding: 28px 15px 15px;
+			width: 150px;
+		}
+	}
+	.model-portfolio {
+		h3 {
+			font-size: 16px;
+		}
+		.mutual-funds-list {
+			> mat-card {
+				flex-basis: 250px;
+				mat-card-content {
+					> div {
+						p {
+							font-size: 12px !important;
+						}
+						font-size: 12px !important;
+					}
+				}
+				.scheme-name {
+					margin: -24px -16px 10px;
+				}
+				.points {
+					margin: 0 -10px;
+				}
+				.min-amount {
+					margin: 0 -10px 10px;
+				}
+			}
+		}
+	}
+	.filters-cont {
+		.filters {
+			.filters-applied {
+				padding: 5px 0 15px;
+			}
+			form {
+				flex-wrap: wrap;
+				> mat-form-field {
+					flex: 1;
+					margin: 0 5px;
+					&:last-child {
+						flex: 2;
+					}
+				}
+			}
+		}
+	}
+	.scheme-list {
+		h3 {
+			font-size: 16px;
+			span {
+				bottom: 0;
+				top: -2px;
+				mat-icon {
+					font-size: 20px;
+				}
+			}
+		}
+	}
+}

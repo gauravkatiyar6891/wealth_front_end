@@ -1,0 +1,105 @@
+@import './../../../theme.scss';
+
+.new-section-head {
+  p {
+    width: 200px;
+  }
+}
+
+.view-transaction {
+  margin: 100px 0;
+
+  >div {
+    >table {
+      width: 95%;
+      margin: 0 auto;
+      box-shadow: 0 0 3px 0;
+
+      thead {
+        background-color: $primary-color;
+
+        th {
+          font-size: 15px;
+          padding: 10px 20px;
+          color: white;
+        }
+      }
+
+      tbody {
+        tr {
+          border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+      }
+
+      td {
+        padding: 10px 20px;
+        margin: 5px 0;
+        font-size: 14px;
+
+        mat-icon {
+          margin: 0px 5px;
+          position: relative;
+          top: 2px;
+        }
+
+        button {
+          margin: 0 10px;
+        }
+      }
+    }
+  }
+
+  .no-transaction {
+    p {
+      padding: 20px 0;
+      text-align: center;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+
+  .action {
+    text-align: right;
+    padding: 15px 20px;
+  }
+}
+
+@media only screen and (max-width:576px) {
+  .new-section-head {
+    p {
+      width: 100px;
+    }
+  }
+
+  .view-transaction {
+    margin: 20px 0;
+
+    >div {
+      >table {
+
+        th,
+        td {
+          &:nth-child(1) {
+            min-width: 100px;
+          }
+
+          &:nth-child(2) {
+            min-width: 270px;
+          }
+
+          &:nth-child(3) {
+            min-width: 115px;
+          }
+
+          &:nth-child(4) {
+            min-width: 90px;
+          }
+
+          &:nth-child(5) {
+            min-width: 160px;
+          }
+        }
+      }
+    }
+  }
+}

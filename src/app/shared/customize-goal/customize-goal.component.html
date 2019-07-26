@@ -1,0 +1,201 @@
+<div class="new-section-head">
+  <p>Financial Goals Preparation</p>
+</div>
+
+<div class="mat-container-fluid">
+  <div class="mat-container">
+
+    <div *ngIf="goalsStatus==5" class="no-goals">
+      <p>You do not have any goals.</p>
+    </div>
+
+    <div class="unsaved-goals" *ngIf="goalsStatus==3">
+      <p>You have unsaved goals. Do You Want to save?</p>
+      <button mat-raised-button color="primary" (click)="mergeGoals()">Merge</button>
+    </div>
+
+    <div *ngIf="!(goalsStatus==0 || goalsStatus==5)">
+      <table class="goal-table">
+        <thead>
+          <tr>
+            <td class="col-seperator" rowspan="2">Name of Goal</td>
+            <td class="col-seperator time-to-goal" rowspan="2">Time To Goal</td>
+            <td class="col-center col-seperator" colspan="2">Cost of Goals (&#8377;)</td>
+            <td class="col-center col-seperator" colspan="2">Investment Required (&#8377;)</td>
+          </tr>
+          <tr>
+            <td class="fix-width">Current Cost*</td>
+            <td class="col-seperator fix-width">Future Value**</td>
+            <td>Monthly SIP**</td>
+            <td>OneTime Lumpsum**</td>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let goal of goalData.goals; let i = index">
+
+            <td class="goal-term col-seperator"> <input type="text" [(ngModel)]="goal.name"
+                [disabled]="goal.name=='Pension/Retirement Plan' || goal.name=='My 1st Crore '">
+            </td>
+            <td class="time-to-goal"><input type="number" (input)="reCalculateGoal(i)" [(ngModel)]="goal.duration"
+                maxlength="2" min="1"></td>
+            <td> <input type="number" [(ngModel)]="goal.currentCost" (input)="reCalculateGoal(i)" maxlength="9"></td>
+            <td class="col-seperator"> {{goal.futureCost | inrCurrency:1}}</td>
+            <td> {{goal.monthlySip | inrCurrency:1}}</td>
+
+            <td class="status"> {{goal.lumpsum | inrCurrency:1}}
+              <mat-icon class="delete-icon" fontSet="fas" fontIcon="fa-trash" (click)="removeGoal(i)"></mat-icon>
+              <!-- <i *ngIf="goal.status==1" class="fas fa-spinner goal-progress-spinner"></i> -->
+              <!-- <mat-icon *ngIf="goal.status==2" class="success" fontSet="fas" fontIcon="fa-check-circle"></mat-icon> -->
+              <!-- <mat-icon *ngIf="goal.status==3" class="failure" fontSet="fas" fontIcon="fa-times-circle"></mat-icon> -->
+            </td>
+
+          </tr>
+
+          <tr class="add-goal">
+            <td colspan="6">
+              <mat-icon (click)="openAddGoalDialog()" fontSet="fas" fontIcon="fa-plus-circle"></mat-icon>
+              <p (click)="openAddGoalDialog()">Add New Goal</p>
+              <mat-icon (click)="openAddExistingInvestment()" fontSet="fas" fontIcon="fa-plus-circle"></mat-icon>
+              <p (click)="openAddExistingInvestment()">Add Existing Investment</p>
+            </td>
+          </tr>
+
+          <tr class="seperator">
+            <td colspan="6"></td>
+          </tr>
+
+          <tr class="goal-estimate">
+            <td colspan="3"></td>
+            <td> Goal Estimate</td>
+            <td> {{goalData.monthlyGoalEstimate | inrCurrency:1}}</td>
+            <td> {{goalData.lumpsumGoalEstimate | inrCurrency:2}} </td>
+          </tr>
+          <tr class="goal-estimate net-estimate" *ngIf="displayExistingInvestmentLength()">
+            <!-- <td colspan="2"></td> -->
+            <td colspan="6">
+              After accounting for your existing investment(s), your net investment required is
+              <span>{{goalData.netMonthlySipEstimate | inrCurrency:1}}</span> Monthly <span>OR </span>
+              <span>{{goalData.netLumpSumEstimate | inrCurrency:2}}</span> OneTime
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+
+      <div class="legend">
+        <div>
+          <p> Long Term </p>
+        </div>
+        <div>
+          <p> Mid Term </p>
+        </div>
+        <div>
+          <p> Short Term </p>
+        </div>
+      </div>
+
+      <table class="existing-asset" *ngIf="displayExistingInvestmentLength()">
+        <thead>
+          <tr class="fix-width">
+            <td>Investment / Asset Name</td>
+            <td>Associated Goal Name</td>
+            <td>Time To Goal</td>
+            <td>Current Value (&#8377;)</td>
+            <td>Future Value (&#8377;)**</td>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let goals of goalData.goals;let j = index">
+            <td colspan="5">
+              <table>
+                <tr *ngFor="let exInv of goals.existingInvestment; let i = index" class="fix-width">
+                  <td>{{exInv.name}}</td>
+                  <td>{{goals.name}}</td>
+                  <td>{{goals.duration}}</td>
+                  <td>{{exInv.currentValue}}</td>
+                  <td class="status">{{exInv.futureValue | inrCurrency:2}}
+                    <mat-icon class="delete-icon" fontSet="fas" fontIcon="fa-trash"
+                      (click)="removeExistingInvestment(i,j)"></mat-icon>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr class="add-existing-investment">
+            <td colspan="6">
+              <mat-icon (click)="openAddExistingInvestment()" fontSet="fas" fontIcon="fa-plus-circle"></mat-icon>
+              <p (click)="openAddExistingInvestment()">Add Existing Investment</p>
+            </td>
+          </tr>
+
+          <!-- <tr class="estimate-heading">
+            <td colspan="3"></td>
+            <td>Net Monthly SIP</td>
+            <td>Net Lumpsum</td>
+          </tr> -->
+          <!-- <tr class="goal-estimate">
+            <td></td>
+            <td colspan="2"> Net Estimate</td>
+            <td> {{goalData.netMonthlySipEstimate | inrCurrency:1}}</td>
+            <td> {{goalData.netLumpSumEstimate | inrCurrency:2}} </td>
+          </tr> -->
+        </tbody>
+
+      </table>
+
+      <div class="goal-status-actions">
+        <button mat-raised-button color="primary" (click)="saveGoals()">Save Goals</button>
+      </div>
+
+      <div class="risk-message">
+        <p class="top-message" *ngIf="isDefaultRisk">We assume your Risk & Return Profile to be
+          {{currentRisk.split('_')[0] | titlecase }} Risk {{currentRisk.split('_')[1] | titlecase }}
+          Return. To know your exact Risk profile you can answer 6 question. <span
+            (click)="openRiskProfileDialog()">Click
+            here</span></p>
+        <p class="top-message" *ngIf="!isDefaultRisk">Your Risk & Return Profile is
+          {{currentRisk.split('_')[0] | titlecase }} Risk {{currentRisk.split('_')[1] | titlecase }}
+          Return. <span (click)="openRiskProfileDialog()">Recalculate Risk</span></p>
+        <p class="risk-response" *ngIf="riskProfileMessage!=''">
+          {{riskProfileMessage}}
+        </p>
+        <!-- <p class="interest-rates">
+          {{generalSipMessage}}
+        </p> -->
+
+      </div>
+      <div class="recommended-funds">
+        <p>LIST OF RECOMMENDED FUNDS</p>
+        <p>Based on our calculations and your risk profile, we suggest schemes list for you. Now you can invest these
+          schemes and complete your goals.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <td>Scheme Name</td>
+              <td>Type</td>
+              <td>Launch Date</td>
+              <td>Minimum Purchase Amount(&#8377;) </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let fund of recommendedFunds">
+              <td>{{fund.schemeName}}</td>
+              <td>{{fund.schemeType}}</td>
+              <td>{{fund.schemeLaunchDate}}</td>
+              <td>{{fund.minimumPurchaseAmount | inrCurrency:0}} <a target="_blank"
+                  routerLink="/mutual-funds/scheme/{{fund.schemeKeyword}}">Invest
+                  Now</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

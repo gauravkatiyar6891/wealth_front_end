@@ -1,0 +1,142 @@
+<div class="new-section-head" *ngIf="awaitingPaymentStatus.length!=0">
+  <p>Pending For Unit Allocation</p>
+</div>
+
+<div class="mat-container-fluid" *ngIf="awaitingPaymentStatus.length!=0">
+  <div class="mat-container">
+    <div class="awaiting-payment-status">
+      <div class="list-element" *ngFor="let awaitingData of awaitingPaymentStatus">
+        <div>
+          <img src="../../../assets/funds/{{awaitingData.schemeAmcCode}}.png" alt="">
+        </div>
+        <div>
+          <h4>{{awaitingData.schemeName}} - &#8377; {{awaitingData.amount | inrCurrency:0}}<span></span></h4>
+          <mat-progress-bar mode="determinate" [value]="35" color="primary"></mat-progress-bar>
+          <div>
+            <div>
+              <p>Order Confirmed</p>
+              <p>{{awaitingData.orderConfirmed}}</p>
+            </div>
+            <div>
+              <p>Payment Done</p>
+              <p>{{awaitingData.awaitingPayment}}</p>
+            </div>
+            <div>
+              <p>Units Allocation</p>
+              <p>{{awaitingData.unitAllocation}}</p>
+            </div>
+            <div>
+              <p>Units In Your Account</p>
+              <p>{{awaitingData.unitsInYourAccount}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="new-section-head">
+  <p>Your Investments</p>
+</div>
+
+<div class="mat-container-fluid" *ngIf="portfolios.length!=0">
+  <div class="mat-container">
+    <div class="overview-cont">
+      <div>
+        <p>Investment Cost</p>
+        <p> &#8377; {{totalInvestedAmount | inrCurrency:0}}</p>
+      </div>
+      <div>
+        <p>Current Value</p>
+        <p> &#8377; {{totalCurrentInvestment | inrCurrency:0}}</p>
+      </div>
+      <div>
+        <p>Returns</p>
+        <p> {{averageReturns}} %</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mat-container-fluid empty-portfolio-list" *ngIf="portfolios.length==0 && !fetchingPortfolio">
+  <div class="mat-container">
+    <h3>You have not done any transaction yet.</h3>
+    <h4>Click <a routerLink="/mutual-funds">here</a> to see Mutual Funds.</h4>
+  </div>
+</div>
+
+<div class="mat-container-fluid" *ngIf="portfolios.length!=0">
+  <div class="mat-container accordion-cont">
+
+    <mat-accordion class="accordion" displayMode="default" [multi]="false" [hideToggle]="false">
+
+      <mat-expansion-panel [hideToggle]="false" *ngFor="let portfolio of portfolios; let i = index">
+        <mat-expansion-panel-header class="expansion-panel-header">
+          <img class="fund-logo" src="../../../assets/icons/{{portfolio.amcCode}}.png" alt="">
+          <mat-panel-title class="title"> {{portfolio.schemeName}} </mat-panel-title>
+          <mat-panel-description>
+            <span class="panel-desc">
+              <span>
+                <span> Invested Amount : </span>
+                <span>&#8377; {{portfolio.totalInvestment | inrCurrency:0}}</span>
+              </span>
+              <span>
+                <span>Today's Value : </span>
+                <span> &#8377; {{portfolio.currentAmount | inrCurrency:0}}</span>
+              </span>
+            </span>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="folio-cont" *ngFor="let folio of portfolio.folios">
+          <div class="panel-body">
+            <div>
+              <span> Folio Number </span>
+              <span>{{folio.folioNumber}}</span>
+            </div>
+            <div>
+              <span> Started On </span>
+              <span>{{folio.startedOn | date: 'dd MMM yyyy'}}</span>
+            </div>
+            <div>
+              <span> Current Amount </span>
+              <span>{{folio.currentAmount}}</span>
+            </div>
+            <div>
+              <span> Alloted Unit </span>
+              <span>{{folio.allotedUnits}}</span>
+            </div>
+            <div>
+              <span> Invested Amount </span>
+              <span>{{folio.investedAmount}}</span>
+              <!-- <p>(As of {{folio.currentDate}})</p> -->
+            </div>
+            <!-- <div>
+              <span> Alloted NAV </span>
+              <span>{{folio.nav}}</span>
+            </div> -->
+            <div>
+              <span> Absolute Return </span>
+              <span>{{folio.absoluteReturn}} %</span>
+            </div>
+          </div>
+          <div class="goal"><span>Associated Goal :</span> {{folio.goalName ? folio.goalName : 'None'}}
+          </div>
+          <div class="action-buttons">
+            <button mat-stroked-button (click)=" openGoalsDialog(folio.folioNumber,portfolio.schemeCode,folio.goalId)">Update
+              Goal</button>
+            <button mat-stroked-button (click)="openRedeemDialog(portfolio, folio)"
+              [disabled]="!folio.isRedeemptionAllowed">Redeem</button>
+            <button mat-stroked-button
+              *ngIf="(folio.status == 'C' || folio.status == 'R' || folio.status == 'AD' || folio.status == 'AF' || folio.status == 'AP' || folio.status == 'PR' || folio.status == 'OD' || folio.status == 'TI')"
+              (click)="viewTransaction(folio.folioNumber,portfolio.schemeCode)">View Transaction</button>
+            <button mat-raised-button color="primary" (click)="openAddtoFolioDialog(portfolio,folio)">Add More</button>
+          </div>
+        </div>
+      </mat-expansion-panel>
+
+    </mat-accordion>
+
+  </div>
+</div>

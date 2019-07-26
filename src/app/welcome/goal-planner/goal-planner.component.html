@@ -1,0 +1,236 @@
+<div class="mat-container-fluid goal-calc-cont" #goalPlanner>
+  <div class="mat-container">
+    <h3>Go4Wealth Goal Planning Tool is your one stop solution to <u>know and plan</u> your financial goals</h3>
+    <p class="seperator">Let's plan your dream goals by providing few basic details</p>
+
+    <div class="goal-calc">
+
+      <div class="calc-controls" [ngClass]="{'half-width-calc': showGoals && false}">
+        <form [formGroup]="returnValueCalc" (ngSubmit)="fetchGoals()">
+          <div class="select-form-field">
+            <mat-form-field color="accent">
+              <mat-select placeholder="Residence" required [formControl]="returnValueCalc.controls['residence']">
+                <mat-option *ngFor="let city of cityList" [value]="city.cityId">{{city.cityName |
+                  titlecase}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field color="accent">
+              <mat-select #maritalStatus placeholder="Marital Status" required
+                [formControl]="returnValueCalc.controls['maritalStatus']">
+                <mat-option value="1">Married </mat-option>
+                <mat-option value="2">Not Married </mat-option>
+                <mat-option value="3">Other </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+          </div>
+
+          <div class="slider">
+            <div>
+              <p>
+                Age Group (Years)
+              </p>
+              <mat-slider #age min="20" max="60" value="20" step="1" thumbLabel tickInterval=5 color="accent"
+                [formControl]="returnValueCalc.controls['age']">
+              </mat-slider>
+              <div class="caps">
+                <span>20 Years</span>
+                <span>Above 60 Years</span>
+              </div>
+            </div>
+            <div>
+              <div class="slider-box">
+                <h5>{{age.value | ageTransform }} Years</h5>
+              </div>
+            </div>
+          </div>
+
+          <div class="slider">
+            <div>
+              <p>
+                Income Slab (&#8377;)
+              </p>
+              <mat-slider #income min="2" max="50" step="1" thumbLabel color="accent"
+                [formControl]="returnValueCalc.controls['income']">
+              </mat-slider>
+              <div class="caps">
+                <span>&#8377; 2 Lacs</span>
+                <span>&#8377; 50+ Lacs</span>
+              </div>
+            </div>
+            <div>
+              <div class="slider-box">
+                <h5>&#8377; {{income.value | incomeSlab}} Lacs</h5>
+              </div>
+            </div>
+          </div>
+
+          <div class="slider">
+            <div>
+              <p>
+                Kids
+              </p>
+              <mat-slider #kids min="0" max="3" step="1" thumbLabel color="accent"
+                [formControl]="returnValueCalc.controls['kids']">
+              </mat-slider>
+              <div class="caps">
+                <span>0</span>
+                <span>2+</span>
+              </div>
+            </div>
+            <div>
+              <div class="slider-box">
+                <h5 [ngStyle]="{'color:grey;': true && maritalStatus.value!=1 && maritalStatus.value!=3}">{{kids.value
+                  == 3 ? '2+' : kids.value}} Kid(s) </h5>
+              </div>
+            </div>
+          </div>
+
+          <div class="action">
+            <button type="submit" mat-raised-button color="accent">Calculate</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="side-image" *ngIf="!showGoals">
+        <div class="glide">
+          <div class="glide__track" data-glide-el="track">
+            <ul class="glide__slides">
+              <li class="glide__slide">
+                <img src="../../../assets/home_new/1o1-1.png" alt="Best investment option Go4wealth">
+                <p>Save 20% of your income before spending</p>
+              </li>
+              <li class="glide__slide">
+                <img src="../../../assets/home_new/1o1-2.png" alt="Start investing for those goals">
+                <p>Plan your future finances in detail, and start investing for those goals </p>
+              </li>
+              <li class="glide__slide">
+                <img src="../../../assets/home_new/1o1-3.png" alt="Always Diversify your investment">
+                <p>Always Diversify your investment. It helps in reducing risk</p>
+              </li>
+              <li class="glide__slide">
+                <img src="../../../assets/home_new/1o1-4.png" alt="Go4wealth Discipline and Time Invested">
+                <p>Secret to compounding is Discipline and Time Invested</p>
+              </li>
+            </ul>
+          </div>
+          <div class="glide__bullets" data-glide-el="controls[nav]">
+            <button class="glide__bullet" data-glide-dir="=0"></button>
+            <button class="glide__bullet" data-glide-dir="=1"></button>
+            <button class="glide__bullet" data-glide-dir="=2"></button>
+            <button class="glide__bullet" data-glide-dir="=3"></button>
+          </div>
+        </div>
+        <!-- <h2>FINANCE 1O1</h2> -->
+      </div>
+
+      <!-- --------------------------------------Goal Result Table -------------------------------------------- -->
+
+      <div class="goal-result-table" *ngIf="showGoals">
+        <p class="no-margin">Based on your <b>profile input, </b>below is the summary of your financial planning</p>
+        <!-- <p class="no-margin">below is the summary of your financial planning</p> -->
+        <div class="sum">
+          <div>
+            <div class="row-sec">
+              <div>
+                <p>No. of goals</p>
+              </div>
+              <div>
+                <p>{{getGoalsLength()}} Goals</p>
+              </div>
+            </div>
+            <div class="row-sec">
+              <div>
+                <p>Total Cost of goals</p>
+              </div>
+              <div>
+                <p> &#8377; {{ goalCost | inrCurrency:1}}</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p>
+              Investment required to fulfill your goals
+            </p>
+            <div>
+              <div>
+                <p> &#8377; {{ goalsData.monthlyGoalEstimate | inrCurrency:1}}</p>
+                <p>MONTHLY</p>
+              </div>
+              <div>
+                <p> &#8377; {{ goalsData.lumpsumGoalEstimate | inrCurrency:1}}</p>
+                <p>ONE TIME</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="table-cont">
+          <table>
+            <thead>
+              <tr>
+                <td class="col-seperator" rowspan="2">Name of Goal</td>
+                <td class="col-center col-seperator" colspan="2">Cost of Goals (&#8377;)</td>
+                <td class="col-center col-seperator" colspan="2">Investment Required (&#8377;)</td>
+              </tr>
+              <tr>
+                <td>Current Cost*</td>
+                <td class="col-seperator">Future Value**</td>
+                <td>Monthly SIP**</td>
+                <td>OneTime Lumpsum**</td>
+              </tr>
+            </thead>
+
+            <tr *ngFor="let goal of goalsData.goals" [hidden]="goal.futureCost == 0">
+              <td class="goal-term col-seperator"> {{goal.name}}
+                <p [class]="getGoalTermClass(goal.duration)"></p>
+              </td>
+              <td> {{goal.currentCost | inrCurrency:2}}</td>
+              <td class="col-seperator"> {{goal.futureCost | inrCurrency:2}}</td>
+              <td> {{goal.monthlySip | inrCurrency:1}}</td>
+              <td> {{goal.lumpsum | inrCurrency:1}}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="table-cont-footer">
+          <div class="left">
+            <div class="legend-goal-term">
+              <div class="first-goal-term">
+                <p>Short Term</p>
+              </div>
+              <div class="second-goal-term">
+                <p>Mid Term</p>
+              </div>
+              <div class="third-goal-term">
+                <P>Long Term</P>
+              </div>
+            </div>
+            <div class="not-right-goals">
+              <p class="p-bold">Didn't find the right goals? You can create your own dream goals by
+                customizing the above goals.</p>
+            </div>
+            <div class="add-ex-goals">
+              <p class="p-bold">Do you have existing investment? Let us know and we will give you the
+                precise investment plan.</p>
+            </div>
+            <div class="resp-buttons">
+              <a mat-raised-button color="primary" routerLink="/mutual-funds/topfunds">INVEST</a>
+              <a mat-raised-button color="primary" routerLink="/goal-planning">CUSTOMIZE GOALS</a>
+            </div>
+            <div class="declaration">
+              <p>*This is an estimated cost. Actual Cost may differ.</p>
+              <p>**For the sake of this calculation, we have assumed inflation to be @ 5.00% and RoI @
+                15.00%</p>
+              <p>***Calculation Round up: Cost to nearest 100s; Investment to nearest 10s</p>
+            </div>
+          </div>
+          <div class="right">
+            <a mat-raised-button color="primary" routerLink="/mutual-funds/topfunds">INVEST</a>
+            <a mat-raised-button color="primary" routerLink="/goal-planning">CUSTOMIZE GOALS</a>
+            <a mat-raised-button color="primary" routerLink="/goal-planning">ADD EXISTING GOAL</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

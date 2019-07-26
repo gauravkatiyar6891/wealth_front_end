@@ -1,0 +1,13 @@
+{
+  "universal": {
+    "project": "Go4Wealth-v2",
+    "skipInstall": false,
+    "directory": ".",
+    "http": true
+  },
+  "pwa": {
+    "directory": ".",
+    "skipInstall": true,
+    "project": "Go4Wealth-v2"
+  }
+}

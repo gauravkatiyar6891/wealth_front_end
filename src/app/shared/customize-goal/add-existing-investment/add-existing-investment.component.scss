@@ -1,0 +1,21 @@
+@import '../../../../theme.scss';
+
+.heading {
+	padding: 10px 15px;
+	background-color: $primary-color;
+	color: white;
+	margin: -24px -24px 0 -24px;
+}
+
+form {
+	padding: 20px 10px;
+	.input-controls {
+		width: 90%;
+		mat-icon {
+			font-size: 16px;
+		}
+	}
+	button {
+		float: right;
+	}
+}

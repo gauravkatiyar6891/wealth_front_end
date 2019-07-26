@@ -1,0 +1,29 @@
+<div class="right-bar-cont">
+  <div class="logo">
+    <img src="./../../../assets/home_new/go4wealth-logo-white.png" alt="">
+    <p>Go4Wealth</p>
+  </div>
+  <div class="menu" *ngIf="!globalUtility.isUserLoggedIn">
+    <button mat-stroked-button (click)="openMyAccountDialog()">Sign In</button>
+    <button mat-raised-button color="primary" routerLink="/blogslist" (click)="sideBar.emit(false)">EXPLORE</button>
+    <!-- <button mat-raised-button color="primary" (click)="toPlan()">PLAN</button> -->
+    <button mat-raised-button color="primary" routerLink="/" fragment="goal-planner"
+      (click)="sideBar.emit(false)">PLAN</button>
+    <button mat-raised-button color="primary" routerLink="/mutual-funds" (click)="sideBar.emit(false)">INVEST</button>
+  </div>
+  <div class="pic" *ngIf="globalUtility.isUserLoggedIn">
+    <img [src]="globalUtility.userProfileImage" alt="">
+    <p>{{globalUtility.userData?.userName}}</p>
+  </div>
+  <div class="list" *ngIf="globalUtility.isUserLoggedIn">
+    <p routerLink="/user/dashboard" (click)="sideBar.emit(false)">Dashboard</p>
+    <p routerLink="/user/profile" (click)="sideBar.emit(false)">Profile</p>
+    <p routerLink="/user/portfolios" (click)="sideBar.emit(false)">Portfolios</p>
+    <p routerLink="/user/watchlist" (click)="sideBar.emit(false)">WishList</p>
+    <p routerLink="/user/my-orders" (click)="sideBar.emit(false)">Orders</p>
+    <p routerLink="/user/cart" (click)="sideBar.emit(false)">Cart</p>
+    <p routerLink="/user/active-sip" (click)="sideBar.emit(false)">Active SIP</p>
+    <p routerLink="/user/view-goals" (click)="sideBar.emit(false)">Goals</p>
+    <p (click)="globalUtility.clearTokenFromLocalStorage();sideBar.emit(false)">Sign Out</p>
+  </div>
+</div>

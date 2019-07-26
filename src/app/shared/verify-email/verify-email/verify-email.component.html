@@ -1,0 +1,9 @@
+<div class="overlay" [hidden]="!showLoader">
+  <mat-progress-spinner mode="indeterminate" color="primary" [diameter]="50"></mat-progress-spinner>
+</div>
+
+<div class="mat-container-fluid cont">
+  <div class="mat-container">
+    <p [ngClass]="{'success': status }">{{message}}</p>
+  </div>
+</div>

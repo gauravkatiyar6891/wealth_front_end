@@ -1,0 +1,15 @@
+<div class="mat-container-fluid">
+  <div class="mat-container warn-cont">
+    <p *ngIf="showCompleteMandateWarning">
+      <span>Warning: </span>
+      Your Mandate process is not completed. You can complete your Mandate process by submiting mandate form. Click
+      here to <span (click)="openMandateDialog()">download or upload</span>
+      mandate form.
+    </p>
+    <p *ngIf="showMandateFailedWarning" class="error-status">
+      <span>Warning: </span>
+      Your mandate process is rejected. It seems that your bank details are not correct.
+      <a routerLink="/user/emandate-process">Click here</a> to update your bank detail.
+    </p>
+  </div>
+</div>

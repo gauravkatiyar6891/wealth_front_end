@@ -1,0 +1,532 @@
+@import '../../../../theme.scss';
+
+.scheme {
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.3);
+  padding: 15px 20px;
+  margin-top: 50px;
+
+  .scheme-head {
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(to right, $primary-color-alternate, $primary-color);
+    padding: 5px 10px;
+    border-radius: 12px;
+    margin: 0 0 10px;
+
+    p {
+      margin: 0;
+    }
+
+    >div {
+      &:first-child {
+        flex-basis: 73%;
+
+        p {
+          font-weight: 600;
+          color: white;
+          font-size: 22px;
+          display: inline-block;
+          position: relative;
+          margin: 5px 0;
+
+          .share {
+            position: absolute;
+            top: 6px;
+            right: -40px;
+            font-size: 20px;
+
+            mat-icon {
+              font-size: 20px;
+              cursor: pointer;
+            }
+
+            span {
+              position: absolute;
+              top: 35px;
+              left: -220%;
+              background-color: $secondary-color;
+              padding: 5px 10px;
+              border-radius: 2px;
+              animation: slide-down 500ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+
+              &:before {
+                position: absolute;
+                content: '';
+                border: 8px solid $secondary-color;
+                top: -7px;
+                left: 45%;
+                transform: rotateZ(45deg);
+              }
+
+              mat-icon {
+                display: inline;
+                margin: 5px 10px;
+                font-size: 20px;
+              }
+
+              .whats-app {
+                color: #25d366;
+              }
+
+              .facebook {
+                color: #3b5998;
+              }
+
+              .twitter {
+                color: #1da1f2;
+              }
+            }
+          }
+        }
+      }
+
+      &:last-child {
+        flex-basis: 22%;
+
+        >p {
+          color: white;
+
+          &:first-child {
+            font-weight: 600;
+            margin: 0;
+
+            >span {
+              font-size: 18px;
+              margin: 0 5px;
+            }
+          }
+
+          &:last-child {
+            font-size: 12px;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .scheme-details {
+    display: flex;
+    justify-content: space-between;
+
+    >div {
+
+      &:first-child,
+      &:nth-child(2) {
+        flex-basis: 35%;
+        display: flex;
+        // justify-content: space-between;
+        flex-wrap: wrap;
+        flex-direction: column;
+        padding: 30px 0 0;
+      }
+
+      &:last-child {
+        flex-basis: 30%;
+        display: flex;
+        flex-direction: column;
+
+        .risk {
+          flex: 75;
+          text-align: center;
+          position: relative;
+
+          img {
+            width: 80%;
+          }
+
+          p {
+            position: absolute;
+            left: 32%;
+            top: 38%;
+            font-size: 22px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 3px;
+            padding: 4px 5px;
+            color: $primary-color;
+          }
+
+          .risk-statement {
+            display: block;
+            width: 80%;
+            margin: 10px auto;
+            font-size: 11px;
+            font-weight: 600;
+          }
+        }
+      }
+
+      .details {
+        padding: 0 15px;
+        margin: 5px 0px;
+
+        p {
+          &:first-child {
+            float: left;
+            font-weight: 600;
+
+            >span {
+              font-weight: normal;
+              font-size: 12px;
+            }
+          }
+
+          &:last-child {
+            float: right;
+            background-color: $primary-color-alternate;
+            padding: 2px 0;
+            color: white;
+            text-align: center;
+            border-radius: 2px;
+            width: 130px;
+          }
+        }
+      }
+    }
+  }
+
+  .scheme-details-footer {
+    display: flex;
+    justify-content: space-between;
+
+    .left {
+      flex: 90;
+
+      .details {
+        display: flex;
+        padding-left: 15px;
+
+        >div {
+          &:first-child {
+            flex-basis: 20%;
+            font-weight: 600;
+          }
+
+          &:last-child {
+            flex-basis: 80%;
+            position: relative;
+
+            &:before {
+              position: absolute;
+              content: ':';
+              left: -15px;
+              top: -1px;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+
+      .yearly-returns {
+        display: flex;
+        justify-content: flex-start;
+        margin: 20px 0 0;
+        flex-wrap: wrap;
+
+        >div {
+          flex-basis: 30%;
+          padding: 0 20px 0 15px;
+
+          >p {
+            display: inline;
+
+            &:first-child {
+              float: left;
+              font-weight: 600;
+            }
+
+            &:last-child {
+              float: right;
+              background-color: $primary-color-alternate;
+              padding: 2px 0;
+              color: white;
+              text-align: center;
+              border-radius: 2px;
+              width: 75px;
+            }
+          }
+        }
+      }
+    }
+
+    .right {
+      flex: 30;
+
+      .action {
+        display: flex;
+        justify-content: space-around;
+        margin: 10px 0;
+
+        >div {
+          flex-basis: 32%;
+        }
+      }
+
+      .watch-later {
+        text-align: center;
+        padding: 15px 0;
+
+        .watch-list {
+          cursor: pointer;
+          position: relative;
+
+          mat-icon {
+            position: absolute;
+          }
+
+          .watch-later-icon {
+            font-size: 20px;
+            top: 0px;
+            left: 0;
+          }
+
+          p {
+            display: inline-block;
+            margin: 0 0 0 30px;
+            line-height: 25px;
+          }
+
+          &:hover {
+            p {
+              text-decoration: underline;
+            }
+          }
+        }
+
+        mat-progress-spinner {
+          position: absolute;
+          top: 2px;
+          right: -25px;
+        }
+
+        .status {
+          top: 14px;
+          right: 25px;
+          font-size: 14px;
+          right: -30px;
+          top: 3px;
+        }
+
+        .success {
+          color: green;
+        }
+
+        .failure {
+          color: red;
+        }
+      }
+    }
+  }
+}
+
+@keyframes slide-down {
+  form {
+    max-height: 0px;
+    opacity: 0;
+  }
+
+  to {
+    max-height: 40px;
+    opacity: 1;
+  }
+}
+
+.recommended-funds,
+.recently-viewed-funds {
+  h3 {
+    color: $primary-color;
+
+    a {
+      color: $primary-color;
+      float: right;
+      margin-right: 10px;
+
+      mat-icon {
+        position: relative;
+        top: 7px;
+        font-size: 30px;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .mutual-funds-list {
+    >a {
+      >mat-card {
+        background-color: $secondary-color-light;
+        animation: none;
+
+        img {
+          margin: 0px 20% 20px;
+        }
+      }
+    }
+  }
+}
+
+.grey-filter {
+  filter: grayscale(80%) blur(6px);
+}
+
+@media only screen and (max-width: 576px) {
+  .scheme {
+    .scheme-head {
+      flex-wrap: wrap;
+
+      >div {
+        &:first-child {
+          flex-basis: 100%;
+
+          p {
+            font-size: 16px;
+
+            .share {
+              position: relative;
+              top: 0;
+              right: 0;
+              font-size: 12px;
+
+              mat-icon {
+                font-size: 14px;
+              }
+
+              span {
+                top: 25px;
+                left: -250%;
+              }
+            }
+          }
+        }
+
+        &:nth-child(2) {
+          flex-basis: 50%;
+        }
+
+        &:last-child {
+          flex-basis: 50%;
+
+          .status {
+            right: 10px;
+          }
+        }
+      }
+    }
+
+    .scheme-details {
+      flex-wrap: wrap;
+
+      >div {
+
+        &:first-child,
+        &:nth-child(2) {
+          flex-basis: 50%;
+        }
+
+        &:last-child {
+          flex-basis: 95%;
+        }
+
+        .details {
+          padding: 0;
+
+          p {
+            position: relative;
+            float: none !important;
+
+            >span {
+              position: absolute;
+              left: 0;
+              top: 14px;
+            }
+          }
+        }
+
+        &:last-child {
+          order: 3;
+        }
+      }
+    }
+
+    .scheme-details-footer {
+      flex-wrap: wrap;
+
+      .left {
+        .details {
+          padding-left: 0;
+
+          >div {
+            &:first-child {
+              flex-basis: 35%;
+            }
+
+            &:last-child {
+              flex-basis: 58%;
+              text-align: justify;
+            }
+          }
+        }
+
+        .yearly-returns {
+          margin: 10px 0 0;
+
+          >div {
+            >p {
+              &:last-child {
+                width: 65px;
+              }
+            }
+          }
+        }
+      }
+
+      .right {
+        .watch-later {
+          text-align: left;
+          padding: 5px 0 0 15px;
+        }
+      }
+    }
+
+    .yearly-returns {
+      margin-top: 10px;
+    }
+  }
+
+  .recommended-funds {
+    h3 {
+      font-size: 16px;
+
+      a {
+        font-size: 16px;
+        position: relative;
+        top: -5px;
+
+        mat-icon {
+          top: 5px;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+  .recently-viewed-funds {
+    h3 {
+      font-size: 16px;
+    }
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .scheme {
+    .scheme-head {
+      >div {
+        &:last-child {
+          flex-basis: 100%;
+        }
+      }
+    }
+  }
+}

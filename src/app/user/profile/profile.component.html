@@ -1,0 +1,199 @@
+<div class="mat-container-fluid profile-cont">
+  <div class="mat-container">
+    <div class="parent">
+
+      <div class="left">
+        <img [src]="globalUtility.userProfileImage" (mouseover)="openImageChanger=true">
+        <input #profileChange type="file" (change)="openImageCropper($event)">
+
+        <div class="image-cropper-background" *ngIf="imageChangedEvent">
+          <mat-icon fontSet="fas" fontIcon="fa-times-circle" (click)="imageChangedEvent=null"> </mat-icon>
+          <image-cropper [imageChangedEvent]="imageChangedEvent" [aspectRatio]="1 / 1" format="png" (loadImageFailed)="loadImageFailed()"
+            (imageCropped)="imageCropped($event)"></image-cropper>
+          <button mat-raised-button color="primary" (click)="uploadImage()">Upload</button>
+        </div>
+
+        <div class="change-image" (click)="profileChange.click()" *ngIf="openImageChanger" (mouseout)="openImageChanger=false">
+          <p>Change <mat-icon fontSet="fas" fontIcon="fa-upload"></mat-icon>
+          </p>
+        </div>
+        <div class="name">
+          <p>{{getUserData()?.userName}}
+            <mat-icon *ngIf="getUserData()?.panVerified && getUserData()?.userOverallStatus == '1'" class="verified-icon"
+              fontSet="fas" fontIcon="fa-check-circle"></mat-icon>
+            <mat-icon *ngIf="!(getUserData()?.panVerified && getUserData()?.userOverallStatus == '1')" class="not-verified-icon"
+              fontSet="fas" fontIcon="fa-exclamation-circle"></mat-icon>
+          </p>
+        </div>
+        <div class="location">
+          <p>
+            <mat-icon fontSet="fas" fontIcon="fa-map-marker-alt"></mat-icon>
+            {{getUserData()?.addressProof?.city | nullToNa}}
+          </p>
+        </div>
+        <div class="email">
+          <p>
+            <mat-icon fontSet="far" fontIcon="fa-envelope"></mat-icon>
+            {{getUserData()?.email}}
+          </p>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="overview">
+          <h3> Overview </h3>
+        </div>
+        <!-- <app-mandate></app-mandate> -->
+        <div class="upper">
+          <div class="status upper-case">
+            <span>PAN</span><span>{{getUserData()?.panNumber | nullToNa}}</span>
+          </div>
+          <div class="status">
+            <span>Account No.</span><span>{{getUserData()?.accountNumber | nullToNa}}</span>
+          </div>
+          <div class="status">
+            <span>XSIP Status</span><span>{{getUserData()?.xsipStatus}}</span>
+          </div>
+          <div class="status">
+            <span>ISIP Status</span><span>{{getUserData()?.isipStatus}}</span>
+          </div>
+        </div>
+        <div class="lower">
+          <mat-tab-group dynamicHeight>
+            <mat-tab label="Additional Details">
+              <div class="tab-body">
+                <div>
+                  <span>Mobile No</span>
+                  <span>{{getUserData()?.mobile}}</span>
+                </div>
+                <div>
+                  <span>Date of Birth</span>
+                  <span>{{(getUserData()?.dob | date: 'dd-MMM-yyyy') | nullToNa}}</span>
+                </div>
+                <div>
+                  <span class="ucc">Unique Customer Code</span>
+                  <span class="ucc">{{getUserData()?.uccClientCode | nullToNa}}</span>
+                </div>
+                <div>
+                  <span>Marital Status</span>
+                  <span>{{getUserData()?.maritalStatus | nullToNa}}</span>
+                  <!-- <div *ngIf="getUserData()?.maritalStatus!=null" (click)="changeMaritalStatus(maritalStatusChangeText)">Change
+                    to {{maritalStatusChangeText }}</div> -->
+                </div>
+
+                <div class="seperator">
+                  <span>Bank Name</span>
+                  <span class="upper-case">{{getUserData()?.bankName | nullToNa}}</span>
+                </div>
+                <div>
+                  <span>IFSC Code</span>
+                  <span class="upper-case">{{getUserData()?.ifscCode | nullToNa}}</span>
+                </div>
+                <div>
+                  <span>Branch Name</span>
+                  <span>{{getUserData()?.bankBranch | nullToNa}}</span>
+                </div>
+                <div>
+                  <span>NACH Mandate ID</span>
+                  <span>{{getUserData()?.xsipId | nullToNa}}</span>
+                </div>
+                <div>
+                  <span>Bank Biller ID</span>
+                  <span>{{getUserData()?.isipId | nullToNa}}</span>
+                </div>
+              </div>
+            </mat-tab>
+            <mat-tab label="Documents">
+              <div class="doc-fields">
+                <div>
+                  <span>Signature</span>
+                  <span>
+                    <mat-icon class="success" *ngIf="getUserData()?.signatureImageExist" fontSet="fas" fontIcon="fa-check-circle">
+                    </mat-icon>
+                    <mat-icon class="failure" *ngIf="!getUserData()?.signatureImageExist" fontSet="fas" fontIcon="fa-times-circle">
+                    </mat-icon>
+                  </span>
+                </div>
+                <div>
+                  <span>PAN Card</span>
+                  <span>
+                    <mat-icon class="success" *ngIf="getUserData()?.panVerified" fontSet="fas" fontIcon="fa-check-circle">
+                    </mat-icon>
+                    <mat-icon class="failure" *ngIf="!getUserData()?.panVerified" fontSet="fas" fontIcon="fa-times-circle">
+                    </mat-icon>
+                  </span>
+                </div>
+                <div *ngIf="!getUserData()?.panVerified">
+                  <span>Address Proof Front</span>
+                  <span>
+                    <mat-icon class="success" *ngIf="getUserData()?.adharcardImageExist" fontSet="fas" fontIcon="fa-check-circle"></mat-icon>
+                    <mat-icon class="failure" *ngIf="!getUserData()?.adharcardImageExist" fontSet="fas" fontIcon="fa-times-circle"></mat-icon>
+                  </span>
+                </div>
+                <div *ngIf="!getUserData()?.panVerified">
+                  <span>Address Proof Back</span>
+                  <span>
+                    <mat-icon class="success" *ngIf="getUserData()?.adharcardImageExist" fontSet="fas" fontIcon="fa-check-circle"></mat-icon>
+                    <mat-icon class="failure" *ngIf="!getUserData()?.adharcardImageExist" fontSet="fas" fontIcon="fa-times-circle"></mat-icon>
+                  </span>
+                </div>
+                <div *ngIf="!getUserData()?.panVerified">
+                  <span>Upload Pan:</span>
+                  <span>
+                    <input #uploadPan type="file" style="display:none;" #userImageRef ngModel (change)="getUserImageFiles($event,'pancard')">
+                    <button mat-raised-button (click)="uploadPan.click()" style="margin-left:25px;">Select
+                      File</button>
+                  </span>
+                </div>
+                <div *ngIf="!getUserData()?.panVerified">
+                  <span style="margin-left: 24px; padding: 0px 5px;">Upload Address Proof Front:</span>
+                  <span>
+                    <input #uploadAddressproofFront type="file" style="display:none;" #userImageRef ngModel (change)="getUserImageFiles($event,'adharcardFront')">
+                    <button mat-raised-button (click)="uploadAddressproofFront.click()">Select
+                      File</button><span style="margin-left: 8px;">{{addressProofFrontImageName}}</span>
+                  </span>
+                </div>
+                <div *ngIf="!getUserData()?.panVerified">
+                  <span style="margin-left: 24px; padding: 0px 5px;">Upload Address Proof Back:</span>
+                  <span>
+                    <input #uploadAddressproofBack type="file" style="display:none;" #userImageRef ngModel (change)="getUserImageFiles($event,'adharcardBack')">
+                    <button mat-raised-button (click)="uploadAddressproofBack.click()">Select
+                      File</button><span style="margin-left: 8px;">{{addressProofBackImageName}}</span>
+                  </span>
+                </div>
+                <button mat-raised-button color="primary" style="margin-left: 184px; width: 127px; margin-top: 9px;"
+                  (click)="saveAddressProofImage()" *ngIf="!getUserData()?.panVerified">Submit</button>
+              </div>
+            </mat-tab>
+            <mat-tab label="Change Password">
+              <div class="password-change-fields">
+                <form [formGroup]="resetPasswordForm" (ngSubmit)="changePassword()">
+                  <mat-form-field>
+                    <input matInput type="password" placeholder="New Password" required [formControl]="resetPasswordForm.controls['password']">
+                    <mat-error *ngIf="resetPasswordForm.controls['password'].hasError('minlength')">Password must be
+                      more than 7 characters</mat-error>
+                  </mat-form-field>
+                  <br>
+
+                  <mat-form-field>
+                    <input matInput type="password" placeholder="Confirm New Password" required [formControl]="resetPasswordForm.controls['cnfPassword']">
+                    <mat-error *ngIf="resetPasswordForm.controls['cnfPassword'].hasError('passwordMatch')">Password do
+                      not Match</mat-error>
+                  </mat-form-field>
+                  <mat-error *ngIf="passwordChangeFailure">Failed to Changed Password</mat-error>
+                  <mat-hint *ngIf="passwordChangeSuccess" class="success"> Password Successfuly Changed</mat-hint>
+
+                  <div>
+                    <button mat-flat-button color="primary" type="submit" [disabled]="resetPasswordForm.invalid || passwordChangeSuccess">Change
+                      Password</button>
+                  </div>
+                </form>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

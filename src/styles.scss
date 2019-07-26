@@ -1,0 +1,602 @@
+/* You can add global styles to this file, and also import other style files */
+@import './theme.scss';
+@import './../node_modules/@glidejs/glide/src/assets/sass/glide.core.scss';
+
+// @import './../node_modules/@glidejs/glide/src/assets/sass/glide.theme.scss';
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  font-style: none;
+  color: black;
+}
+
+p {
+  margin: 0 0 10px 0;
+}
+
+a:hover,
+a:active,
+a:visited,
+a:focus {
+  text-decoration: none;
+  color: black;
+}
+
+ul {
+  padding-left: 0px;
+}
+
+::-webkit-scrollbar {
+  background: #ddd;
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $primary-color;
+  border-radius: 5px;
+}
+
+input:-webkit-autofill {
+  animation-name: autofill;
+  animation-fill-mode: both;
+}
+
+input:-webkit-autofill {
+  animation-name: autofill !important;
+  animation-fill-mode: both;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.mat-raised-button.mat-primary,
+.mat-flat-button.mat-primary {
+  background: linear-gradient(to right, $primary-color-alternate, $primary-color) !important;
+  border-radius: 10px;
+}
+
+// --------------------------------------------------------------------------------New Section Headline starts------------------------------------------------------------
+
+.new-section-head {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+
+  p {
+    text-align: center;
+    margin: 10px auto;
+    width: 300px;
+    padding: 22px 15px 15px;
+    font-size: 24px;
+    background-color: white;
+    color: $primary-color;
+  }
+
+  &:before {
+    position: absolute;
+    content: '';
+    border-bottom: 2px solid $primary-color-alternate;
+    top: 38px;
+    width: 100%;
+    z-index: -1;
+  }
+
+  &:after {
+    position: absolute;
+    content: '';
+    border-bottom: 2px solid $primary-color;
+    top: 42px;
+    width: 100%;
+    z-index: -1;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  table {
+    overflow-x: auto;
+    // white-space: nowrap;
+    display: block;
+
+    th,
+    td {
+      font-size: 12px !important;
+    }
+  }
+
+  .new-section-head {
+    p {
+      font-size: 16px;
+      padding: 28px 15px 15px;
+      width: 225px;
+    }
+
+    &:before {
+      border-bottom: 1px solid $primary-color-alternate;
+    }
+
+    &:after {
+      border-bottom: 1px solid $primary-color;
+    }
+  }
+}
+
+// --------------------------------------------------------------------------------New Section Headline End------------------------------------------------------------
+
+// --------------------------------------------------------------------------------Loader Overlay Starts------------------------------------------------------------
+
+.overlay-loader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+  top: 0;
+  z-index: 600;
+  background-color: rgba($color: #000000, $alpha: 0.2);
+
+  mat-progress-spinner {
+    top: 40%;
+    left: 0;
+    right: 0;
+    margin: 0px auto;
+  }
+
+  h3 {
+    position: absolute;
+    top: 52%;
+    left: 0;
+    right: 0;
+    margin: 0px auto;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .overlay-loader {
+    mat-progress-spinner {
+      top: 38% !important;
+    }
+
+    h3 {
+      top: 50% !important;
+    }
+  }
+}
+
+// --------------------------------------------------------------------------------Loader Overlay Ends------------------------------------------------------------
+
+// --------------------------------------------------------------------------------Mat Dialog Starts------------------------------------------------------------
+
+.session-expire-cont {
+  .mat-dialog-container {
+    padding: 0px;
+  }
+
+  h1 {
+    color: white;
+    background-color: $primary-color;
+    padding: 10px 250px 10px 20px;
+  }
+
+  h4 {
+    width: fit-content;
+    margin: 40px auto;
+  }
+
+  p {
+    margin-bottom: 0px;
+    margin-left: 10px;
+    font-size: 10px;
+    color: #787878;
+  }
+}
+
+.report-emailid-cont {
+  .mat-dialog-container {
+    padding: 0px;
+  }
+
+  h1 {
+    color: white;
+    background-color: $primary-color;
+    padding: 10px 250px 10px 20px;
+  }
+
+  .mat-dialog-content {
+    margin: 10px 0px;
+  }
+
+  form {
+    text-align: center;
+
+    mat-form-field {
+      width: 100%;
+    }
+  }
+
+  .action-buttons {
+    display: flex;
+    margin-top: 10px;
+
+    button {
+      flex: 1 1 auto;
+      margin: 0px 40px;
+    }
+  }
+}
+
+.team-member-cont {
+  .mat-dialog-container {
+    padding: 0px;
+    width: 750px;
+  }
+}
+
+.my-account-cont {
+  .mat-dialog-container {
+    max-width: 725px;
+    margin: 0 auto;
+  }
+}
+
+.redeem-folio-cont {
+  .mat-dialog-container {
+    width: 750px;
+  }
+}
+
+.risk-profile-cont {
+  .mat-dialog-container {
+    width: 750px;
+  }
+}
+
+.add-goal-cont {
+  .mat-dialog-container {
+    width: 400px;
+  }
+}
+
+.add-to-folio-cont {
+  .mat-dialog-container {
+    padding: 0px;
+    width: 500px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .session-expire-cont {
+    h1 {
+      padding: 10px;
+    }
+
+    h4 {
+      margin: 30px 20px;
+      font-size: 16px;
+    }
+  }
+}
+
+// --------------------------------------------------------------------------------Mat Dialog Ends------------------------------------------------------------
+
+// --------------------------------------------------------------------------------Bootstrap to Mat Container Starts------------------------------------------------------------
+
+.mat-container-fluid {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.mat-container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  // padding-right: 15px;
+  // padding-left: 15px;
+}
+
+@media only screen and (min-width: 576px) {
+  .mat-container {
+    max-width: 540px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mat-container {
+    max-width: 720px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .mat-container {
+    max-width: 960px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .mat-container {
+    max-width: 1170px;
+  }
+}
+
+// @media only screen and (min-width: 1700px) {
+// 	.mat-container {
+// 		width: 1670px;
+// 	}
+// }
+
+// --------------------------------------------------------------------------------Bootstrap to Mat Container Ends------------------------------------------------------------
+
+// ---------------------------------------------------------------------------------Schemes Card Starts------------------------------------------------------------------------------
+.mutual-funds-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  >a {
+    flex-basis: 23%;
+    margin: 20px 0px;
+
+    >mat-card {
+      font-size: 13px;
+      cursor: pointer;
+
+      img {
+        max-height: 220px;
+        width: 60%;
+        height: 90px;
+        opacity: 0.7;
+      }
+
+      .scheme-name {
+        color: white;
+        text-align: center;
+        line-height: 16px;
+        margin: 0px -16px;
+        padding: 10px 24px;
+        height: 80px;
+        font-size: 12px;
+        background: linear-gradient(to right, $primary-color-alternate, $primary-color);
+      }
+
+      .scheme-info-cont {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        font-weight: 600;
+
+        >span {
+          flex-basis: 45%;
+          text-align: center;
+        }
+      }
+
+      .scheme-info-details {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        margin-top: 10px;
+
+        >span {
+          flex-basis: 42%;
+          text-align: center;
+          background-color: $primary-color-alternate;
+          color: white;
+          padding: 3px 5px;
+          border-radius: 5px;
+        }
+      }
+
+      .min-amount {
+        font-size: 12px;
+        margin-top: 15px;
+
+        >span {
+          &:last-child {
+            float: right;
+            background-color: $primary-color-alternate;
+            color: white;
+            padding: 2px 5px;
+            border-radius: 3px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width:992px) {
+  .mutual-funds-list {
+    justify-content: space-between;
+
+    a {
+      flex-basis: 30%;
+    }
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .mutual-funds-list {
+    a {
+      flex-basis: 45%;
+      font-size: 18px;
+    }
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .mutual-funds-list {
+    justify-content: space-around;
+
+    >a {
+      flex-basis: 225px;
+
+      >mat-card {
+        margin: 20px 10px;
+
+        .scheme-name {
+          margin: 0 -16px;
+          padding: 10px 0;
+          height: 65px;
+          font-size: 11px;
+          line-height: 15px;
+        }
+      }
+    }
+  }
+}
+
+.mutual-fund-list-mob-sch {
+
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+
+  .glide__arrows {
+    mat-icon {
+      position: absolute;
+      top: 40%;
+    }
+
+    .left {
+      left: -15px;
+    }
+
+    .right {
+      right: -15px;
+    }
+  }
+
+  li {
+    padding: 5px 30px;
+  }
+
+  .fund-card {
+    display: inline-block;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    font-size: 13px;
+    cursor: pointer;
+    text-align: center;
+    padding-bottom: 10px;
+
+    img {
+      max-height: 220px;
+      width: 60%;
+      margin: 0 auto;
+      height: 90px;
+      opacity: 0.7;
+    }
+
+    .scheme-name {
+      color: white;
+      line-height: 16px;
+      padding: 10px 24px;
+      height: 80px;
+      font-size: 12px;
+      background: linear-gradient(to right, $primary-color-alternate, $primary-color);
+    }
+
+    .scheme-info-cont {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      font-weight: 600;
+      padding: 0 5px;
+
+      >span {
+        flex-basis: 45%;
+        text-align: center;
+      }
+    }
+
+    .scheme-info-details {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      margin-top: 10px;
+      padding: 0 5px;
+
+      >span {
+        flex-basis: 42%;
+        text-align: center;
+        background-color: $primary-color-alternate;
+        color: white;
+        padding: 3px 5px;
+        border-radius: 5px;
+      }
+    }
+
+    .min-amount {
+      font-size: 12px;
+      margin-top: 15px;
+      text-align: initial;
+      padding: 0 5px;
+
+      >span {
+        &:last-child {
+          float: right;
+          background-color: $primary-color-alternate;
+          color: white;
+          padding: 2px 5px;
+          border-radius: 3px;
+        }
+      }
+    }
+  }
+}
+
+@keyframes fade-down {
+  from {
+    opacity: 0;
+    transform: translateY(-300px);
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+// ---------------------------------------------------------------------------------Schemes Card Ends------------------------------------------------------------------------------
+
+@keyframes autofill {
+  from {}
+
+  to {
+    background: transparent;
+  }
+}
+
+*:focus {
+  outline: none;
+}
+
+.mat-option:hover:not(.mat-option-disabled),
+.mat-option:focus:not(.mat-option-disabled),
+.mat-option.mat-active {
+  background: rgba(0, 0, 0, 0.1) !important;
+}

@@ -1,0 +1,297 @@
+@import '../../../theme.scss';
+
+.new-section-head {
+  p {
+    width: 225px;
+  }
+}
+
+.list-cont {
+  .head {
+    margin: 0 0 15px;
+
+    p {
+      font-size: 20px;
+      font-weight: 700;
+      color: $primary-color;
+      position: relative;
+
+      &:before {
+        content: '';
+        position: absolute;
+        width: 30px;
+        height: 3px;
+        bottom: -4px;
+        background-color: $primary-color;
+      }
+
+      &:after {
+        content: '';
+        position: absolute;
+        width: 45px;
+        height: 1px;
+        background-color: $primary-color;
+        bottom: -3px;
+        left: 30px;
+      }
+    }
+  }
+
+  .order-table {
+    margin: 30px 0 10px;
+    font-size: 12px;
+    font-family: Montserrat, sans-serif;
+    width: 100%;
+
+    >thead {
+      background-color: $primary-color;
+      color: white;
+
+      tr {
+        td {
+          padding: 15px 10px;
+          font-size: 14px;
+        }
+      }
+    }
+
+    >tbody {
+      >tr {
+        border: 1px solid $secondary-color;
+
+        table {
+          font-size: 14px;
+          width: 100%;
+
+          tr {
+            &:first-child {
+              td {
+                text-align: right;
+                padding: 15px 20px 0;
+                font-size: 13px;
+                font-weight: 600;
+              }
+            }
+
+            &:last-child {
+              td {
+                &:first-child {
+                  span {
+                    font-weight: 600;
+                    font-size: 14px;
+                    margin: 15px;
+                  }
+                }
+
+                &:last-child {
+                  text-align: center;
+
+                  button {
+                    margin: 15px 10px;
+                  }
+                }
+              }
+            }
+
+            .cancel-icon {
+              position: relative;
+
+              mat-icon {
+                position: absolute;
+                font-size: 16px;
+                cursor: pointer;
+                top: 6px;
+                right: 10px;
+                transition: 250ms;
+
+                &:hover {
+                  transform: scale(1.1);
+                  color: black;
+                }
+              }
+            }
+          }
+        }
+
+        .model-portfolio-table {
+          tr {
+            &:first-child {
+              td {
+                padding: 15px 20px;
+              }
+            }
+          }
+
+          .rows {
+            td {
+              padding: 5px;
+            }
+          }
+        }
+      }
+    }
+
+    >td {
+      padding: 5px;
+
+      input {
+        outline: none;
+        border: none;
+        box-shadow: 0px 0px 2px 0px;
+        padding: 2px 20px 2px 2px;
+      }
+    }
+  }
+
+  .sip-table {
+    .clm-0 {
+      width: 100px;
+      text-align: center;
+      padding: 10px 0;
+
+      img {
+        width: 50px;
+        border-radius: 50%;
+        min-height: 45px;
+        max-height: 55px;
+      }
+    }
+
+    // .clm-1 {
+    // 	width: 100px;
+    // }
+    .clm-2 {
+      width: 475px;
+      padding: 0 5px;
+    }
+
+    .clm-3 {
+      width: 160px;
+    }
+
+    .clm-4 {
+      width: 110px;
+    }
+
+    .clm-5 {
+      width: 120px;
+    }
+
+    .clm-6 {
+      width: 100px;
+    }
+  }
+
+  .lumpsum-table {
+    .clm-0 {
+      width: 100px;
+      text-align: center;
+      padding: 10px 0;
+
+      img {
+        width: 50px;
+        border-radius: 50%;
+        min-height: 45px;
+        max-height: 55px;
+      }
+    }
+
+    .clm-1 {
+      width: 100px;
+    }
+
+    .clm-2 {
+      width: 475px;
+      padding: 0 5px;
+    }
+
+    .clm-3 {
+      width: 110px;
+    }
+
+    .clm-4 {
+      width: 120px;
+    }
+
+    .clm-5 {
+      width: 100px;
+    }
+  }
+
+  .empty-list {
+    td {
+      text-align: center;
+      font-weight: 600;
+      font-size: 18px;
+      padding: 30px 0;
+    }
+  }
+}
+
+@media only screen and(max-width:576px) {
+  .new-section-head {
+    p {
+      width: 130px;
+    }
+  }
+
+  .list-cont {
+    .sip-table {
+      .clm-0 {
+        min-width: 70px;
+        padding: 0;
+      }
+
+      .clm-1 {
+        min-width: 65px;
+      }
+
+      .clm-2 {
+        min-width: 200px;
+      }
+
+      .clm-3 {
+        min-width: 120px;
+      }
+
+      .clm-4 {
+        min-width: 80px;
+      }
+
+      .clm-5 {
+        min-width: 110px;
+      }
+
+      .clm-6 {
+        min-width: 100px;
+      }
+    }
+
+    .lumpsum-table {
+      .clm-0 {
+        min-width: 70px;
+        padding: 0;
+      }
+
+      .clm-1 {
+        min-width: 65px;
+      }
+
+      .clm-2 {
+        min-width: 200px;
+      }
+
+      .clm-3 {
+        min-width: 80px;
+      }
+
+      .clm-4 {
+        min-width: 110px;
+      }
+
+      .clm-5 {
+        min-width: 100px;
+      }
+    }
+  }
+}

@@ -1,0 +1,220 @@
+@import './../../../theme.scss';
+
+.graph-cont {
+  margin: 20px 0 0;
+  background-color: $secondary-color-light;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding-bottom: 15px;
+
+  >div {
+    padding-top: 0;
+  }
+
+  h2 {
+    color: $primary-color;
+    margin: 0;
+    padding-top: 10px;
+    text-align: center;
+  }
+
+  .amount {
+    padding: 10px 0;
+
+    span {
+      font-size: 20px;
+      color: $primary-color;
+    }
+
+    mat-slider {
+      width: 52%;
+      margin: 0 15px;
+    }
+
+    p {
+      color: $primary-color;
+      font-size: 24px;
+      margin: -15px 160px 20px;
+      font-weight: 600;
+    }
+  }
+
+  .flex-parent {
+    position: relative;
+
+    >div {
+      display: inline-block;
+
+      &:first-child {
+        width: 70%;
+        // background-color: $secondary-color;
+      }
+
+      &:last-child {
+        position: absolute;
+        top: 0;
+        width: 30%;
+        padding: 10px;
+
+        span {
+          width: 95px;
+          display: inline-block;
+          text-align: center;
+        }
+
+        h4 {
+          color: $primary-color;
+        }
+
+        h5 {
+          color: $primary-color;
+          position: relative;
+          margin-left: 25px;
+
+          &:before {
+            position: absolute;
+            content: '';
+            left: -20px;
+            top: 2px;
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+          }
+        }
+
+        .mf,
+        .pf,
+        .fd,
+        .savings {
+          span {
+            width: 100px;
+          }
+        }
+
+        .mf {
+          &:before {
+            background-color: $primary-color-alternate;
+          }
+        }
+
+        .pf {
+          &:before {
+            background-color: #119911;
+          }
+        }
+
+        .fd {
+          &:before {
+            background-color: $yellow-color;
+          }
+        }
+
+        .savings {
+          &:before {
+            background-color: $primary-color;
+          }
+        }
+
+        p {
+          font-size: 10px;
+          margin: 0;
+        }
+
+        .margin-p {
+          margin: 125px 0 0;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .graph-cont {
+    h2 {
+      font-size: 18px;
+    }
+
+    .amount {
+      span {
+        font-size: 18px;
+      }
+
+      mat-slider {
+        margin: 0;
+        width: 100%;
+      }
+
+      p {
+        font-size: 20px;
+        margin: -15px 5px 10px;
+      }
+    }
+
+    .flex-parent {
+      position: inherit;
+
+      >div {
+        &:first-child {
+          width: 100%;
+        }
+
+        &:last-child {
+          width: 100%;
+          position: inherit;
+          top: inherit;
+          padding: 0 10px;
+
+          h4 {
+            display: inline-block;
+            width: fit-content;
+            font-size: 16px;
+            margin-right: 5px;
+          }
+
+          h5 {
+            display: inline-block;
+            width: 45%;
+            margin: 10px 0 0 25px;
+            font-size: 13px;
+          }
+
+          .margin-p {
+            margin: 10px 0 0;
+          }
+        }
+      }
+    }
+
+    .declaration {
+      p {
+        font-size: 10px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .graph-cont {
+
+    .flex-parent {
+
+      >div {
+
+        &:last-child {
+
+          h4 {
+            width: 100%;
+            display: block;
+            font-size: 16px;
+          }
+
+          h5 {
+            display: block;
+            width: 100%;
+            font-size: 13px;
+          }
+        }
+      }
+    }
+  }
+
+}

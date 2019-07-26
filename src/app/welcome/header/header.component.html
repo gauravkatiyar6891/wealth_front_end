@@ -1,0 +1,107 @@
+<div class="mat-container-fluid menu-cont">
+  <div class="mat-container">
+
+    <div class="logo" (click)="gotoHome()">
+      <h3><img src="../../../assets/logo/go4wealth-header-logo.png" alt="Go4wealth Logo"><span>GO4WEALTH</span> </h3>
+    </div>
+
+    <div class="menu-options">
+      <a routerLink="/blogs">EXPLORE</a>
+      <a routerLink="/" (click)="plan()">PLAN</a>
+      <a routerLink="/mutual-funds">INVEST</a>
+    </div>
+
+    <div class="in-block-desk">
+      <div class="menu-action">
+        <span (click)="openMyAccountDialog()" *ngIf="!globalUtility.isUserLoggedIn"> SIGN IN</span>
+        <a mat-flat-button routerLink="/mutual-funds" color="primary">START INVESTING</a>
+        <mat-icon fontSet="fas" fontIcon="fa-bars" (click)="sideBar.emit(true)"></mat-icon>
+      </div>
+
+      <div class="login-buttons" *ngIf="globalUtility.isUserLoggedIn" (clickOutside)="dropDownMenu=false">
+
+        <div class="drop-menu-cont" (click)="dropDownMenu=!dropDownMenu">
+          <img [src]="globalUtility.userProfileImage" alt="" srcset="">
+          <span class="name"><span>{{globalUtility.userData?.userName}}</span>
+            <mat-icon class="down-arrow" fontSet="fas" fontIcon="fa-caret-down"></mat-icon>
+          </span>
+
+          <div class="drop-down-profile" *ngIf="dropDownMenu">
+            <ul class="profile-menu">
+              <li class="profile-img">
+                <img [src]="globalUtility.userProfileImage" alt="user-image">
+                <span>{{globalUtility.userData?.userName}}</span>
+              </li>
+              <li routerLink="/user/dashboard">Dashboard</li>
+              <li routerLink="/user/profile">Profile</li>
+              <li routerLink="/user/portfolios">Portfolios</li>
+              <li routerLink="/user/watchlist">Watchlist</li>
+              <li routerLink="/user/my-orders">Orders</li>
+              <li routerLink="/user/cart">Cart</li>
+              <li routerLink="/user/active-sip">Active SIP</li>
+              <li routerLink="/user/view-goals">Goals</li>
+              <li (click)="logout()">Sign Out</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="msg-icon" *ngIf="false">
+  <img src="../../../assets/home_new/6.png" alt="">
+</div>
+
+<!-- <div class="whats-app">
+  <a href="https://wa.me/918588927927?text=Hi%20Go4Wealth%0AI%20am%20interested%20in%20Mutual%20Funds%20investment%2C%20please%20suggest..."
+    target="_blank" rel="noopener noreferrer">
+    <mat-icon fontSet="fab" fontIcon="fa-whatsapp-square"></mat-icon>
+  </a>
+</div> -->
+
+<div class="enquiry" *ngIf="true" (click)="!isEnquiryFormOpen && enquiryFormState(true)"
+  [ngClass]="{'enquiry-form-open': isEnquiryFormOpen}">
+  <div class="heading">
+    Queries or Feedback
+    <mat-icon class="mat-18" *ngIf="isEnquiryFormOpen" (click)="enquiryFormState(false); $event.stopPropagation()">
+      minimize</mat-icon>
+  </div>
+  <form [formGroup]="enquiryForm">
+
+    <mat-form-field class="input-fields">
+      <textarea matInput placeholder="Leave Your Message here..."
+        [formControl]="enquiryForm.controls['message']"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="input-fields">
+      <input matInput placeholder="Name" [formControl]="enquiryForm.controls['name']" spellcheck="false">
+      <mat-error
+        *ngIf="enquiryForm.controls['name'].hasError('pattern') && !enquiryForm.controls['name'].hasError('required')">
+        Only Alphabets are allowed
+      </mat-error>
+
+    </mat-form-field>
+    <br>
+
+    <mat-form-field class="input-fields">
+      <input type="tel" matInput placeholder="Mobile No" [formControl]="enquiryForm.controls['mobNo']">
+      <mat-error
+        *ngIf="enquiryForm.controls['mobNo'].hasError('minlength') || enquiryForm.controls['mobNo'].hasError('maxlength')">
+        Mobile No must be of 10 digits
+      </mat-error>
+
+    </mat-form-field>
+    <br>
+    <mat-hint>{{enquiryMessage}}</mat-hint>
+    <br>
+
+    <button type="submit" (click)="enquiryFormSubmit()" mat-flat-button
+      [disabled]="!enquiryForm.valid || showEnquirySubmission">Submit
+      <mat-progress-spinner *ngIf="showEnquirySubmission" mode="indeterminate" color="primary" [diameter]="20">
+      </mat-progress-spinner>
+    </button>
+  </form>
+</div>

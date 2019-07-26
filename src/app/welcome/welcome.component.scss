@@ -1,0 +1,31 @@
+@import './../../theme.scss';
+
+
+mat-sidenav {
+  width: 60%;
+  min-width: 200px;
+  max-width: 300px;
+}
+
+.mat-drawer-content {
+  overflow: inherit !important;
+}
+
+.mat-drawer-container {
+  background-color: white !important;
+  overflow: inherit !important;
+}
+
+.mat-drawer-inner-container {
+  background-color: $secondary-color;
+}
+
+.router-body {
+  min-height: 400px;
+}
+
+@media only screen and (max-width: 576px) {
+  .router-body {
+    min-height: 250px;
+  }
+}

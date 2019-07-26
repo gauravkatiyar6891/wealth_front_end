@@ -1,0 +1,86 @@
+<div class="new-section-head">
+  <p>{{investmentType}}</p>
+</div>
+
+<div class="mat-container-fluid" *ngIf="!isModelPortfolio">
+  <div class="mat-container order-cont">
+    <div class="head">
+      <p>{{order.schemeName}}</p>
+    </div>
+
+    <div class="body">
+      <table>
+        <thead>
+          <tr>
+            <td class="clm-1">Scheme Name</td>
+            <td *ngIf="investmentType=='SIP'" class="clm-2">Installment Date</td>
+            <td class="clm-3">Amount</td>
+            <td class="clm-4">Order Status</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="order!=null">
+            <td class="clm-1"> {{order.schemeName}} </td>
+            <td class="clm-2" *ngIf="investmentType=='SIP'">{{order.dayOfSip}} of every month</td>
+            <td class="clm-3"> &#8377; {{order.amount | inrCurrency:0}} <span *ngIf="investmentType=='SIP'">/Month</span>
+            </td>
+            <td class="clm-4">
+              <span *ngIf="order.status=='C' || order.status=='M'">Confirm <mat-icon class="success" fontSet="fas"
+                  fontIcon="fa-check-circle"></mat-icon> </span>
+              <span *ngIf="order.status=='P'">Canceled <mat-icon class="failure" fontSet="fas" fontIcon="fa-times"></mat-icon></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="action">
+        <button mat-raised-button color="primary" *ngIf="order.status=='P'" (click)="confirmOrder(order)">Confirm and
+          Pay</button>
+        <button mat-raised-button color="primary" *ngIf="order.status=='M'" (click)="payNow(order)">Pay Now</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="mat-container-fluid" *ngIf="isModelPortfolio">
+  <div class="mat-container order-cont">
+    <div class="head">
+      <p>{{modelPortfolioCategory}}</p>
+    </div>
+
+    <div class="body">
+      <table>
+        <thead>
+          <tr>
+            <td class="clm-1">Scheme Name</td>
+            <td class="clm-2" *ngIf="investmentType=='SIP'">Installment Date</td>
+            <td class="clm-3">Amount</td>
+            <td class="clm-4">Order Status</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of ordersList; let i = index">
+            <td class="clm-1"> {{order.schemeName}} </td>
+            <td class="clm-2" *ngIf="investmentType=='SIP'">{{order.dayOfSip}} of every month</td>
+            <td class="clm-3"> &#8377; {{order.amount | inrCurrency:0}} <span *ngIf="investmentType=='SIP'">/Month</span>
+            </td>
+            <td class="clm-4" class="delete-icon">
+              <span *ngIf="order.status=='C' || order.status=='M'">Confirm <mat-icon class="success" fontSet="fas"
+                  fontIcon="fa-check-circle"></mat-icon> </span>
+              <span *ngIf="order.status=='P'">Canceled <mat-icon class="failure" fontSet="fas" fontIcon="fa-times"></mat-icon></span>
+              <!-- <mat-icon *ngIf="order.status=='P'" class="mat-18" (click)="deleteOrder(order.orderId,i)">cancel</mat-icon> -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="action" *ngIf="ordersList.length!=0">
+        <!-- <button mat-raised-button *ngIf="ordersList[0].status=='P'" (click)="deleteAllOrder()">Delete All Order</button> -->
+        <button mat-raised-button color="primary" *ngIf="showConfirmAndPay" (click)="confirmMpOrder()">Confirm
+          and Pay </button>
+        <button mat-raised-button color="primary" *ngIf="!showConfirmAndPay" (click)="payMpNow()">Pay Now</button>
+      </div>
+    </div>
+
+  </div>
+</div>
